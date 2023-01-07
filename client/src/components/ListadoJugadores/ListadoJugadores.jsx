@@ -1,24 +1,23 @@
 import React, { useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
-import { getEntrenadores } from "../../redux/actions/actions";
+import { getJugadores } from "../../redux/actions/actions";
 
-import "./ListadoEntrenadores.css";
+import "./ListadoJugadores.css";
 
-const ListadoEntrenadores = () => {
+const ListadoJugadores = () => {
   const dispatch = useDispatch();
 
-  const entrenadores = useSelector((state) => state.entrenadores);
-  const hayEntrenadores =
-    entrenadores && entrenadores.data && entrenadores.data.length;
+  const jugadores = useSelector((state) => state.jugadores);
+  const hayJugadores = jugadores && jugadores.data && jugadores.data.length;
 
   useEffect(() => {
-    dispatch(getEntrenadores());
+    dispatch(getJugadores());
   }, []);
 
   return (
-    <div className="listado-entrenadores">
-      <h2 className="sub-title">Lista de entrenadores activos</h2>
+    <div className="listado-jugadores">
+      <h2 className="sub-title">Lista de jugadores activos</h2>
       <table className="table table-bordered">
         <thead>
           <tr>
@@ -32,18 +31,18 @@ const ListadoEntrenadores = () => {
         </thead>
 
         <tbody>
-          {!hayEntrenadores && (
+          {!hayJugadores && (
             <tr>
               <td className="table-data example-text">Juan Pérez</td>
               <td className="table-data example-text">juanperez@example.com</td>
             </tr>
           )}
-          {hayEntrenadores
-            ? entrenadores.data.map((entrenador) => {
+          {hayJugadores
+            ? jugadores.data.map((jugador) => {
                 return (
-                  <tr key={entrenador.email}>
-                    <td className="table-data">{entrenador.nombre}</td>
-                    <td className="table-data">{entrenador.email}</td>
+                  <tr key={jugador.email}>
+                    <td className="table-data">{jugador.nombre}</td>
+                    <td className="table-data">{jugador.email}</td>
                   </tr>
                 );
               })
@@ -54,4 +53,4 @@ const ListadoEntrenadores = () => {
   );
 };
 
-export default ListadoEntrenadores;
+export default ListadoJugadores;

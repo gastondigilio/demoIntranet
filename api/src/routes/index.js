@@ -1,4 +1,6 @@
 const { Router } = require("express");
+const axios = require("axios");
+const cheerio = require("cheerio");
 const {
   Entrenadores,
   Equipos,
@@ -175,6 +177,30 @@ router.get("/jugadores-equipos", async (req, res) => {
     console.error(error);
     res.status(500).send(error);
   }
+});
+
+router.get("/noticias-deportivas", (req, res) => {
+  axios
+    .get("https://www.afe-futbol.com/deportivo/")
+    .then((response) => {
+      const html = response.data;
+      const $ = cheerio.load(html);
+
+      const titles = [];
+      $(".grid-items .title").each((i, element) => {
+        titles.push($(element).text());
+      });
+
+      res.send(
+        titles.map((title) => {
+          return title.replace(/\n|\t|\s{2,}/g, "");
+        })
+      );
+    })
+    .catch((error) => {
+      console.log("ERROR GET NOTICIAS: ", error);
+      res.send(error); // envía el error al cliente
+    });
 });
 
 module.exports = router;

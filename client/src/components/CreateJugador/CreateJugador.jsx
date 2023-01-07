@@ -3,14 +3,14 @@ import Spinner from "../Spinner/Spinner";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
-  createEntrenador,
-  getEntrenadores,
+  createJugador,
+  getJugadores,
   setLoading,
 } from "../../redux/actions/actions";
 
-import "./CreateEntrenador.css";
+import "./CreateJugador.css";
 
-const CreateEntrenador = () => {
+const CreateJugador = () => {
   const dispatch = useDispatch();
 
   const initialInput = {
@@ -18,7 +18,7 @@ const CreateEntrenador = () => {
     email: "",
   };
   const [input, setInput] = useState(initialInput);
-  const [entrenadoresAgregados, setEntrenadoresAgregados] = useState([]);
+  const [jugadoresAgregados, setJugadoresAgregados] = useState([]);
   const isLoading = useSelector((state) => state.isLoading);
 
   const handleInputChange = (e) => {
@@ -27,7 +27,7 @@ const CreateEntrenador = () => {
 
   const handleAgregar = (e) => {
     e.preventDefault();
-    setEntrenadoresAgregados([...entrenadoresAgregados, input]);
+    setJugadoresAgregados([...jugadoresAgregados, input]);
     setInput(initialInput);
   };
 
@@ -35,17 +35,17 @@ const CreateEntrenador = () => {
     e.preventDefault();
     dispatch(setLoading(true));
 
-    entrenadoresAgregados.map((entrenador) => {
+    jugadoresAgregados.map((jugador) => {
       try {
-        dispatch(createEntrenador(entrenador));
+        dispatch(createJugador(jugador));
       } catch (error) {
         console.log("ERROR: ", error);
       }
-      dispatch(getEntrenadores());
+      dispatch(getJugadores());
     });
 
     dispatch(setLoading(false));
-    setEntrenadoresAgregados([]);
+    setJugadoresAgregados([]);
   };
 
   const handleValidateAgregar = () => {
@@ -64,12 +64,12 @@ const CreateEntrenador = () => {
   };
 
   const handleValidateAceptar = () => {
-    return entrenadoresAgregados.length < 1;
+    return jugadoresAgregados.length < 1;
   };
 
   const validateRepeat = () => {
-    for (let i = 0; i < entrenadoresAgregados.length; i++) {
-      if (entrenadoresAgregados[i].email === input.email) {
+    for (let i = 0; i < jugadoresAgregados.length; i++) {
+      if (jugadoresAgregados[i].email === input.email) {
         return true;
       }
     }
@@ -77,8 +77,8 @@ const CreateEntrenador = () => {
   };
 
   return (
-    <div className="create-entrenador">
-      <h2 className="sub-title">Dar de alta entrenadores</h2>
+    <div className="create-jugador">
+      <h2 className="sub-title">Dar de alta jugadores</h2>
 
       {isLoading && <Spinner />}
 
@@ -89,7 +89,7 @@ const CreateEntrenador = () => {
       >
         <div className="input-group flex-nowrap">
           <span className="input-group-text" id="addon-wrapping">
-            Nombre del entrenador
+            Nombre del jugador
           </span>
 
           <input
@@ -108,7 +108,7 @@ const CreateEntrenador = () => {
 
         <div className="input-group flex-nowrap">
           <span className="input-group-text" id="addon-wrapping">
-            Email del entrenador
+            Email del jugador
           </span>
 
           <input
@@ -160,7 +160,7 @@ const CreateEntrenador = () => {
         </thead>
 
         <tbody>
-          {!entrenadoresAgregados.length && (
+          {!jugadoresAgregados.length && (
             <tr>
               <td
                 className="example-text"
@@ -176,12 +176,12 @@ const CreateEntrenador = () => {
               </td>
             </tr>
           )}
-          {entrenadoresAgregados.length
-            ? entrenadoresAgregados.map((entrenador) => {
+          {jugadoresAgregados.length
+            ? jugadoresAgregados.map((jugador) => {
                 return (
-                  <tr key={entrenador.email}>
-                    <td className="table-data">{entrenador.nombre}</td>
-                    <td className="table-data">{entrenador.email}</td>
+                  <tr key={jugador.email}>
+                    <td className="table-data">{jugador.nombre}</td>
+                    <td className="table-data">{jugador.email}</td>
                   </tr>
                 );
               })
@@ -192,4 +192,4 @@ const CreateEntrenador = () => {
   );
 };
 
-export default CreateEntrenador;
+export default CreateJugador;

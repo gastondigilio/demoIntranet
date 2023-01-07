@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Spinner from "../Spinner/Spinner";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
-  createEntrenador,
-  getEntrenadores,
+  createEquipo,
+  getEquipos,
   setLoading,
 } from "../../redux/actions/actions";
 
-import "./CreateEntrenador.css";
+import "./CreateEquipo.css";
 
-const CreateEntrenador = () => {
+const CreateEquipo = () => {
   const dispatch = useDispatch();
 
   const initialInput = {
     nombre: "",
-    email: "",
+    ciudad: "",
   };
   const [input, setInput] = useState(initialInput);
-  const [entrenadoresAgregados, setEntrenadoresAgregados] = useState([]);
+  const [equiposAgregados, setEquiposAgregados] = useState([]);
   const isLoading = useSelector((state) => state.isLoading);
 
   const handleInputChange = (e) => {
@@ -27,7 +27,7 @@ const CreateEntrenador = () => {
 
   const handleAgregar = (e) => {
     e.preventDefault();
-    setEntrenadoresAgregados([...entrenadoresAgregados, input]);
+    setEquiposAgregados([...equiposAgregados, input]);
     setInput(initialInput);
   };
 
@@ -35,28 +35,21 @@ const CreateEntrenador = () => {
     e.preventDefault();
     dispatch(setLoading(true));
 
-    entrenadoresAgregados.map((entrenador) => {
+    equiposAgregados.map((quipo) => {
       try {
-        dispatch(createEntrenador(entrenador));
+        dispatch(createEquipo(quipo));
       } catch (error) {
         console.log("ERROR: ", error);
       }
-      dispatch(getEntrenadores());
+      dispatch(getEquipos());
     });
 
     dispatch(setLoading(false));
-    setEntrenadoresAgregados([]);
+    setEquiposAgregados([]);
   };
 
   const handleValidateAgregar = () => {
-    let regexEmail =
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-    if (
-      !validateRepeat() &&
-      regexEmail.test(input.email) &&
-      input.nombre.length > 2
-    ) {
+    if (!validateRepeat() && input.ciudad.length > 3) {
       return false;
     } else {
       return true;
@@ -64,12 +57,12 @@ const CreateEntrenador = () => {
   };
 
   const handleValidateAceptar = () => {
-    return entrenadoresAgregados.length < 1;
+    return equiposAgregados.length < 1;
   };
 
   const validateRepeat = () => {
-    for (let i = 0; i < entrenadoresAgregados.length; i++) {
-      if (entrenadoresAgregados[i].email === input.email) {
+    for (let i = 0; i < equiposAgregados.length; i++) {
+      if (equiposAgregados[i].email === input.email) {
         return true;
       }
     }
@@ -77,8 +70,8 @@ const CreateEntrenador = () => {
   };
 
   return (
-    <div className="create-entrenador">
-      <h2 className="sub-title">Dar de alta entrenadores</h2>
+    <div className="create-equipo">
+      <h2 className="sub-title">Dar de alta equipos</h2>
 
       {isLoading && <Spinner />}
 
@@ -89,41 +82,43 @@ const CreateEntrenador = () => {
       >
         <div className="input-group flex-nowrap">
           <span className="input-group-text" id="addon-wrapping">
-            Nombre del entrenador
+            Nombre del equipo
           </span>
 
           <input
             name="nombre"
             value={input.nombre}
-            placeholder="Juan Pérez"
+            placeholder="FC Example"
             type="text"
             onChange={(e) => {
               handleInputChange(e);
             }}
             className="form-control"
-            aria-label="Username"
+            aria-label="Nombre"
             aria-describedby="addon-wrapping"
           />
         </div>
 
         <div className="input-group flex-nowrap">
           <span className="input-group-text" id="addon-wrapping">
-            Email del entrenador
+            Ciudad del equipo
           </span>
 
           <input
-            name="email"
-            value={input.email}
-            placeholder="juanperez@example.com"
+            name="ciudad"
+            value={input.ciudad}
+            placeholder="Example City"
             type="text"
             onChange={(e) => {
               handleInputChange(e);
             }}
             className="form-control"
-            aria-label="Email"
+            aria-label="Ciudad"
             aria-describedby="addon-wrapping"
           />
         </div>
+
+        {/* {hasError !== "" && <p>No se pudo crear el entrenador</p>} */}
 
         <div className="d-grid gap-2 d-md-flex justify-content-md-end">
           <button
@@ -154,34 +149,34 @@ const CreateEntrenador = () => {
               Nombre
             </th>
             <th style={{ width: "50%", textAlign: "center" }} scope="col">
-              Email
+              Ciudad
             </th>
           </tr>
         </thead>
 
         <tbody>
-          {!entrenadoresAgregados.length && (
+          {!equiposAgregados.length && (
             <tr>
               <td
                 className="example-text"
                 style={{ textAlign: "center", fontSize: "12px" }}
               >
-                Juan Pérez
+                FC Example
               </td>
               <td
                 className="example-text"
                 style={{ textAlign: "center", fontSize: "12px" }}
               >
-                juanperez@example.com
+                Example City
               </td>
             </tr>
           )}
-          {entrenadoresAgregados.length
-            ? entrenadoresAgregados.map((entrenador) => {
+          {equiposAgregados.length
+            ? equiposAgregados.map((equipo) => {
                 return (
-                  <tr key={entrenador.email}>
-                    <td className="table-data">{entrenador.nombre}</td>
-                    <td className="table-data">{entrenador.email}</td>
+                  <tr key={equipo.nombre}>
+                    <td className="table-data">{equipo.nombre}</td>
+                    <td className="table-data">{equipo.ciudad}</td>
                   </tr>
                 );
               })
@@ -192,4 +187,4 @@ const CreateEntrenador = () => {
   );
 };
 
-export default CreateEntrenador;
+export default CreateEquipo;
