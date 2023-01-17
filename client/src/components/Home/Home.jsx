@@ -49,13 +49,13 @@ const Home = () => {
 
   return (
     <div className="home">
-      {/* <CreateEntrenador />
+      <CreateEntrenador />
       <ListadoEntrenadores />
       <CreateJugador />
       <ListadoJugadores />
       <CreateEquipo />
-      <ListadoEquipos /> */}
-      <Scraping />
+      <ListadoEquipos />
+      {/* <Scraping /> */}
       {/* <button
         className="btn btn-primary"
         onClick={() => {

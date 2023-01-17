@@ -13,6 +13,10 @@ module.exports = (sequelize) => {
         allowNull: false,
         unique: true,
       },
+      categoria: {
+        type: DataTypes.NUMBER,
+        allowNull: false,
+      },
     },
     {
       timestamps: false,
