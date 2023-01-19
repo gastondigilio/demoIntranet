@@ -6,6 +6,8 @@ import {
   getJugadores,
   getNoticias,
 } from "../../redux/actions/actions";
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
 
 import "./Home.css";
 import CreateEntrenador from "../CreateEntrenador/CreateEntrenador";
@@ -50,13 +52,20 @@ const Home = () => {
 
   return (
     <div className="home">
-      <Login />
-      {/* <CreateEntrenador />
+      <Grid container justifyContent="flex-end" padding={4}>
+        <Grid item>
+          <Link href="/login" variant="body2" style={{ textDecoration: 'none' }}>
+              Intranet
+          </Link>
+        </Grid>
+      </Grid>
+      {/* <Login /> */}
+      <CreateEntrenador />
       <ListadoEntrenadores />
       <CreateJugador />
       <ListadoJugadores />
       <CreateEquipo />
-      <ListadoEquipos /> */}
+      <ListadoEquipos />
       {/* <Scraping /> */}
       {/* <button
         className="btn btn-primary"
