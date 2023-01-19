@@ -15,6 +15,7 @@ import CreateEquipo from "../CreateEquipo/CreateEquipo";
 import CreateJugador from "../CreateJugador/CreateJugador";
 import ListadoJugadores from "../ListadoJugadores/ListadoJugadores";
 import Scraping from "../Scraping/Scraping";
+import Login from "../Login/Login";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -39,22 +40,23 @@ const Home = () => {
     }
   };
 
-  useEffect(() => {
-    setTimeout(() => {
-      dispatch(getEntrenadores());
-      dispatch(getEquipos());
-      dispatch(getJugadores());
-    }, 1000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     dispatch(getEntrenadores());
+  //     dispatch(getEquipos());
+  //     dispatch(getJugadores());
+  //   }, 1000);
+  // }, []);
 
   return (
     <div className="home">
-      <CreateEntrenador />
+      <Login />
+      {/* <CreateEntrenador />
       <ListadoEntrenadores />
       <CreateJugador />
       <ListadoJugadores />
       <CreateEquipo />
-      <ListadoEquipos />
+      <ListadoEquipos /> */}
       {/* <Scraping /> */}
       {/* <button
         className="btn btn-primary"
