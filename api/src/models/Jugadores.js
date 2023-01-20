@@ -15,7 +15,12 @@ module.exports = (sequelize) => {
       },
       categoria: {
         type: DataTypes.NUMBER,
+        allowNull: true,
+      },
+      uid: {
+        type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
       },
     },
     {

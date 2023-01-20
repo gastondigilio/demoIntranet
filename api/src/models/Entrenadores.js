@@ -13,6 +13,11 @@ module.exports = (sequelize) => {
         allowNull: false,
         unique: true,
       },
+      uid: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
     },
     {
       timestamps: false,

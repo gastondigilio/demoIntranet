@@ -6,8 +6,8 @@ import {
   getJugadores,
   getNoticias,
 } from "../../redux/actions/actions";
-import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
+import Grid from "@mui/material/Grid";
+import Link from "@mui/material/Link";
 
 import "./Home.css";
 import CreateEntrenador from "../CreateEntrenador/CreateEntrenador";
@@ -42,20 +42,24 @@ const Home = () => {
     }
   };
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     dispatch(getEntrenadores());
-  //     dispatch(getEquipos());
-  //     dispatch(getJugadores());
-  //   }, 1000);
-  // }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(getEntrenadores());
+      dispatch(getEquipos());
+      dispatch(getJugadores());
+    }, 1000);
+  }, []);
 
   return (
     <div className="home">
       <Grid container justifyContent="flex-end" padding={4}>
         <Grid item>
-          <Link href="/login" variant="body2" style={{ textDecoration: 'none' }}>
-              Intranet
+          <Link
+            href="/login"
+            variant="body2"
+            style={{ textDecoration: "none" }}
+          >
+            Intranet
           </Link>
         </Grid>
       </Grid>
