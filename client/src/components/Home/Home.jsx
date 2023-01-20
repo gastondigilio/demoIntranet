@@ -68,9 +68,9 @@ const Home = () => {
       <Register />
       {/* <CreateEntrenador />
       <ListadoEntrenadores />
-      <CreateJugador />
+      <CreateJugador /> */}
       <ListadoJugadores />
-      <CreateEquipo />
+      {/* <CreateEquipo />
       <ListadoEquipos /> */}
       {/* <Scraping /> */}
       {/* <button

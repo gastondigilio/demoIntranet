@@ -58,6 +58,8 @@ export function getJugadores() {
 export function createJugador(input) {
   return async function (dispatch) {
     try {
+      let jugadores = await axios.get(url + "/jugadores");
+
       let user = await createUserWithEmailAndPassword(
         auth,
         input.email,
