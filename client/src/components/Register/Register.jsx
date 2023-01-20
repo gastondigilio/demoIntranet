@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { createJugador } from "../../redux/actions/actions";
+
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -10,7 +13,6 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 function Copyright(props) {
   return (
@@ -30,25 +32,42 @@ function Copyright(props) {
   );
 }
 
-const theme = createTheme();
-
 export default function Register() {
-  const auth = getAuth();
+  const dispatch = useDispatch();
+  const theme = createTheme();
+  const initialValues = {
+    name: "",
+    email: "",
+    cemail: "",
+    password: "",
+    cpassword: "",
+  };
 
-  useEffect(() => {
-    // let email = "bacconsebastian2@gmail.com";
-    // let password = "1234567";
-    // createUserWithEmailAndPassword(auth, email, password)
-    //   .then((userCredential) => {
-    //     const user = userCredential.user;
-    //     console.log("USER: ", user);
-    //   })
-    //   .catch((error) => {
-    //     const errorCode = error.code;
-    //     const errorMessage = error.message;
-    //     console.log(errorCode + "-" + errorMessage);
-    //   });
-  }, []);
+  const [input, setInput] = useState(initialValues);
+
+  const handleInputChange = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value });
+  };
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    dispatch(createJugador(input));
+  };
+
+  const registerVerify = () => {
+    const emailRegex =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+    const verify =
+      input.name.length > 2 &&
+      emailRegex.test(input.email) &&
+      input.email === input.cemail &&
+      passwordRegex.test(input.password) &&
+      input.password === input.cpassword;
+
+    return !verify;
+  };
 
   return (
     <div>
@@ -69,27 +88,22 @@ export default function Register() {
             <Typography component="h1" variant="h5">
               Registrarse
             </Typography>
-            <Box component="form" sx={{ mt: 3 }}>
+            <Box
+              component="form"
+              sx={{ mt: 3 }}
+              onSubmit={(e) => handleRegister(e)}
+            >
               <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12}>
                   <TextField
                     autoComplete="given-name"
                     name="name"
                     required
                     fullWidth
                     id="name"
-                    label="Nombre(S)"
+                    label="Nombre completo"
                     autoFocus
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="lastName"
-                    label="Apellido(S)"
-                    name="lastName"
-                    autoComplete="family-name"
+                    onChange={(e) => handleInputChange(e)}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -100,48 +114,42 @@ export default function Register() {
                     label="Email"
                     name="email"
                     autoComplete="email"
+                    onChange={(e) => handleInputChange(e)}
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
                     required
                     fullWidth
-                    id="email"
-                    label="Repetir Email"
-                    name="email"
+                    id="cemail"
+                    label="Confirmar email"
+                    name="cemail"
                     autoComplete="email"
+                    onChange={(e) => handleInputChange(e)}
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
                     required
                     fullWidth
-                    name="pass"
-                    label="Password"
+                    name="password"
+                    label="Contraseña"
                     type="password"
                     id="password"
                     autoComplete="new-password"
+                    onChange={(e) => handleInputChange(e)}
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
                     required
                     fullWidth
-                    name="pass"
-                    label="Repetir Password"
+                    name="cpassword"
+                    label="Confirmar contraseña"
                     type="password"
-                    id="password"
+                    id="cpassword"
                     autoComplete="new-password"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    fullWidth
-                    id="rol"
-                    name="rol"
-                    label="Rol"
-                    autoComplete="rol"
+                    onChange={(e) => handleInputChange(e)}
                   />
                 </Grid>
               </Grid>
@@ -150,6 +158,7 @@ export default function Register() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                disabled={registerVerify()}
               >
                 Registrarme
               </Button>

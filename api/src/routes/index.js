@@ -98,18 +98,19 @@ router.get("/jugadores", async (req, res) => {
 
 router.post("/crear-jugador", async (req, res) => {
   try {
-    if (!req.body.length) {
-      const { nombre, email } = req.body;
-      const jugador = await Jugadores.create({
-        nombre,
-        email,
-      });
-      res.status(200).send(jugador);
-    } else {
-      const jugadores = req.body;
-      const jugadoresCreados = await Jugadores.bulkCreate(jugadores);
-      res.status(200).send(jugadoresCreados);
-    }
+    // if (!req.body.length) {
+    const { nombre, email, uid } = req.body;
+    const jugador = await Jugadores.create({
+      nombre,
+      email,
+      uid,
+    });
+    res.status(200).send(jugador);
+    // } else {
+    //   const jugadores = req.body;
+    //   const jugadoresCreados = await Jugadores.bulkCreate(jugadores);
+    //   res.status(200).send(jugadoresCreados);
+    // }
   } catch (error) {
     res.status(500).send(error);
   }

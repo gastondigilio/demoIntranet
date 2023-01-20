@@ -1,6 +1,9 @@
 import axios from "axios";
+import "../../firebase/firebase-config";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const url = "http://localhost:3001";
+const auth = getAuth();
 
 export function getEntrenadores() {
   return async function (dispatch) {
@@ -52,13 +55,30 @@ export function getJugadores() {
   };
 }
 
-export function createJugador(data) {
+export function createJugador(input) {
   return async function (dispatch) {
-    const response = await axios.post(url + "/crear-jugador", data);
-    return dispatch({
-      type: "CREATE_JUGADOR",
-      payload: response,
-    });
+    try {
+      let user = await createUserWithEmailAndPassword(
+        auth,
+        input.email,
+        input.password
+      );
+
+      let data = {
+        uid: user.user.uid,
+        nombre: input.name,
+        email: input.email,
+      };
+
+      let response = await axios.post(url + "/crear-jugador", data);
+
+      return dispatch({
+        type: "CREATE_JUGADOR",
+        payload: response,
+      });
+    } catch (error) {
+      console.log("ERROR AL CREAR JUGADOR: ", error);
+    }
   };
 }
 

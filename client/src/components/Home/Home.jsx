@@ -18,6 +18,7 @@ import CreateJugador from "../CreateJugador/CreateJugador";
 import ListadoJugadores from "../ListadoJugadores/ListadoJugadores";
 import Scraping from "../Scraping/Scraping";
 import Login from "../Login/Login";
+import Register from "../Register/Register";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -64,12 +65,13 @@ const Home = () => {
         </Grid>
       </Grid>
       {/* <Login /> */}
-      <CreateEntrenador />
+      <Register />
+      {/* <CreateEntrenador />
       <ListadoEntrenadores />
       <CreateJugador />
       <ListadoJugadores />
       <CreateEquipo />
-      <ListadoEquipos />
+      <ListadoEquipos /> */}
       {/* <Scraping /> */}
       {/* <button
         className="btn btn-primary"
