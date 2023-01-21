@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createJugador } from "../../redux/actions/actions";
 
 import Avatar from "@mui/material/Avatar";
@@ -44,6 +44,8 @@ export default function Register() {
   };
 
   const [input, setInput] = useState(initialValues);
+  const error = useSelector((state) => state.error);
+  const uids = useSelector((state) => state.uids);
 
   const handleInputChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -68,6 +70,11 @@ export default function Register() {
 
     return !verify;
   };
+
+  useEffect(() => {
+    console.log("ERROR: ", error);
+    console.log("uids: ", uids);
+  }, [error, uids]);
 
   return (
     <div>

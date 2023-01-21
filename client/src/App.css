@@ -49,3 +49,12 @@ li {
 .example-text {
     color: var(--text-disabled);
 }
+
+.input-error {
+    color: red;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}

@@ -15,8 +15,14 @@ const App = () => {
     <div className="app">
       <Routes>
         <Route path="/home-presidente" element={<HomePresidente />} />
-        <Route path="/home-presidente/crear-entrenador" element={<CreateEntrenadorPanel />} />
-        <Route path="/home-presidente/crear-equipo" element={<CreateEquipoPanel />} />
+        <Route
+          path="/home-presidente/crear-entrenador"
+          element={<CreateEntrenadorPanel />}
+        />
+        <Route
+          path="/home-presidente/crear-equipo"
+          element={<CreateEquipoPanel />}
+        />
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

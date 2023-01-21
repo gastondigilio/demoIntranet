@@ -1,126 +1,70 @@
-import React, { useState } from "react";
-import { auth } from "../../firebase/firebase-config";
-import Avatar from '@mui/material/Avatar';
-import CssBaseline from '@mui/material/CssBaseline';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import pelota from '../images/pelota.jpg';
-import './Login.css'
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { login, resetError } from "../../redux/actions/actions";
+
+import Avatar from "@mui/material/Avatar";
+import CssBaseline from "@mui/material/CssBaseline";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import pelota from "../images/pelota.jpg";
+import "./Login.css";
 
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
       <Link color="inherit" href="https://mui.com/">
         Demo Intranet
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
 
-const theme = createTheme();
-
 export default function Login() {
-  // const initialInput = {
-  //   email: "",
-  //   password: "",
-  // };
+  const dispatch = useDispatch();
+  const theme = createTheme();
+  const initialValues = {
+    email: "",
+    password: "",
+  };
 
-  // const [input, setInput] = useState(initialInput);
+  const [input, setInput] = useState(initialValues);
+  const error = useSelector((state) => state.error);
+  const user = useSelector((state) => state.user);
 
-  // const handleInputChange = (e) => {
-  //   setInput({ ...input, [e.target.name]: e.target.value });
-  // };
+  const handleInputChange = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value });
+  };
 
-  // const handleAgregar = () => {};
+  const handleLogin = (e) => {
+    e.preventDefault();
+    dispatch(login(input));
+  };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   const googleProvider = new GoogleAuthProvider();
-  //   signInWithPopup(auth, googleProvider)
-  //     .then((res) => {
-  //       console.log("LOGUEADO");
-  //     })
-  //     .catch((err) => {
-  //       console.log("ERROR LOGIN ", err);
-  //     });
-  // };
+  useEffect(() => {
+    console.log("ERROR: ", error);
+    console.log("USER: ", user);
+  }, [error, user]);
 
   return (
-    // <form
-    //   className="login"
-    //   onSubmit={(e) => {
-    //     handleSubmit(e);
-    //   }}
-    // >
-    //   <div className="input-group flex-nowrap">
-    //     <span className="input-group-text" id="addon-wrapping">
-    //       Email
-    //     </span>
-
-    //     <input
-    //       name="email"
-    //       value={input.email}
-    //       placeholder="email@example.com"
-    //       type="text"
-    //       onChange={(e) => {
-    //         handleInputChange(e);
-    //       }}
-    //       className="form-control"
-    //       aria-label="Email"
-    //       aria-describedby="addon-wrapping"
-    //     />
-    //   </div>
-
-    //   <div className="input-group flex-nowrap">
-    //     <span className="input-group-text" id="addon-wrapping">
-    //       Password
-    //     </span>
-
-    //     <input
-    //       name="password"
-    //       value={input.password}
-    //       placeholder="12345"
-    //       type="text"
-    //       onChange={(e) => {
-    //         handleInputChange(e);
-    //       }}
-    //       className="form-control"
-    //       aria-label="Password"
-    //       aria-describedby="addon-wrapping"
-    //     />
-    //   </div>
-
-    //   <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-    //     <button
-    //       className="btn btn-primary me-md-2"
-    //       type="button"
-    //       onClick={(e) => {
-    //         handleAgregar(e);
-    //       }}
-    //     >
-    //       Agregar
-    //     </button>
-
-    //     <button className="btn btn-primary" type="submit">
-    //       Aceptar
-    //     </button>
-    //   </div>
-    // </form>
     <div>
       <ThemeProvider theme={theme}>
-        <Grid container component="main" sx={{ height: '100vh' }}>
+        <Grid container component="main" sx={{ height: "100vh" }}>
           <CssBaseline />
           <Grid
             item
@@ -129,31 +73,44 @@ export default function Login() {
             md={7}
             sx={{
               backgroundImage: `url(${pelota})`,
-              backgroundRepeat: 'no-repeat',
+              backgroundRepeat: "no-repeat",
               backgroundColor: (t) =>
-                t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
+                t.palette.mode === "light"
+                  ? t.palette.grey[50]
+                  : t.palette.grey[900],
+              backgroundSize: "cover",
+              backgroundPosition: "center",
             }}
           />
-          <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+          <Grid
+            item
+            xs={12}
+            sm={8}
+            md={5}
+            component={Paper}
+            elevation={6}
+            square
+          >
             <Box
               sx={{
                 my: 8,
                 mx: 4,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
               }}
             >
               <Avatar sx={{ m: 1 }}>
-                {/* <LockOutlinedIcon /> */}
-                <img src={pelota} alt='Imagen de avatar' />
+                <img src={pelota} alt="Imagen de avatar" />
               </Avatar>
               <Typography component="h1" variant="h5">
                 Demo Intranet
               </Typography>
-              <Box component="form" sx={{ mt: 1 }}>
+              <Box
+                component="form"
+                sx={{ mt: 1 }}
+                onSubmit={(e) => handleLogin(e)}
+              >
                 <TextField
                   margin="normal"
                   required
@@ -161,24 +118,26 @@ export default function Login() {
                   id="email"
                   label="Email"
                   name="email"
-                  // autoComplete="email"
+                  onChange={(e) => handleInputChange(e)}
                   autoFocus
                 />
                 <TextField
                   margin="normal"
                   required
                   fullWidth
-                  name="pass"
+                  name="password"
                   label="Contraseña"
                   type="password"
                   id="pass"
-                  // onChange={handleInputChange}
-                  // autoComplete="current-password"
+                  onChange={(e) => handleInputChange(e)}
                 />
                 <FormControlLabel
                   control={<Checkbox value="remember" color="primary" />}
                   label="Mantener sesión iniciada"
                 />
+                {error !== "" && (
+                  <p className="input-error">Error al iniciar sesión</p>
+                )}
                 <Button
                   type="submit"
                   fullWidth
@@ -187,22 +146,14 @@ export default function Login() {
                 >
                   Iniciar sesion
                 </Button>
-                {/* {
-                  islogin ? < LoadingUser status={islogin} key={input.email} setIslogin={setIslogin} /> : ''
-                } */}
                 <Grid container>
-                  <Grid item xs>
-                    <Link href="#" variant="body2" style={{ textDecoration: 'none' }}>
-                      <div className="btnLogIn">
-                        Se olvidó la contraseña?
-                      </div>
-                    </Link>
-                  </Grid>
                   <Grid item>
-                    <Link href="/register" variant="body2" style={{ textDecoration: 'none' }}>
-                      <div className="btnLogIn">
-                        {"Registrarse"}
-                      </div>
+                    <Link
+                      href="/register"
+                      variant="body2"
+                      style={{ textDecoration: "none" }}
+                    >
+                      <div className="btnLogIn">{"Registrarse"}</div>
                     </Link>
                   </Grid>
                 </Grid>
@@ -213,9 +164,7 @@ export default function Login() {
         </Grid>
       </ThemeProvider>
       <Link href="/">
-        <button className='botonVolverLogin'>
-          Volver
-        </button>
+        <button className="botonVolverLogin">Volver</button>
       </Link>
     </div>
   );

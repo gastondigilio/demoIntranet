@@ -65,7 +65,7 @@ const Home = () => {
         </Grid>
       </Grid>
       {/* <Login /> */}
-      <Register />
+      {/* <Register /> */}
       {/* <CreateEntrenador />
       <ListadoEntrenadores />
       <CreateJugador /> */}
