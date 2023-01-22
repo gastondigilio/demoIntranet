@@ -1,0 +1,27 @@
+import React from "react";
+import { useDispatch } from "react-redux";
+
+import { getAuth, signOut } from "firebase/auth";
+import { setUid } from "../../redux/actions/actions";
+
+export default function () {
+  const auth = getAuth();
+  const dispatch = useDispatch();
+
+  const handleSignOut = (e) => {
+    e.preventDefault();
+    signOut(auth)
+      .then((res) => {
+        dispatch(setUid());
+      })
+      .catch((error) => {
+        console.log("ERROR DESLOGUEO: ", error);
+      });
+  };
+
+  return (
+    <button className="logout" onClick={(e) => handleSignOut(e)}>
+      Log Out
+    </button>
+  );
+}

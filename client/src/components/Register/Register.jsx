@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createJugador } from "../../redux/actions/actions";
+import { createJugador, login } from "../../redux/actions/actions";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -54,6 +54,7 @@ export default function Register() {
   const handleRegister = (e) => {
     e.preventDefault();
     dispatch(createJugador(input));
+    dispatch(login(input));
   };
 
   const registerVerify = () => {

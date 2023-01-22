@@ -51,7 +51,7 @@ export default function Login() {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     dispatch(login(input));
   };

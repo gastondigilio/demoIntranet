@@ -4,10 +4,12 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
 } from "firebase/auth";
 
 const url = "http://localhost:3001";
 const auth = getAuth();
+const UID_PRESIDENTE = "SsForRCB55f5xfiyPu0AN51DMQI3";
 
 export function hasError(error) {
   return async function (dispatch) {
@@ -133,7 +135,8 @@ export function createJugador(input) {
 
       let response = await axios.post(url + "/crear-jugador", data);
 
-      console.log("RESPONSE CREATE JUGADOR: ", response);
+      await signInWithEmailAndPassword(auth, input.email, input.password);
+      window.location.pathname = "/";
 
       return dispatch({
         type: "CREATE_JUGADOR",
@@ -184,6 +187,7 @@ export function login(input) {
         input.email,
         input.password
       );
+      window.location.pathname = "/";
       return dispatch({
         type: "LOGIN",
         payload: response,
@@ -195,5 +199,52 @@ export function login(input) {
         payload: error,
       });
     }
+  };
+}
+
+export function setUid() {
+  return async function (dispatch) {
+    onAuthStateChanged(auth, (res) => {
+      if (res) {
+        return dispatch({
+          type: "SET_UID",
+          payload: res.uid,
+        });
+      } else {
+        return dispatch({
+          type: "SET_UID",
+          payload: null,
+        });
+      }
+    });
+  };
+}
+
+export function getUserType(uid, entrenadores, jugadores) {
+  return async function (dispatch) {
+    let userType = null;
+
+    if (uid === String(UID_PRESIDENTE)) {
+      userType = "1";
+    }
+
+    entrenadores &&
+      entrenadores.map((entrenador) => {
+        if (entrenador.uid === uid) {
+          userType = "2";
+        }
+      });
+
+    jugadores &&
+      jugadores.map((jugador) => {
+        if (jugador.uid === uid) {
+          userType = "3";
+        }
+      });
+
+    return dispatch({
+      type: "SET_USERTYPE",
+      payload: userType,
+    });
   };
 }

@@ -1,12 +1,12 @@
 const initialState = {
-  uids: { presidente: [], entrenadores: [], jugadores: [] },
+  uid: "",
   equipos: [],
   entrenadores: [],
   jugadores: [],
   scraping: [],
   isLoading: false,
-  user: "",
   error: "",
+  userType: null,
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -58,10 +58,6 @@ const rootReducer = (state = initialState, action) => {
     case "CREATE_JUGADOR":
       return {
         ...state,
-        uids: {
-          ...state.uids,
-          jugadores: [...state.uids.jugadores, action.payload.data.uid],
-        },
         jugadores: Array.isArray(state.jugadores)
           ? [...state.jugadores, action.payload]
           : [action.payload],
@@ -83,7 +79,18 @@ const rootReducer = (state = initialState, action) => {
     case "LOGIN":
       return {
         ...state,
-        user: "jugador",
+        error: "",
+      };
+    case "SET_UID":
+      return {
+        ...state,
+        uid: action.payload,
+        error: "",
+      };
+    case "SET_USERTYPE":
+      return {
+        ...state,
+        userType: action.payload,
         error: "",
       };
     default:

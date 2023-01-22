@@ -2,85 +2,67 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getEntrenadores,
-  getEquipos,
   getJugadores,
-  getNoticias,
+  setUid,
+  getUserType,
 } from "../../redux/actions/actions";
+
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
-
 import "./Home.css";
-import CreateEntrenador from "../../components/CreateEntrenador/CreateEntrenador";
-import ListadoEntrenadores from "../../components/ListadoEntrenadores/ListadoEntrenadores";
-import ListadoEquipos from "../../components/ListadoEquipos/ListadoEquipos";
-import CreateEquipo from "../../components/CreateEquipo/CreateEquipo";
-import CreateJugador from "../../components/CreateJugador/CreateJugador";
-import ListadoJugadores from "../../components/ListadoJugadores/ListadoJugadores";
-import Scraping from "../../components/Scraping/Scraping";
-import Login from "../../components/Login/Login";
-import Register from "../../components/Register/Register";
+
+import HomeJugadores from "../PanelJugadores/HomeJugadores/HomeJugadores";
+import Logout from "../../components/Logout/Logout";
 
 const Home = () => {
   const dispatch = useDispatch();
 
   const entrenadores = useSelector((state) => state.entrenadores);
-  const equipos = useSelector((state) => state.equipos);
   const jugadores = useSelector((state) => state.jugadores);
-
-  const handleRefresh = () => {
-    dispatch(getEntrenadores());
-    dispatch(getEquipos());
-    dispatch(getJugadores());
-
-    if (entrenadores && entrenadores.data) {
-      console.log("ENTRENADORES: ", entrenadores.data);
-    }
-    if (equipos && equipos.data) {
-      console.log("EQUIPOS: ", equipos.data);
-    }
-    if (jugadores && jugadores.data) {
-      console.log("JUGADORES: ", jugadores.data);
-    }
-  };
+  const uid = useSelector((state) => state.uid);
+  const userType = useSelector((state) => state.userType);
 
   useEffect(() => {
-    setTimeout(() => {
-      dispatch(getEntrenadores());
-      dispatch(getEquipos());
-      dispatch(getJugadores());
-    }, 1000);
+    dispatch(getEntrenadores());
+    dispatch(getJugadores());
+    dispatch(setUid());
   }, []);
+
+  useEffect(() => {
+    if (uid) dispatch(getUserType(uid, entrenadores.data, jugadores.data));
+  }, [jugadores, entrenadores, uid]);
 
   return (
     <div className="home">
-      <Grid container justifyContent="flex-end" padding={4}>
-        <Grid item>
-          <Link
-            href="/login"
-            variant="body2"
-            style={{ textDecoration: "none" }}
-          >
-            Intranet
-          </Link>
+      {!uid ? (
+        <Grid container justifyContent="flex-end" padding={2}>
+          <Grid item padding={2}>
+            <Link
+              href="/login"
+              variant="body2"
+              style={{ textDecoration: "none" }}
+            >
+              Log In
+            </Link>
+          </Grid>
+          <Grid item padding={2}>
+            <Link
+              href="/register"
+              variant="body2"
+              style={{ textDecoration: "none" }}
+            >
+              Register
+            </Link>
+          </Grid>
         </Grid>
-      </Grid>
-      {/* <Login /> */}
-      {/* <Register /> */}
-      {/* <CreateEntrenador />
-      <ListadoEntrenadores />
-      <CreateJugador /> */}
-      <ListadoJugadores />
-      {/* <CreateEquipo />
-      <ListadoEquipos /> */}
-      {/* <Scraping /> */}
-      {/* <button
-        className="btn btn-primary"
-        onClick={() => {
-          handleRefresh();
-        }}
-      >
-        Refresh and log
-      </button> */}
+      ) : (
+        <div>
+          <Logout />
+          {userType === "1" && <p>ES PRESIDENTE</p>}
+          {userType === "2" && <p>ES ENTRENADOR</p>}
+          {userType === "3" && <p>ES JUGADOR</p>}
+        </div>
+      )}
     </div>
   );
 };
