@@ -1,12 +1,12 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "./components/Home/Home";
+import Home from "./pages/Home/Home";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 
-import HomePresidente from "./components/PanelPresidente/HomePresidente/HomePresidente";
-import CreateEntrenadorPanel from "./components/PanelPresidente/CreateEntrenadorPanel/CreateEntrenadorPanel";
-import CreateEquipoPanel from "./components/PanelPresidente/CreateEquipoPanel/CreateEquipoPanel";
+import HomePresidente from "./pages/PanelPresidente/HomePresidente/HomePresidente";
+import CreateEntrenadorPanel from "./pages/PanelPresidente/CreateEntrenadorPanel/CreateEntrenadorPanel";
+import CreateEquipoPanel from "./pages/PanelPresidente/CreateEquipoPanel/CreateEquipoPanel";
 
 import "./App.css";
 

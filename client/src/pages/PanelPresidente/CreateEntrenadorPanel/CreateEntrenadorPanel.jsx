@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Spinner from "../../Spinner/Spinner";
+import Spinner from "../../../components/Spinner/Spinner";
 import Link from "@mui/material/Link";
 
 import { useDispatch, useSelector } from "react-redux";

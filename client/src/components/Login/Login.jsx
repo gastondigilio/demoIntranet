@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { login, resetError } from "../../redux/actions/actions";
+import { login } from "../../redux/actions/actions";
 
 import Avatar from "@mui/material/Avatar";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -14,7 +14,7 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import pelota from "../images/pelota.jpg";
+import pelota from "../../images/pelota.jpg";
 import "./Login.css";
 
 function Copyright(props) {
