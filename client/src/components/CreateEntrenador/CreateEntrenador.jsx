@@ -16,12 +16,14 @@ const CreateEntrenador = () => {
   const initialInput = {
     nombre: "",
     email: "",
+    password: "",
   };
   const [input, setInput] = useState(initialInput);
   const [entrenadoresAgregados, setEntrenadoresAgregados] = useState([]);
   const isLoading = useSelector((state) => state.isLoading);
 
   const handleInputChange = (e) => {
+    e.preventDefault();
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
@@ -89,7 +91,7 @@ const CreateEntrenador = () => {
       >
         <div className="input-group flex-nowrap">
           <span className="input-group-text" id="addon-wrapping">
-            Nombre del entrenador
+            Nombre
           </span>
 
           <input
@@ -108,7 +110,7 @@ const CreateEntrenador = () => {
 
         <div className="input-group flex-nowrap">
           <span className="input-group-text" id="addon-wrapping">
-            Email del entrenador
+            Email
           </span>
 
           <input
@@ -121,6 +123,25 @@ const CreateEntrenador = () => {
             }}
             className="form-control"
             aria-label="Email"
+            aria-describedby="addon-wrapping"
+          />
+        </div>
+
+        <div className="input-group flex-nowrap">
+          <span className="input-group-text" id="addon-wrapping">
+            Contraseña
+          </span>
+
+          <input
+            name="password"
+            value={input.password}
+            placeholder="Ingrese una contraseña"
+            type="password"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+            className="form-control"
+            aria-label="Password"
             aria-describedby="addon-wrapping"
           />
         </div>

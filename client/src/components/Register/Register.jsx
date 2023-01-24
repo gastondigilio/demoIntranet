@@ -54,7 +54,9 @@ export default function Register() {
   const handleRegister = (e) => {
     e.preventDefault();
     dispatch(createJugador(input));
-    dispatch(login(input));
+    setTimeout(() => {
+      window.location.pathname = "/";
+    }, 1500);
   };
 
   const registerVerify = () => {

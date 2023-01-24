@@ -6,6 +6,7 @@ export default function HomeJugadores() {
   return (
     <div>
       <Logout />
+      <h2>ES JUGADOR</h2>
     </div>
   );
 }

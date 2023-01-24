@@ -12,7 +12,10 @@ export default function () {
     e.preventDefault();
     signOut(auth)
       .then((res) => {
-        dispatch(setUid());
+        dispatch(setUid(false));
+        setTimeout(() => {
+          window.location.pathname = "/";
+        }, 500);
       })
       .catch((error) => {
         console.log("ERROR DESLOGUEO: ", error);

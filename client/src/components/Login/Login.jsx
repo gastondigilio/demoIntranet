@@ -45,7 +45,6 @@ export default function Login() {
 
   const [input, setInput] = useState(initialValues);
   const error = useSelector((state) => state.error);
-  const user = useSelector((state) => state.user);
 
   const handleInputChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -54,12 +53,16 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     dispatch(login(input));
+    setTimeout(() => {
+      if (!error) {
+        window.location.pathname = "/";
+      }
+    }, 1500);
   };
 
   useEffect(() => {
-    console.log("ERROR: ", error);
-    console.log("USER: ", user);
-  }, [error, user]);
+    console.log("ERROR :", error);
+  }, [error]);
 
   return (
     <div>

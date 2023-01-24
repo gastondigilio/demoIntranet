@@ -6,6 +6,7 @@ const initialState = {
   scraping: [],
   isLoading: false,
   error: "",
+  user: null,
   userType: null,
 };
 
@@ -61,6 +62,7 @@ const rootReducer = (state = initialState, action) => {
         jugadores: Array.isArray(state.jugadores)
           ? [...state.jugadores, action.payload]
           : [action.payload],
+        uid: action.payload.uid,
         error: "",
       };
     case "GET_NOTICIAS":
@@ -84,8 +86,7 @@ const rootReducer = (state = initialState, action) => {
     case "SET_UID":
       return {
         ...state,
-        uid: action.payload,
-        error: "",
+        uid: state.uid ? state.uid : action.payload,
       };
     case "SET_USERTYPE":
       return {

@@ -10,7 +10,7 @@ const ListadoEntrenadores = () => {
 
   const entrenadores = useSelector((state) => state.entrenadores);
   const hayEntrenadores =
-    entrenadores && entrenadores.data && entrenadores.data.length;
+    entrenadores && entrenadores.data && entrenadores.data.length > 0;
 
   useEffect(() => {
     dispatch(getEntrenadores());

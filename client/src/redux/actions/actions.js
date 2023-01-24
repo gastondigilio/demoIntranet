@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import "../../firebase/firebase-config";
 import {
   getAuth,
@@ -7,9 +8,11 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
+import { UID_PRESIDENTE } from "../../userTypesKeys";
+import { JUGADORES, ENTRENADORES, PRESIDENTE } from "../../userTypesKeys";
+
 const url = "http://localhost:3001";
 const auth = getAuth();
-const UID_PRESIDENTE = "SsForRCB55f5xfiyPu0AN51DMQI3";
 
 export function hasError(error) {
   return async function (dispatch) {
@@ -46,10 +49,23 @@ export function getEntrenadores() {
   };
 }
 
-export function createEntrenador(data) {
+export function createEntrenador(input) {
   return async function (dispatch) {
     try {
+      let user = await createUserWithEmailAndPassword(
+        auth,
+        input.email,
+        input.password
+      );
+
+      let data = {
+        uid: user.user.uid,
+        nombre: input.nombre,
+        email: input.email,
+      };
+
       const response = await axios.post(url + "/crear-entrenador", data);
+
       return dispatch({
         type: "CREATE_ENTRENADOR",
         payload: response,
@@ -136,7 +152,6 @@ export function createJugador(input) {
       let response = await axios.post(url + "/crear-jugador", data);
 
       await signInWithEmailAndPassword(auth, input.email, input.password);
-      window.location.pathname = "/";
 
       return dispatch({
         type: "CREATE_JUGADOR",
@@ -187,10 +202,9 @@ export function login(input) {
         input.email,
         input.password
       );
-      window.location.pathname = "/";
       return dispatch({
         type: "LOGIN",
-        payload: response,
+        payload: response.user.uid,
       });
     } catch (error) {
       console.log("ERROR EN LOGIN");
@@ -202,43 +216,47 @@ export function login(input) {
   };
 }
 
-export function setUid() {
+export function setUid(set) {
   return async function (dispatch) {
-    onAuthStateChanged(auth, (res) => {
-      if (res) {
-        return dispatch({
-          type: "SET_UID",
-          payload: res.uid,
-        });
-      } else {
-        return dispatch({
-          type: "SET_UID",
-          payload: null,
-        });
-      }
-    });
+    if (!set) {
+      return dispatch({
+        type: "SET_UID",
+        payload: null,
+      });
+    } else {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          return dispatch({
+            type: "SET_UID",
+            payload: user ? user.uid : null,
+          });
+        } else {
+          console.log("NO HAY USUARIO LOGUEADO");
+        }
+      });
+    }
   };
 }
 
-export function getUserType(uid, entrenadores, jugadores) {
+export function setUserType(uid, entrenadores, jugadores) {
   return async function (dispatch) {
     let userType = null;
 
     if (uid === String(UID_PRESIDENTE)) {
-      userType = "1";
+      userType = PRESIDENTE;
     }
 
     entrenadores &&
       entrenadores.map((entrenador) => {
         if (entrenador.uid === uid) {
-          userType = "2";
+          userType = ENTRENADORES;
         }
       });
 
     jugadores &&
       jugadores.map((jugador) => {
         if (jugador.uid === uid) {
-          userType = "3";
+          userType = JUGADORES;
         }
       });
 
