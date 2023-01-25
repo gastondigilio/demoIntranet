@@ -1,9 +1,12 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+
+import { REGISTER_ENTRENADOR, REGISTER_JUGADOR } from "./config";
+
 import Home from "./pages/Home/Home";
 import Login from "./components/Login/Login";
-import Register from "./components/Register/Register";
-
+import RegisterJugador from "./components/RegisterJugador/RegisterJugador";
+import RegisterEntrenador from "./components/RegisterEntrenador/RegisterEntrenador";
 import HomePresidente from "./pages/PanelPresidente/HomePresidente/HomePresidente";
 import CreateEntrenadorPanel from "./pages/PanelPresidente/CreateEntrenadorPanel/CreateEntrenadorPanel";
 import CreateEquipoPanel from "./pages/PanelPresidente/CreateEquipoPanel/CreateEquipoPanel";
@@ -43,7 +46,8 @@ const App = () => {
 
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path={"/" + REGISTER_JUGADOR} element={<RegisterJugador />} />
+        <Route path={"/" + REGISTER_ENTRENADOR} element={<RegisterEntrenador />} />
       </Routes>
     </div>
   );
