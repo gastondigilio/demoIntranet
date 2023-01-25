@@ -1,16 +1,3 @@
-// import React from "react";
-
-// import Logout from "../../../components/Logout/Logout";
-
-// export default function HomeJugadores() {
-//   return (
-//     <div>
-//       <Logout />
-//       <h2>ES JUGADOR</h2>
-//     </div>
-//   );
-// }
-
 import React from 'react';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -29,10 +16,10 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import { mainListItems, secondaryListItems } from '../listItemsJugadores';
+import { mainListItems, secondaryListItems } from '../listItemsEntrenadores';
 import Logout from "../../../components/Logout/Logout";
 
-export default function HomeJugadores() {
+export default function HomeEntrenadores() {
     const drawerWidth = 240;
 
     const AppBar = styled(MuiAppBar, {

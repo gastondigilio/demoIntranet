@@ -8,6 +8,12 @@ import HomePresidente from "./pages/PanelPresidente/HomePresidente/HomePresident
 import CreateEntrenadorPanel from "./pages/PanelPresidente/CreateEntrenadorPanel/CreateEntrenadorPanel";
 import CreateEquipoPanel from "./pages/PanelPresidente/CreateEquipoPanel/CreateEquipoPanel";
 
+import HomeJugadores from "./pages/PanelJugadores/HomeJugadores/HomeJugadores";
+
+import HomeEntrenadores from "./pages/PanelEntrenador/HomeEntrenadores/HomeEntrenadores";
+import CrearJugador from "./pages/PanelEntrenador/CrearJugador/CrearJugador";
+import PerfilEntrenador from "./pages/PanelEntrenador/PerfilEntrenador/PerfilEntrenador";
+
 import "./App.css";
 
 const App = () => {
@@ -23,6 +29,18 @@ const App = () => {
           path="/home-presidente/crear-equipo"
           element={<CreateEquipoPanel />}
         />
+        <Route path="/home-jugadores" element={<HomeJugadores />} />
+
+        <Route path="/home-entrenadores" element={<HomeEntrenadores />} />
+        <Route
+          path="/home-entrenadores/crear-jugador"
+          element={<CrearJugador />}
+        />
+        <Route
+          path="/home-entrenadores/perfil"
+          element={<PerfilEntrenador />}
+        />
+
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
