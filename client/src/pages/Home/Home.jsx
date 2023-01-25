@@ -15,8 +15,10 @@ import HomeJugadores from "../PanelJugadores/HomeJugadores/HomeJugadores";
 import Logout from "../../components/Logout/Logout";
 import CreateEntrenador from "../../components/CreateEntrenador/CreateEntrenador";
 import ListadoEntrenadores from "../../components/ListadoEntrenadores/ListadoEntrenadores";
+import HomePresidente from "../PanelPresidente/HomePresidente/HomePresidente"
 
-import { JUGADORES, ENTRENADORES, PRESIDENTE } from "../../userTypesKeys";
+import { JUGADORES, ENTRENADORES, PRESIDENTE } from "../../config";
+import CreateJugador from "../../components/CreateJugador/CreateJugador";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -51,34 +53,28 @@ const Home = () => {
                 variant="body2"
                 style={{ textDecoration: "none" }}
               >
-                Log In
+                Iniciar sesión
               </Link>
             </Grid>
             <Grid item padding={2}>
               <Link
-                href="/register"
+                href="/register-jugador"
                 variant="body2"
                 style={{ textDecoration: "none" }}
               >
-                Register
+                Registrarme
               </Link>
             </Grid>
           </Grid>
+          <CreateJugador />
           <CreateEntrenador />
-          <ListadoEntrenadores />
         </>
       ) : (
         <div>
           <Logout />
           {userType === JUGADORES && <HomeJugadores />}
           {userType === ENTRENADORES && <p>ES ENTRENADOR</p>}
-          {userType === PRESIDENTE && (
-            <div>
-              <p>ES PRESIDENTE</p>
-              <CreateEntrenador />
-            </div>
-          )}
-          <ListadoEntrenadores />
+          {userType === PRESIDENTE && <HomePresidente />}
         </div>
       )}
     </div>

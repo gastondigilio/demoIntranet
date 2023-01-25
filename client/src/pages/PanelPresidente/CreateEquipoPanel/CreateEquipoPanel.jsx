@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Spinner from "../../../components/Spinner/Spinner";
+
 import Link from "@mui/material/Link";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,8 @@ import {
   getEquipos,
   setLoading,
 } from "../../../redux/actions/actions";
+
+import Spinner from "../../../components/Spinner/Spinner";
 
 import "./CreateEquipoPanel.css";
 
@@ -172,13 +174,13 @@ const CreateEquipoPanel = () => {
           )}
           {equiposAgregados.length
             ? equiposAgregados.map((equipo) => {
-                return (
-                  <tr key={equipo.nombre}>
-                    <td className="table-data">{equipo.nombre}</td>
-                    <td className="table-data">{equipo.ciudad}</td>
-                  </tr>
-                );
-              })
+              return (
+                <tr key={equipo.nombre}>
+                  <td className="table-data">{equipo.nombre}</td>
+                  <td className="table-data">{equipo.ciudad}</td>
+                </tr>
+              );
+            })
             : null}
         </tbody>
       </table>

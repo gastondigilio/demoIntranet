@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Spinner from "../Spinner/Spinner";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -8,15 +7,20 @@ import {
   setLoading,
 } from "../../redux/actions/actions";
 
+import emailjs from '@emailjs/browser';
+
 import "./CreateEntrenador.css";
+
+import Spinner from "../Spinner/Spinner";
+import { BASE_URL, REGISTER_ENTRENADOR } from "../../config";
 
 const CreateEntrenador = () => {
   const dispatch = useDispatch();
+  const linkEntrenador = "google.com"
 
   const initialInput = {
     nombre: "",
     email: "",
-    password: "",
   };
   const [input, setInput] = useState(initialInput);
   const [entrenadoresAgregados, setEntrenadoresAgregados] = useState([]);
@@ -37,14 +41,24 @@ const CreateEntrenador = () => {
     e.preventDefault();
     dispatch(setLoading(true));
 
-    entrenadoresAgregados.map((entrenador) => {
-      try {
-        dispatch(createEntrenador(entrenador));
-      } catch (error) {
-        console.log("ERROR: ", error);
-      }
-      dispatch(getEntrenadores());
-    });
+    emailjs.init("A_EZ040hD2lkySGIj");
+
+    entrenadoresAgregados.map(entrenador => {
+      emailjs.send("service_0kg3rpc", "template_0vvf34c", {
+        from_name: "CallStack IT",
+        to_name: entrenador.nombre,
+        to_email: entrenador.email,
+      });
+    })
+
+    // entrenadoresAgregados.map((entrenador) => {
+    //   try {
+    //     dispatch(createEntrenador(entrenador));
+    //   } catch (error) {
+    //     console.log("ERROR: ", error);
+    //   }
+    //   dispatch(getEntrenadores());
+    // });
 
     dispatch(setLoading(false));
     setEntrenadoresAgregados([]);
@@ -127,7 +141,7 @@ const CreateEntrenador = () => {
           />
         </div>
 
-        <div className="input-group flex-nowrap">
+        {/* <div className="input-group flex-nowrap">
           <span className="input-group-text" id="addon-wrapping">
             Contraseña
           </span>
@@ -144,7 +158,7 @@ const CreateEntrenador = () => {
             aria-label="Password"
             aria-describedby="addon-wrapping"
           />
-        </div>
+        </div> */}
 
         <div className="d-grid gap-2 d-md-flex justify-content-md-end">
           <button
@@ -199,13 +213,13 @@ const CreateEntrenador = () => {
           )}
           {entrenadoresAgregados.length
             ? entrenadoresAgregados.map((entrenador) => {
-                return (
-                  <tr key={entrenador.email}>
-                    <td className="table-data">{entrenador.nombre}</td>
-                    <td className="table-data">{entrenador.email}</td>
-                  </tr>
-                );
-              })
+              return (
+                <tr key={entrenador.email}>
+                  <td className="table-data">{entrenador.nombre}</td>
+                  <td className="table-data">{entrenador.email}</td>
+                </tr>
+              );
+            })
             : null}
         </tbody>
       </table>

@@ -8,8 +8,8 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-import { UID_PRESIDENTE } from "../../userTypesKeys";
-import { JUGADORES, ENTRENADORES, PRESIDENTE } from "../../userTypesKeys";
+import { UID_PRESIDENTE } from "../../config";
+import { JUGADORES, ENTRENADORES, PRESIDENTE } from "../../config";
 
 const url = "http://localhost:3001";
 const auth = getAuth();

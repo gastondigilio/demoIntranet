@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
-import Spinner from "../Spinner/Spinner";
+import React, { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
-  createJugador,
-  getJugadores,
   setLoading,
 } from "../../redux/actions/actions";
+
+import emailjs from '@emailjs/browser';
+
+import { BASE_URL, REGISTER_ENTRENADOR } from "../../config";
+
+import Spinner from "../Spinner/Spinner";
 
 import "./CreateJugador.css";
 
@@ -35,14 +38,24 @@ const CreateJugador = () => {
     e.preventDefault();
     dispatch(setLoading(true));
 
-    jugadoresAgregados.map((jugador) => {
-      try {
-        dispatch(createJugador(jugador));
-      } catch (error) {
-        console.log("ERROR: ", error);
-      }
-      dispatch(getJugadores());
-    });
+    emailjs.init("A_EZ040hD2lkySGIj");
+
+    jugadoresAgregados.map(jugador => {
+      emailjs.send("service_0kg3rpc", "template_rjblcxj", {
+        from_name: "CallStack IT",
+        to_name: jugador.nombre,
+        to_email: jugador.email,
+      });
+    })
+
+    // jugadoresAgregados.map((jugador) => {
+    //   try {
+    //     dispatch(createJugador(jugador));
+    //   } catch (error) {
+    //     console.log("ERROR: ", error);
+    //   }
+    //   dispatch(getJugadores());
+    // });
 
     dispatch(setLoading(false));
     setJugadoresAgregados([]);
@@ -178,13 +191,13 @@ const CreateJugador = () => {
           )}
           {jugadoresAgregados.length
             ? jugadoresAgregados.map((jugador) => {
-                return (
-                  <tr key={jugador.email}>
-                    <td className="table-data">{jugador.nombre}</td>
-                    <td className="table-data">{jugador.email}</td>
-                  </tr>
-                );
-              })
+              return (
+                <tr key={jugador.email}>
+                  <td className="table-data">{jugador.nombre}</td>
+                  <td className="table-data">{jugador.email}</td>
+                </tr>
+              );
+            })
             : null}
         </tbody>
       </table>
