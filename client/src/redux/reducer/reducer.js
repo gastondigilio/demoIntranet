@@ -86,7 +86,7 @@ const rootReducer = (state = initialState, action) => {
     case "SET_UID":
       return {
         ...state,
-        uid: state.uid ? state.uid : action.payload,
+        uid: action.payload,
       };
     case "SET_USERTYPE":
       return {

@@ -15,7 +15,7 @@ import HomeJugadores from "../PanelJugadores/HomeJugadores/HomeJugadores";
 import Logout from "../../components/Logout/Logout";
 import CreateEntrenador from "../../components/CreateEntrenador/CreateEntrenador";
 import ListadoEntrenadores from "../../components/ListadoEntrenadores/ListadoEntrenadores";
-import HomePresidente from "../PanelPresidente/HomePresidente/HomePresidente"
+import HomePresidente from "../PanelPresidente/HomePresidente/HomePresidente";
 
 import { JUGADORES, ENTRENADORES, PRESIDENTE } from "../../config";
 import CreateJugador from "../../components/CreateJugador/CreateJugador";
@@ -40,13 +40,13 @@ const Home = () => {
     console.log("jugadores: ", jugadores);
 
     if (uid) dispatch(setUserType(uid, entrenadores.data, jugadores.data));
-  }, [jugadores, entrenadores]);
+  }, [jugadores, entrenadores, uid]);
 
   return (
     <div className="home">
       {!uid ? (
         <>
-          <Grid container justifyContent="flex-end" padding={2}>
+          <Grid container justifyContent="flex-end">
             <Grid item padding={2}>
               <Link
                 href="/login"
@@ -56,7 +56,7 @@ const Home = () => {
                 Iniciar sesión
               </Link>
             </Grid>
-            <Grid item padding={2}>
+            {/* <Grid item padding={2}>
               <Link
                 href="/register-jugador"
                 variant="body2"
@@ -64,14 +64,11 @@ const Home = () => {
               >
                 Registrarme
               </Link>
-            </Grid>
+            </Grid> */}
           </Grid>
-          <CreateJugador />
-          <CreateEntrenador />
         </>
       ) : (
         <div>
-          <Logout />
           {userType === JUGADORES && <HomeJugadores />}
           {userType === ENTRENADORES && <p>ES ENTRENADOR</p>}
           {userType === PRESIDENTE && <HomePresidente />}

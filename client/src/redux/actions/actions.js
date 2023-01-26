@@ -228,7 +228,7 @@ export function setUid(set) {
         if (user) {
           return dispatch({
             type: "SET_UID",
-            payload: user ? user.uid : null,
+            payload: user.uid,
           });
         } else {
           console.log("NO HAY USUARIO LOGUEADO");

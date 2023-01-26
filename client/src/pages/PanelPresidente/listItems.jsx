@@ -1,42 +1,43 @@
-import * as React from 'react';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import ListSubheader from '@mui/material/ListSubheader';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import Link from '@mui/material/Link';
+import * as React from "react";
+
+import Logout from "../../components/Logout/Logout";
+
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import Link from "@mui/material/Link";
 
 export const mainListItems = (
-    <div>
-        <ListItem button>
-            <ListItemIcon>
-                {/* <DashboardIcon /> */}
-            </ListItemIcon>
-            <Link href='/home-presidente/crear-entrenador' target="_self">
-            <ListItemText primary="Crear entrenador" />
-            </Link>
-        </ListItem>
-        <ListItem button>
-            <ListItemIcon>
-                {/* <ShoppingCartIcon /> */}
-            </ListItemIcon>
-            <Link href='/home-presidente/crear-equipo' target="_self">
-            <ListItemText primary="Crear equipo" />
-            </Link>
-        </ListItem>
-        {/* <ListItem button>
+  <div>
+    <ListItem button>
+      <ListItemIcon>{/* <DashboardIcon /> */}</ListItemIcon>
+      <Link href="/home-presidente/crear-entrenador" target="_self">
+        <ListItemText primary="Crear entrenador" />
+      </Link>
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>{/* <ShoppingCartIcon /> */}</ListItemIcon>
+      <Link href="/home-presidente/crear-equipo" target="_self">
+        <ListItemText primary="Crear equipo" />
+      </Link>
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>{/* <ShoppingCartIcon /> */}</ListItemIcon>
+      <Logout />
+    </ListItem>
+    {/* <ListItem button>
     asd
       <ListItemIcon>
         <LayersIcon />
       </ListItemIcon>
       <ListItemText primary="Integrations" />
     </ListItem> */}
-    </div>
+  </div>
 );
 
 export const secondaryListItems = (
-    <div>
-        {/* <ListSubheader inset>Saved reports</ListSubheader>
+  <div>
+    {/* <ListSubheader inset>Saved reports</ListSubheader>
     <ListItem button>
       <ListItemIcon>
         <AssignmentIcon />
@@ -55,5 +56,5 @@ export const secondaryListItems = (
       </ListItemIcon>
       <ListItemText primary="Year-end sale" />
     </ListItem>  */}
-    </div>
+  </div>
 );
