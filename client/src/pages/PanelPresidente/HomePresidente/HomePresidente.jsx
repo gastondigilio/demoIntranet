@@ -83,11 +83,7 @@ export default function HomePresidente() {
   const uid = useSelector((state) => state.uid);
 
   useEffect(() => {
-    dispatch(setLoading(true));
     dispatch(setUid(true));
-    setTimeout(() => {
-      dispatch(setLoading(false));
-    }, 1500);
   }, []);
 
   return (
