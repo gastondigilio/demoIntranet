@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getEntrenadores,
@@ -14,9 +14,9 @@ import "./Home.css";
 
 import HomeJugadores from "../PanelJugadores/HomeJugadores/HomeJugadores";
 import HomePresidente from "../PanelPresidente/HomePresidente/HomePresidente";
+import Spinner from "../../components/Spinner/Spinner";
 
 import { JUGADORES, ENTRENADORES, PRESIDENTE } from "../../config";
-import Spinner from "../../components/Spinner/Spinner";
 
 const Home = () => {
   const dispatch = useDispatch();

@@ -80,6 +80,24 @@ export function createEntrenador(input) {
   };
 }
 
+export function editarEntrenador(data) {
+  return async function (dispatch) {
+    try {
+      let response = await axios.put(url + "/editar-entrenador", data);
+      return dispatch({
+        type: "EDITAR_ENTRENADOR",
+        payload: response.data || {},
+      });
+    } catch (error) {
+      console.log("ERROR EN EDITAR ENTRENADOR");
+      return dispatch({
+        type: "HAS_ERROR",
+        payload: error,
+      });
+    }
+  };
+}
+
 export function getEquipos() {
   return async function (dispatch) {
     try {
@@ -108,6 +126,24 @@ export function createEquipo(data) {
       });
     } catch (error) {
       console.log("ERROR EN CREATE EQUIPO");
+      return dispatch({
+        type: "HAS_ERROR",
+        payload: error,
+      });
+    }
+  };
+}
+
+export function editarEquipo(data) {
+  return async function (dispatch) {
+    try {
+      let response = await axios.put(url + "/editar-equipo", data);
+      return dispatch({
+        type: "EDITAR_EQUIPO",
+        payload: response.data || {},
+      });
+    } catch (error) {
+      console.log("ERROR EN EDITAR EQUIPO");
       return dispatch({
         type: "HAS_ERROR",
         payload: error,
@@ -159,6 +195,24 @@ export function createJugador(input) {
       });
     } catch (error) {
       console.log("ERROR EN CREATE JUGADOR");
+      return dispatch({
+        type: "HAS_ERROR",
+        payload: error,
+      });
+    }
+  };
+}
+
+export function editarJugador(data) {
+  return async function (dispatch) {
+    try {
+      let response = await axios.put(url + "/editar-jugador", data);
+      return dispatch({
+        type: "EDITAR_JUGADOR",
+        payload: response.data || {},
+      });
+    } catch (error) {
+      console.log("ERROR EN EDITAR JUGADOR");
       return dispatch({
         type: "HAS_ERROR",
         payload: error,

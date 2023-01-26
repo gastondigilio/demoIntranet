@@ -36,6 +36,11 @@ const rootReducer = (state = initialState, action) => {
           : [action.payload],
         error: "",
       };
+    case "EDITAR_ENTRENADOR":
+      return {
+        ...state,
+        error: "",
+      };
     case "GET_EQUIPOS":
       return {
         ...state,
@@ -48,6 +53,11 @@ const rootReducer = (state = initialState, action) => {
         equipos: Array.isArray(state.equipos)
           ? [...state.equipos, action.payload]
           : [action.payload],
+        error: "",
+      };
+    case "EDITAR_EQUIPO":
+      return {
+        ...state,
         error: "",
       };
     case "GET_JUGADORES":
@@ -63,6 +73,11 @@ const rootReducer = (state = initialState, action) => {
           ? [...state.jugadores, action.payload]
           : [action.payload],
         uid: action.payload.uid,
+        error: "",
+      };
+    case "EDITAR_JUGADOR":
+      return {
+        ...state,
         error: "",
       };
     case "GET_NOTICIAS":
