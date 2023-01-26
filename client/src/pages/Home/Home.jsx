@@ -12,13 +12,9 @@ import Link from "@mui/material/Link";
 import "./Home.css";
 
 import HomeJugadores from "../PanelJugadores/HomeJugadores/HomeJugadores";
-import Logout from "../../components/Logout/Logout";
-import CreateEntrenador from "../../components/CreateEntrenador/CreateEntrenador";
-import ListadoEntrenadores from "../../components/ListadoEntrenadores/ListadoEntrenadores";
 import HomePresidente from "../PanelPresidente/HomePresidente/HomePresidente";
 
 import { JUGADORES, ENTRENADORES, PRESIDENTE } from "../../config";
-import CreateJugador from "../../components/CreateJugador/CreateJugador";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -56,15 +52,6 @@ const Home = () => {
                 Iniciar sesión
               </Link>
             </Grid>
-            {/* <Grid item padding={2}>
-              <Link
-                href="/register-jugador"
-                variant="body2"
-                style={{ textDecoration: "none" }}
-              >
-                Registrarme
-              </Link>
-            </Grid> */}
           </Grid>
         </>
       ) : (
