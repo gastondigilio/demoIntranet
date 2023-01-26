@@ -1,7 +1,9 @@
+@import url(../../App.css);
+
 .logout {
   background-color: transparent;
   border: none;
-  color: #3185FC;
+  color: var(--links-color);
   outline: none;
 }
 

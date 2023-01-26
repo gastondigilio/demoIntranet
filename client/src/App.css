@@ -8,6 +8,7 @@ html, * {
     --second-color: #0c91ae;
     --third-color: #a7f3fa;
     --fourth-color: white;
+    --links-color: #3185FC;
     --shadow: #01040434;
     --text-disabled: #84888B;
     
@@ -63,4 +64,8 @@ li {
     padding: 2rem;
     width: 100%;
     text-align: center;
+}
+
+.error-permisos a {
+    color: var(--links-color);
 }
