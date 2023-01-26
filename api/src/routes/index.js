@@ -39,6 +39,30 @@ router.post("/crear-equipo", async (req, res) => {
   }
 });
 
+router.put("/editar-equipo", async (req, res) => {
+  try {
+    if (req.body.editar) {
+      const updateData = {};
+      if (req.body.nombre) updateData.nombre = req.body.nombre;
+      if (req.body.ciudad) updateData.ciudad = req.body.ciudad;
+
+      const [affectedRows, updated] = await Equipos.update(updateData, {
+        where: { nombre: req.body.editar },
+        returning: true,
+        plain: true,
+      });
+
+      res.status(200).send(updated);
+    } else {
+      res.status(404).send({
+        message: "Se necesita el campo 'editar' para encontrar un equipo",
+      });
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 router.delete("/eliminar-equipo", async (req, res) => {
   try {
     const { nombre, ciudad } = req.body;
@@ -77,6 +101,30 @@ router.post("/crear-entrenador", async (req, res) => {
   }
 });
 
+router.put("/editar-entrenador", async (req, res) => {
+  try {
+    if (req.body.editar) {
+      const updateData = {};
+      if (req.body.nombre) updateData.nombre = req.body.nombre;
+      if (req.body.email) updateData.email = req.body.email;
+
+      const [affectedRows, updated] = await Entrenadores.update(updateData, {
+        where: { nombre: req.body.editar },
+        returning: true,
+        plain: true,
+      });
+
+      res.status(200).send(updated);
+    } else {
+      res.status(404).send({
+        message: "Se necesita el campo 'editar' para encontrar un entrenador",
+      });
+    }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 router.delete("/eliminar-entrenador", async (req, res) => {
   try {
     const { email } = req.body;
@@ -109,6 +157,30 @@ router.post("/crear-jugador", async (req, res) => {
       uid,
     });
     res.status(200).send(jugador);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
+router.put("/editar-jugador", async (req, res) => {
+  try {
+    if (req.body.editar) {
+      const updateData = {};
+      if (req.body.nombre) updateData.nombre = req.body.nombre;
+      if (req.body.email) updateData.email = req.body.email;
+
+      const [affectedRows, updated] = await Jugadores.update(updateData, {
+        where: { nombre: req.body.editar },
+        returning: true,
+        plain: true,
+      });
+
+      res.status(200).send(updated);
+    } else {
+      res.status(404).send({
+        message: "Se necesita el campo 'editar' para encontrar un jugador",
+      });
+    }
   } catch (error) {
     res.status(500).send(error);
   }
