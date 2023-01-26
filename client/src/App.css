@@ -58,3 +58,9 @@ li {
     padding: 0;
     text-align: right;
 }
+
+.error-permisos {
+    padding: 2rem;
+    width: 100%;
+    text-align: center;
+}

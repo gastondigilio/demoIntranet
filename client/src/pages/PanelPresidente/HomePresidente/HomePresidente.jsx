@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import ListadoEntrenadores from "../../../components/ListadoEntrenadores/ListadoEntrenadores";
-import ListadoJugadores from "../../../components/ListadoJugadores/ListadoJugadores";
+import { useDispatch, useSelector } from "react-redux";
+import { setLoading, setUid } from "../../../redux/actions/actions";
 
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -19,12 +19,14 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-
 import { mainListItems, secondaryListItems } from "../listItems";
-import { useDispatch, useSelector } from "react-redux";
-import { setLoading, setUid } from "../../../redux/actions/actions";
-import { UID_PRESIDENTE } from "../../../config";
+
+import ListadoEntrenadores from "../../../components/ListadoEntrenadores/ListadoEntrenadores";
+import ListadoJugadores from "../../../components/ListadoJugadores/ListadoJugadores";
 import Spinner from "../../../components/Spinner/Spinner";
+import ErrorPermisos from "../../../components/ErrorPermisos/ErrorPermisos";
+
+import { UID_PRESIDENTE } from "../../../config";
 
 export default function HomePresidente() {
   const dispatch = useDispatch();
@@ -82,14 +84,11 @@ export default function HomePresidente() {
 
   useEffect(() => {
     dispatch(setLoading(true));
+    dispatch(setUid(true));
     setTimeout(() => {
       dispatch(setLoading(false));
     }, 1500);
   }, []);
-
-  useEffect(() => {
-    dispatch(setUid(true));
-  }, [uid]);
 
   return (
     <div className="panel-presidente">
@@ -177,9 +176,7 @@ export default function HomePresidente() {
           </Box>
         </ThemeProvider>
       ) : (
-        <div>
-          <h2>No posee los permisos para acceder a esta página</h2>
-        </div>
+        <ErrorPermisos />
       )}
     </div>
   );

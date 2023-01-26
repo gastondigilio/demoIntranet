@@ -30,10 +30,10 @@ const App = () => {
           element={<RegisterEntrenador />}
         />
 
-        {/* RUTAS HOME */}
-        <Route path="/home-jugadores" element={<HomeJugadores />} />
-        <Route path="/home-presidente" element={<HomePresidente />} />
-        <Route path="/home-entrenadores" element={<HomeEntrenadores />} />
+        {/* RUTAS HOME, creeria que no las necesitamos, vamos a redirigir a home y ahi renderizar el componente dependiendo el uid */}
+        {/* <Route path="/home-jugadores" element={<HomeJugadores />} /> */}
+        {/* <Route path="/home-presidente" element={<HomePresidente />} /> */}
+        {/* <Route path="/home-entrenadores" element={<HomeEntrenadores />} /> */}
 
         {/* RUTAS PRESIDENTE */}
         <Route
