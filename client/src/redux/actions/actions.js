@@ -65,16 +65,17 @@ export function createEntrenador(input) {
       };
 
       let dataRelacion = {
-        nombreEquipo: input.nombreEquipo,
-        emailEntrenador: input.email,
+        nombre: input.nombreEquipo,
+        email: input.email,
       };
 
       const response = await axios.post(
         url + "/crear-entrenador",
         dataCreacion
       );
-      const relacion = await axios.put(
-        url + "/editar-entrenador",
+
+      const relacion = await axios.post(
+        url + "/relacionar-entrenador-equipo",
         dataRelacion
       );
 

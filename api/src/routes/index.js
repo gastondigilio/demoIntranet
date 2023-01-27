@@ -108,7 +108,7 @@ router.put("/editar-entrenador", async (req, res) => {
       if (req.body.email) updateData.email = req.body.email;
 
       const [affectedRows, updated] = await Entrenadores.update(updateData, {
-        where: { nombre: req.body.editar },
+        where: { email: req.body.editar },
         returning: true,
         plain: true,
       });
@@ -215,7 +215,7 @@ router.post("/relacionar-entrenador-equipo", async (req, res) => {
   }
 });
 
-router.get("/entrenadores-equipo", async (req, res) => {
+router.get("/entrenadores-equipos", async (req, res) => {
   try {
     const equiposEntrenadores = await Equiposentrenadores.findAll();
     res.send(equiposEntrenadores);

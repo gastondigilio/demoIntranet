@@ -23,6 +23,7 @@ import { mainListItems, secondaryListItems } from "../listItems";
 
 import ListadoEntrenadores from "../../../components/ListadoEntrenadores/ListadoEntrenadores";
 import ListadoJugadores from "../../../components/ListadoJugadores/ListadoJugadores";
+import ListadoEquipos from "../../../components/ListadoEquipos/ListadoEquipos";
 import Spinner from "../../../components/Spinner/Spinner";
 import ErrorPermisos from "../../../components/ErrorPermisos/ErrorPermisos";
 
@@ -163,6 +164,9 @@ export default function HomePresidente() {
                 </Grid>
                 <Grid container spacing={3}>
                   <ListadoJugadores />
+                </Grid>
+                <Grid container spacing={3}>
+                  <ListadoEquipos />
                 </Grid>
               </Container>
             </Box>
