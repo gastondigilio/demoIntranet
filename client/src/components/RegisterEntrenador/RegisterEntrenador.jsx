@@ -54,9 +54,11 @@ export default function Register() {
   const handleRegister = (e) => {
     e.preventDefault();
     dispatch(registerEntrenador(input));
-    setTimeout(() => {
-      window.location.pathname = "/";
-    }, 1500);
+    if (!error) {
+      setTimeout(() => {
+        window.location.pathname = "/";
+      }, 1500);
+    }
   };
 
   const registerVerify = () => {
