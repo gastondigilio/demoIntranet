@@ -7,6 +7,7 @@ import {
   setUserType,
   getEntrenadores,
   createEntrenador,
+  getEquipos
 } from "../../redux/actions/actions";
 
 import emailjs from "@emailjs/browser";
@@ -32,6 +33,8 @@ const CreateEntrenador = () => {
   const entrenadores = useSelector((state) => state.entrenadores);
   const userType = useSelector((state) => state.userType);
   const uid = useSelector((state) => state.uid);
+  const equipos = useSelector(state => state.equipos)
+  console.log(equipos, "EQUIPOS")
 
   const handleInputChange = (e) => {
     e.preventDefault();
@@ -97,6 +100,7 @@ const CreateEntrenador = () => {
 
   useEffect(() => {
     dispatch(getEntrenadores());
+    dispatch(getEquipos());
     dispatch(setLoading(true));
     dispatch(setUid(true));
     setTimeout(() => {
@@ -107,6 +111,10 @@ const CreateEntrenador = () => {
   useEffect(() => {
     if (uid) dispatch(setUserType(uid, entrenadores.data, []));
   }, [entrenadores, uid]);
+
+  const handleSelectChange = e => {
+    setInput({ ...input, [e.target.name]: e.target.value });
+  };
 
   return (
     <>
@@ -157,6 +165,37 @@ const CreateEntrenador = () => {
                 aria-label="Email"
                 aria-describedby="addon-wrapping"
               />
+            </div>
+
+            <div className="input-group flex-nowrap">
+              <span className="input-group-text" id="addon-wrapping">
+                Equipo
+              </span>
+              <select name="nombreEquipo" value={input.nombreEquipo} onChange={(e) => {handleSelectChange(e)}}>
+                <option>Seleccione un equipo</option>
+                {equipos?.map(t =>{
+                  return(
+                    <>
+                    <option key={t.name} value={t.name}>
+                      {t.name}
+                    </option>
+                    </>
+                  )
+                })}
+              </select>
+
+              {/* <input
+                name="nombreEquipo"
+                value={input.nombreEquipo}
+                placeholder="Juvenil a"
+                type="text"
+                onChange={(e) => {
+                  handleInputChange(e);
+                }}
+                className="form-control"
+                aria-label="nombreEquipo"
+                aria-describedby="addon-wrapping"
+              /> */}
             </div>
 
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
