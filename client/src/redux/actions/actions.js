@@ -119,6 +119,13 @@ export function registerEntrenador(input) {
         uid: user.user.uid,
         editar: input.email,
       });
+
+      if (!entrenadorEditado) {
+        return dispatch({
+          type: "HAS_ERROR",
+          payload: "No se editó ningun jugador",
+        });
+      }
     } catch (error) {
       console.log("ERROR EN REGISTER ENTRENADOR");
       return dispatch({
