@@ -124,6 +124,7 @@ export function registerEntrenador(input) {
 
       let entrenadorEditado = await axios.put(url + "/editar-entrenador", {
         uid: user.user.uid,
+        editar: input.email,
       });
 
       return dispatch({
