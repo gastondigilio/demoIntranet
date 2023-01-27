@@ -106,6 +106,7 @@ router.put("/editar-entrenador", async (req, res) => {
       const updateData = {};
       if (req.body.nombre) updateData.nombre = req.body.nombre;
       if (req.body.email) updateData.email = req.body.email;
+      if (req.body.uid) updateData.uid = req.body.uid;
 
       const [affectedRows, updated] = await Entrenadores.update(updateData, {
         where: { email: req.body.editar },

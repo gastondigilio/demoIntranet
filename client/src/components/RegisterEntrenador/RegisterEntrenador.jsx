@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createEntrenador } from "../../redux/actions/actions";
+import { registerEntrenador } from "../../redux/actions/actions";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -53,7 +53,7 @@ export default function Register() {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    dispatch(createEntrenador(input));
+    dispatch(registerEntrenador(input));
     setTimeout(() => {
       window.location.pathname = "/";
     }, 1500);
