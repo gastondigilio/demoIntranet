@@ -89,11 +89,10 @@ router.get("/entrenadores", async (req, res) => {
 
 router.post("/crear-entrenador", async (req, res) => {
   try {
-    const { nombre, email, uid } = req.body;
+    const { nombre, email } = req.body;
     const entrenador = await Entrenadores.create({
       nombre,
       email,
-      uid,
     });
     res.status(200).send(entrenador);
   } catch (error) {
@@ -168,6 +167,7 @@ router.put("/editar-jugador", async (req, res) => {
       const updateData = {};
       if (req.body.nombre) updateData.nombre = req.body.nombre;
       if (req.body.email) updateData.email = req.body.email;
+      if (req.body.uid) updateData.uid = req.body.uid;
 
       const [affectedRows, updated] = await Jugadores.update(updateData, {
         where: { nombre: req.body.editar },

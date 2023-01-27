@@ -52,19 +52,31 @@ export function getEntrenadores() {
 export function createEntrenador(input) {
   return async function (dispatch) {
     try {
-      let user = await createUserWithEmailAndPassword(
-        auth,
-        input.email,
-        input.password
-      );
+      // let user = await createUserWithEmailAndPassword(
+      //   auth,
+      //   input.email,
+      //   input.password
+      // );
 
-      let data = {
-        uid: user.user.uid,
+      let dataCreacion = {
+        // uid: user.user.uid,
         nombre: input.nombre,
         email: input.email,
       };
 
-      const response = await axios.post(url + "/crear-entrenador", data);
+      let dataRelacion = {
+        nombreEquipo: input.nombreEquipo,
+        emailEntrenador: input.email,
+      };
+
+      const response = await axios.post(
+        url + "/crear-entrenador",
+        dataCreacion
+      );
+      const relacion = await axios.put(
+        url + "/editar-entrenador",
+        dataRelacion
+      );
 
       return dispatch({
         type: "CREATE_ENTRENADOR",
@@ -90,6 +102,35 @@ export function editarEntrenador(data) {
       });
     } catch (error) {
       console.log("ERROR EN EDITAR ENTRENADOR");
+      return dispatch({
+        type: "HAS_ERROR",
+        payload: error,
+      });
+    }
+  };
+}
+
+export function registerEntrenador(input) {
+  return async function (dispatch) {
+    try {
+      let user = await createUserWithEmailAndPassword(
+        auth,
+        input.email,
+        input.password
+      );
+
+      console.log("USER DESDE REGISTER: ", user);
+
+      let entrenadorEditado = await axios.put(url + "/editar-entrenador", {
+        uid: user.user.uid,
+      });
+
+      return dispatch({
+        type: "REGISTER_ENTRENADOR",
+        payload: user,
+      });
+    } catch (error) {
+      console.log("ERROR EN REGISTER ENTRENADOR");
       return dispatch({
         type: "HAS_ERROR",
         payload: error,
