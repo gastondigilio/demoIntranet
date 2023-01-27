@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  createJugador,
-  login,
-  registerJugador,
-} from "../../redux/actions/actions";
+import { getJugadores, registerJugador } from "../../redux/actions/actions";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -48,8 +44,10 @@ export default function Register() {
   };
 
   const [input, setInput] = useState(initialValues);
+  const [jugadorInexistente, setJugadorInexistente] = useState("");
   const error = useSelector((state) => state.error);
   const uids = useSelector((state) => state.uids);
+  const jugadores = useSelector((state) => state.jugadores);
 
   const handleInputChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -57,13 +55,26 @@ export default function Register() {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    dispatch(registerJugador(input));
+    let flag = false;
 
-    // if (!error) {
-    //   setTimeout(() => {
-    //     window.location.pathname = "/";
-    //   }, 1500);
-    // }
+    if (jugadores && jugadores.data) {
+      jugadores.data.map((jugador) => {
+        if (String(jugador.email) === String(input.email)) {
+          flag = true;
+          dispatch(registerJugador(input));
+
+          if (!error) {
+            setTimeout(() => {
+              window.location.pathname = "/";
+            }, 1500);
+          }
+        }
+      });
+    }
+
+    if (!flag) {
+      setJugadorInexistente("Este email no esta habilitado para ser jugador.");
+    }
   };
 
   const registerVerify = () => {
@@ -83,8 +94,12 @@ export default function Register() {
 
   useEffect(() => {
     console.log("ERROR: ", error);
-    console.log("uids: ", uids);
-  }, [error, uids]);
+    console.log("ENTRENADORES: ", jugadores);
+  }, [error, jugadores]);
+
+  useEffect(() => {
+    dispatch(getJugadores());
+  }, []);
 
   return (
     <div>
@@ -103,7 +118,7 @@ export default function Register() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Registrarse
+              Registrarse como jugador
             </Typography>
             <Box
               component="form"
@@ -179,6 +194,11 @@ export default function Register() {
               >
                 Registrarme
               </Button>
+              {jugadorInexistente && (
+                <p className="input-error" style={{ marginBottom: "1rem" }}>
+                  {jugadorInexistente}
+                </p>
+              )}
               <Grid container justifyContent="flex-end">
                 <Grid item>
                   <Link

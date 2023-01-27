@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { registerEntrenador } from "../../redux/actions/actions";
+import {
+  getEntrenadores,
+  registerEntrenador,
+} from "../../redux/actions/actions";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -44,8 +47,10 @@ export default function Register() {
   };
 
   const [input, setInput] = useState(initialValues);
+  const [entrenadorInexistente, setEntrenadorInexistente] = useState("");
   const error = useSelector((state) => state.error);
   const uids = useSelector((state) => state.uids);
+  const entrenadores = useSelector((state) => state.entrenadores);
 
   const handleInputChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -53,11 +58,28 @@ export default function Register() {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    dispatch(registerEntrenador(input));
-    if (!error) {
-      setTimeout(() => {
-        window.location.pathname = "/";
-      }, 1500);
+
+    let flag = false;
+
+    if (entrenadores && entrenadores.data) {
+      entrenadores.data.map((entrenador) => {
+        if (String(entrenador.email) === String(input.email)) {
+          flag = true;
+          dispatch(registerEntrenador(input));
+
+          if (!error) {
+            setTimeout(() => {
+              window.location.pathname = "/";
+            }, 1500);
+          }
+        }
+      });
+    }
+
+    if (!flag) {
+      setEntrenadorInexistente(
+        "Este email no esta habilitado para ser entrenador."
+      );
     }
   };
 
@@ -78,8 +100,12 @@ export default function Register() {
 
   useEffect(() => {
     console.log("ERROR: ", error);
-    console.log("uids: ", uids);
-  }, [error, uids]);
+    console.log("ENTRENADORES: ", entrenadores);
+  }, [error, entrenadores]);
+
+  useEffect(() => {
+    dispatch(getEntrenadores());
+  }, []);
 
   return (
     <div>
@@ -98,7 +124,7 @@ export default function Register() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Registrarse
+              Registrarse como entrenador
             </Typography>
             <Box
               component="form"
@@ -174,6 +200,11 @@ export default function Register() {
               >
                 Registrarme
               </Button>
+              {entrenadorInexistente && (
+                <p className="input-error" style={{ marginBottom: "1rem" }}>
+                  {entrenadorInexistente}
+                </p>
+              )}
               <Grid container justifyContent="flex-end">
                 <Grid item>
                   <Link
