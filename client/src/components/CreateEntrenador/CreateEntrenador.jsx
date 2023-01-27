@@ -239,9 +239,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 function Copyright(props) {
   return (
@@ -355,7 +355,9 @@ export default function CreateEntrenador() {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <InputLabel id="demo-simple-select-label">Asignar equipo</InputLabel>
+                  <InputLabel id="demo-simple-select-label">
+                    Asignar equipo
+                  </InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
