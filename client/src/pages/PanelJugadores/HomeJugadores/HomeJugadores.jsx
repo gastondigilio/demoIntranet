@@ -212,9 +212,6 @@ export default function HomeJugadores() {
             </Grid>
           </Container>
         </Box>
-        <Link href="/">
-          <button className="botonVolverLogin">Salir</button>
-        </Link>
       </Box>
     </ThemeProvider>
   );

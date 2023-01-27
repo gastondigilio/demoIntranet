@@ -170,9 +170,6 @@ export default function HomePresidente() {
                 </Grid>
               </Container>
             </Box>
-            <Link href="/">
-              <button className="botonVolverLogin">Salir</button>
-            </Link>
           </Box>
         </ThemeProvider>
       ) : (

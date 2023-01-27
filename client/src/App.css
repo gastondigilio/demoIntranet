@@ -44,8 +44,12 @@ li {
 .app {
     min-height: 100vh;
 
-    background-color: white;
+    background-color: #FFFFFF;
     color: var(--first-color);
+}
+
+.table {
+    background-color: #FFFFFF;
 }
 
 .example-text {
