@@ -9,6 +9,7 @@ html, * {
     --third-color: #a7f3fa;
     --fourth-color: white;
     --links-color: #3185FC;
+    --error-color: rgb(255, 128, 128);
     --shadow: #01040434;
     --text-disabled: #84888B;
     
@@ -52,7 +53,7 @@ li {
 }
 
 .input-error {
-    color: red;
+    color: var(--error-color);
     font-size: 12px;
     font-weight: 600;
     margin: 0;

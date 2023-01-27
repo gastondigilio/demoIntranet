@@ -7,7 +7,7 @@ import {
   setUserType,
   getEntrenadores,
   createEntrenador,
-  getEquipos
+  getEquipos,
 } from "../../redux/actions/actions";
 
 import emailjs from "@emailjs/browser";
@@ -23,7 +23,7 @@ const CreateEntrenador = () => {
   const initialInput = {
     nombre: "",
     email: "",
-    nombreEquipo: "Real Madrid",
+    nombreEquipo: "",
   };
 
   const [input, setInput] = useState(initialInput);
@@ -33,8 +33,8 @@ const CreateEntrenador = () => {
   const entrenadores = useSelector((state) => state.entrenadores);
   const userType = useSelector((state) => state.userType);
   const uid = useSelector((state) => state.uid);
-  const equipos = useSelector(state => state.equipos)
-  console.log(equipos, "EQUIPOS")
+  const equipos = useSelector((state) => state.equipos);
+  console.log(equipos, "EQUIPOS");
 
   const handleInputChange = (e) => {
     e.preventDefault();
@@ -77,7 +77,8 @@ const CreateEntrenador = () => {
     if (
       !validateRepeat() &&
       regexEmail.test(input.email) &&
-      input.nombre.length > 2
+      input.nombre.length > 2 &&
+      input.nombreEquipo !== ""
     ) {
       return false;
     } else {
@@ -99,9 +100,9 @@ const CreateEntrenador = () => {
   };
 
   useEffect(() => {
+    dispatch(setLoading(true));
     dispatch(getEntrenadores());
     dispatch(getEquipos());
-    dispatch(setLoading(true));
     dispatch(setUid(true));
     setTimeout(() => {
       dispatch(setLoading(false));
@@ -112,7 +113,7 @@ const CreateEntrenador = () => {
     if (uid) dispatch(setUserType(uid, entrenadores.data, []));
   }, [entrenadores, uid]);
 
-  const handleSelectChange = e => {
+  const handleSelectChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
@@ -171,16 +172,22 @@ const CreateEntrenador = () => {
               <span className="input-group-text" id="addon-wrapping">
                 Equipo
               </span>
-              <select name="nombreEquipo" value={input.nombreEquipo} onChange={(e) => {handleSelectChange(e)}}>
-                <option>Seleccione un equipo</option>
-                {equipos?.map(t =>{
-                  return(
+              <select
+                name="nombreEquipo"
+                value={input.nombreEquipo}
+                onChange={(e) => {
+                  handleSelectChange(e);
+                }}
+              >
+                <option value={""}>Seleccione un equipo</option>
+                {equipos.data?.map((equipo) => {
+                  return (
                     <>
-                    <option key={t.name} value={t.name}>
-                      {t.name}
-                    </option>
+                      <option key={equipo.name} value={equipo.name}>
+                        {equipo.name}
+                      </option>
                     </>
-                  )
+                  );
                 })}
               </select>
 
@@ -197,6 +204,15 @@ const CreateEntrenador = () => {
                 aria-describedby="addon-wrapping"
               /> */}
             </div>
+            {!equipos.data.length && (
+              <div className="error-sin-equipos">
+                <p>
+                  Debe crear al menos un equipo para poder dar de alta
+                  entrenadores
+                </p>
+                <a href="/home-presidente/crear-equipo">CREAR EQUIPOS</a>
+              </div>
+            )}
 
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
               <button
