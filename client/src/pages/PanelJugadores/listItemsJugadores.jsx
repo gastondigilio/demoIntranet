@@ -11,31 +11,31 @@ export const mainListItems = (
   <div>
     <ListItem button>
       <ListItemIcon>{/* <DashboardIcon /> */}</ListItemIcon>
-      <Link href="/home-presidente/crear-entrenador" target="_self">
+      <Link href="/crear-entrenador" target="_self">
         <ListItemText primary="Nombre del club" />
       </Link>
     </ListItem>
     <ListItem button>
       <ListItemIcon>{/* <ShoppingCartIcon /> */}</ListItemIcon>
-      <Link href="/home-presidente/crear-equipo" target="_self">
+      <Link href="/crear-equipo" target="_self">
         <ListItemText primary="Chat de equipo" />
       </Link>
     </ListItem>
     <ListItem button>
       <ListItemIcon>{/* <ShoppingCartIcon /> */}</ListItemIcon>
-      <Link href="/home-presidente/crear-equipo" target="_self">
+      <Link href="/crear-equipo" target="_self">
         <ListItemText primary="Perfil" />
       </Link>
     </ListItem>
     <ListItem button>
       <ListItemIcon>{/* <ShoppingCartIcon /> */}</ListItemIcon>
-      <Link href="/home-presidente/crear-equipo" target="_self">
+      <Link href="/crear-equipo" target="_self">
         <ListItemText primary="Próximos partidos" />
       </Link>
     </ListItem>
     <ListItem button>
       <ListItemIcon>{/* <ShoppingCartIcon /> */}</ListItemIcon>
-      <Link href="/home-presidente/crear-equipo" target="_self">
+      <Link href="/crear-equipo" target="_self">
         <ListItemText primary="Clasificación" />
       </Link>
     </ListItem>

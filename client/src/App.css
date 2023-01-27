@@ -70,3 +70,10 @@ li {
 .error-permisos a {
     color: var(--links-color);
 }
+
+.agregar-icon {
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    margin: 0;
+}

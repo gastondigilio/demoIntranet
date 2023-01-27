@@ -35,29 +35,16 @@ const App = () => {
         {/* <Route path="/home-presidente" element={<HomePresidente />} /> */}
         {/* <Route path="/home-entrenadores" element={<HomeEntrenadores />} /> */}
 
-        {/* RUTAS PRESIDENTE */}
-        <Route
-          path="/home-presidente/crear-entrenador"
-          element={<CreateEntrenador />}
-        />
-        <Route
-          path="/home-entrenadores/crear-jugador"
-          element={<CreateJugador />}
-        />
-        <Route
-          path="/home-presidente/crear-equipo"
-          element={<CreateEquipo />}
-        />
+        {/* RUTAS DE CREACION */}
+        <Route path="crear-entrenador" element={<CreateEntrenador />} />
+        <Route path="crear-jugador" element={<CreateJugador />} />
+        <Route path="crear-equipo" element={<CreateEquipo />} />
 
         {/* RUTAS ENTRENADORES */}
-        <Route
-          path="/home-entrenadores/crear-jugador"
-          element={<CreateJugador />}
-        />
-        <Route
+        {/* <Route
           path="/home-entrenadores/perfil"
           element={<PerfilEntrenador />}
-        />
+        /> */}
       </Routes>
     </div>
   );

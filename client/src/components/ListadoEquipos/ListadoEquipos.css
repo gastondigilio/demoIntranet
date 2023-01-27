@@ -3,3 +3,7 @@
 .listado-equipos {
   padding: 2rem;
 }
+
+.button-agregar {
+  text-decoration: none;
+}

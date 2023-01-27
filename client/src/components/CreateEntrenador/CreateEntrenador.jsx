@@ -210,7 +210,7 @@ const CreateEntrenador = () => {
                   Debe crear al menos un equipo para poder dar de alta
                   entrenadores
                 </p>
-                <a href="/home-presidente/crear-equipo">CREAR EQUIPOS</a>
+                <a href="/crear-equipo">CREAR EQUIPOS</a>
               </div>
             )}
 
