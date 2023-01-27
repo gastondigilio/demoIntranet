@@ -62,7 +62,11 @@ const ListadoEquipos = () => {
               className="example-text"
               style={{ textAlign: "center", fontSize: "12px", borderLeft: "0" }}
             >
-              <a className="button-agregar" href="/crear-equipo">
+              <a
+                className="button-agregar"
+                href="/crear-equipo"
+                target={"_blank"}
+              >
                 <img className="agregar-icon" src={agregarIcon} />
               </a>
             </td>

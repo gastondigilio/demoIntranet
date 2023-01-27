@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getEntrenadores } from "../../redux/actions/actions";
 
+import agregarIcon from "../../images/agregar-icon.svg";
+
 import "./ListadoEntrenadores.css";
 
 const ListadoEntrenadores = () => {
@@ -48,6 +50,28 @@ const ListadoEntrenadores = () => {
                 );
               })
             : null}
+          <tr>
+            <td
+              className="example-text"
+              style={{
+                textAlign: "center",
+                fontSize: "12px",
+                borderRight: "0",
+              }}
+            ></td>
+            <td
+              className="example-text"
+              style={{ textAlign: "center", fontSize: "12px", borderLeft: "0" }}
+            >
+              <a
+                className="button-agregar"
+                href="/crear-entrenador"
+                target={"_blank"}
+              >
+                <img className="agregar-icon" src={agregarIcon} />
+              </a>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
