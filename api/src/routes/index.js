@@ -150,11 +150,10 @@ router.get("/jugadores", async (req, res) => {
 
 router.post("/crear-jugador", async (req, res) => {
   try {
-    const { nombre, email, uid } = req.body;
+    const { nombre, email } = req.body;
     const jugador = await Jugadores.create({
       nombre,
       email,
-      uid,
     });
     res.status(200).send(jugador);
   } catch (error) {
@@ -171,7 +170,7 @@ router.put("/editar-jugador", async (req, res) => {
       if (req.body.uid) updateData.uid = req.body.uid;
 
       const [affectedRows, updated] = await Jugadores.update(updateData, {
-        where: { nombre: req.body.editar },
+        where: { email: req.body.editar },
         returning: true,
         plain: true,
       });

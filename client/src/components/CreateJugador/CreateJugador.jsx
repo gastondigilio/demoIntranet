@@ -1,13 +1,9 @@
 import React, { useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setLoading,
-} from "../../redux/actions/actions";
+import { createJugador, setLoading } from "../../redux/actions/actions";
 
-import emailjs from '@emailjs/browser';
-
-import { BASE_URL, REGISTER_ENTRENADOR } from "../../config";
+import emailjs from "@emailjs/browser";
 
 import Spinner from "../Spinner/Spinner";
 
@@ -19,6 +15,7 @@ const CreateJugador = () => {
   const initialInput = {
     nombre: "",
     email: "",
+    nombreEquipo: "Real Madrid",
   };
   const [input, setInput] = useState(initialInput);
   const [jugadoresAgregados, setJugadoresAgregados] = useState([]);
@@ -37,25 +34,19 @@ const CreateJugador = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(setLoading(true));
+    jugadoresAgregados.map((jugador) => {
+      dispatch(createJugador(jugador));
+    });
 
     emailjs.init("A_EZ040hD2lkySGIj");
 
-    jugadoresAgregados.map(jugador => {
-      emailjs.send("service_0kg3rpc", "template_rjblcxj", {
+    jugadoresAgregados.map((jugador) => {
+      emailjs.send("service_0kg3rpc", "template_0vvf34c", {
         from_name: "CallStack IT",
         to_name: jugador.nombre,
         to_email: jugador.email,
       });
-    })
-
-    // jugadoresAgregados.map((jugador) => {
-    //   try {
-    //     dispatch(createJugador(jugador));
-    //   } catch (error) {
-    //     console.log("ERROR: ", error);
-    //   }
-    //   dispatch(getJugadores());
-    // });
+    });
 
     dispatch(setLoading(false));
     setJugadoresAgregados([]);
@@ -191,13 +182,13 @@ const CreateJugador = () => {
           )}
           {jugadoresAgregados.length
             ? jugadoresAgregados.map((jugador) => {
-              return (
-                <tr key={jugador.email}>
-                  <td className="table-data">{jugador.nombre}</td>
-                  <td className="table-data">{jugador.email}</td>
-                </tr>
-              );
-            })
+                return (
+                  <tr key={jugador.email}>
+                    <td className="table-data">{jugador.nombre}</td>
+                    <td className="table-data">{jugador.email}</td>
+                  </tr>
+                );
+              })
             : null}
         </tbody>
       </table>

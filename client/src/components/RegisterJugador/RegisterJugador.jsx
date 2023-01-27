@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createJugador, login } from "../../redux/actions/actions";
+import {
+  createJugador,
+  login,
+  registerJugador,
+} from "../../redux/actions/actions";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -53,10 +57,13 @@ export default function Register() {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    dispatch(createJugador(input));
-    setTimeout(() => {
-      window.location.pathname = "/";
-    }, 1500);
+    dispatch(registerJugador(input));
+
+    // if (!error) {
+    //   setTimeout(() => {
+    //     window.location.pathname = "/";
+    //   }, 1500);
+    // }
   };
 
   const registerVerify = () => {

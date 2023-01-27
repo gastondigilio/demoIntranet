@@ -10,6 +10,12 @@ import Link from "@mui/material/Link";
 export const mainListItems = (
   <div>
     <ListItem button>
+      <ListItemIcon>{/* <ShoppingCartIcon /> */}</ListItemIcon>
+      <Link href="/crear-equipo" target="_self">
+        <ListItemText primary="Crear equipo" />
+      </Link>
+    </ListItem>
+    <ListItem button>
       <ListItemIcon>{/* <DashboardIcon /> */}</ListItemIcon>
       <Link href="/crear-entrenador" target="_self">
         <ListItemText primary="Crear entrenador" />
@@ -17,8 +23,8 @@ export const mainListItems = (
     </ListItem>
     <ListItem button>
       <ListItemIcon>{/* <ShoppingCartIcon /> */}</ListItemIcon>
-      <Link href="/crear-equipo" target="_self">
-        <ListItemText primary="Crear equipo" />
+      <Link href="/crear-jugador" target="_self">
+        <ListItemText primary="Crear jugador" />
       </Link>
     </ListItem>
     <ListItem button>
