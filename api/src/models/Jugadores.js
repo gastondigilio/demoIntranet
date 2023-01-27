@@ -13,6 +13,10 @@ module.exports = (sequelize) => {
         allowNull: false,
         unique: true,
       },
+      categoria: {
+        type: DataTypes.SMALLINT,
+        allowNull: true,
+      },
       uid: {
         type: DataTypes.STRING,
         allowNull: false,
