@@ -183,26 +183,13 @@ const CreateEntrenador = () => {
                 {equipos.data?.map((equipo) => {
                   return (
                     <>
-                      <option key={equipo.name} value={equipo.name}>
-                        {equipo.name}
+                      <option key={equipo.nombre} value={equipo.nombre}>
+                        {equipo.nombre}
                       </option>
                     </>
                   );
                 })}
               </select>
-
-              {/* <input
-                name="nombreEquipo"
-                value={input.nombreEquipo}
-                placeholder="Juvenil a"
-                type="text"
-                onChange={(e) => {
-                  handleInputChange(e);
-                }}
-                className="form-control"
-                aria-label="nombreEquipo"
-                aria-describedby="addon-wrapping"
-              /> */}
             </div>
             {!equipos.data.length && (
               <div className="error-sin-equipos">

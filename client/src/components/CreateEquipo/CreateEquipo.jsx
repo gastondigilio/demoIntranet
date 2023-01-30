@@ -118,6 +118,93 @@ const CreateEquipo = () => {
           />
         </div>
 
+        <div className="input-group flex-nowrap">
+          <span className="input-group-text" id="addon-wrapping">
+            Categoría
+          </span>
+
+          <input
+            name="ciudad"
+            // value={input.ciudad}
+            placeholder="Juvenil A"
+            type="text"
+            // onChange={(e) => {
+            //   handleInputChange(e);
+            // }}
+            className="form-control"
+            aria-label="Categoría"
+            aria-describedby="addon-wrapping"
+          />
+        </div>
+
+        <div className="input-group flex-nowrap">
+          <span className="input-group-text" id="addon-wrapping">
+            Año
+          </span>
+
+          <input
+            name="año"
+            // value={input.ciudad}
+            placeholder="1995"
+            type="number"
+            // onChange={(e) => {
+            //   handleInputChange(e);
+            // }}
+            className="form-control"
+            aria-label="Año"
+            aria-describedby="addon-wrapping"
+          />
+        </div>
+
+        <div className="input-group flex-nowrap">
+          <span className="input-group-text" id="addon-wrapping">
+            Liga
+          </span>
+
+          <input
+            name="liga"
+            // value={input.ciudad}
+            placeholder="Liga profesional"
+            type="text"
+            // onChange={(e) => {
+            //   handleInputChange(e);
+            // }}
+            className="form-control"
+            aria-label="Liga"
+            aria-describedby="addon-wrapping"
+          />
+        </div>
+
+        <div className="input-group flex-nowrap">
+              <span className="input-group-text" id="addon-wrapping">
+                Añadir entrenador
+              </span>
+              <select
+                name="entrenador"
+                // value={input.nombreEquipo}
+                // onChange={(e) => {
+                //   handleSelectChange(e);
+                // }}
+              >
+                <option value={""}>Seleccione un entrenador</option>
+              </select>
+            </div>
+
+            <div className="input-group flex-nowrap">
+              <span className="input-group-text" id="addon-wrapping">
+                Añadir jugador
+              </span>
+              <select
+                name="jugador"
+                // value={input.nombreEquipo}
+                // onChange={(e) => {
+                //   handleSelectChange(e);
+                // }}
+              >
+                <option value={""}>Seleccione un jugador</option>
+              </select>
+            </div>
+
         <div className="d-grid gap-2 d-md-flex justify-content-md-end">
           <button
             className="btn btn-primary me-md-2"
