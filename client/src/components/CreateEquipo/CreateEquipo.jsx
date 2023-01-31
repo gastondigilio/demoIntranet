@@ -8,6 +8,8 @@ import {
   setLoading,
 } from "../../redux/actions/actions";
 
+import ModalAddEntrenador from "./ModalAddEntrenador";
+
 import "./CreateEquipo.css";
 
 const CreateEquipo = () => {
@@ -55,6 +57,10 @@ const CreateEquipo = () => {
       return true;
     }
   };
+
+  const handleClick = () => {
+    console.log("me clickeaste")
+  }
 
   const handleValidateAceptar = () => {
     return equiposAgregados.length < 1;
@@ -176,10 +182,11 @@ const CreateEquipo = () => {
         </div>
 
         <div className="input-group flex-nowrap">
-              <span className="input-group-text" id="addon-wrapping">
-                Añadir entrenador
-              </span>
-              <select
+          <span className="input-group-text" id="addon-wrapping">
+            Añadir entrenador
+          </span>
+          <ModalAddEntrenador/>
+          {/* <select
                 name="entrenador"
                 // value={input.nombreEquipo}
                 // onChange={(e) => {
@@ -187,23 +194,23 @@ const CreateEquipo = () => {
                 // }}
               >
                 <option value={""}>Seleccione un entrenador</option>
-              </select>
-            </div>
+              </select> */}
+        </div>
 
-            <div className="input-group flex-nowrap">
-              <span className="input-group-text" id="addon-wrapping">
-                Añadir jugador
-              </span>
-              <select
-                name="jugador"
-                // value={input.nombreEquipo}
-                // onChange={(e) => {
-                //   handleSelectChange(e);
-                // }}
-              >
-                <option value={""}>Seleccione un jugador</option>
-              </select>
-            </div>
+        <div className="input-group flex-nowrap">
+          <span className="input-group-text" id="addon-wrapping">
+            Añadir jugador
+          </span>
+          <select
+            name="jugador"
+          // value={input.nombreEquipo}
+          // onChange={(e) => {
+          //   handleSelectChange(e);
+          // }}
+          >
+            <option value={""}>Seleccione un jugador</option>
+          </select>
+        </div>
 
         <div className="d-grid gap-2 d-md-flex justify-content-md-end">
           <button
@@ -258,13 +265,13 @@ const CreateEquipo = () => {
           )}
           {equiposAgregados.length
             ? equiposAgregados.map((equipo) => {
-                return (
-                  <tr key={equipo.nombre}>
-                    <td className="table-data">{equipo.nombre}</td>
-                    <td className="table-data">{equipo.ciudad}</td>
-                  </tr>
-                );
-              })
+              return (
+                <tr key={equipo.nombre}>
+                  <td className="table-data">{equipo.nombre}</td>
+                  <td className="table-data">{equipo.ciudad}</td>
+                </tr>
+              );
+            })
             : null}
         </tbody>
       </table>
