@@ -9,7 +9,7 @@ import {
 } from "../../redux/actions/actions";
 
 
-export default function ModalAddJugador({jugadoresAgregados, setJugadoresAgregados}) {
+export default function ModalAddJugador({ jugadoresAgregados, setJugadoresAgregados }) {
     const dispatch = useDispatch();
     const [show, setShow] = useState(false);
     const initialInput = {
@@ -23,7 +23,6 @@ export default function ModalAddJugador({jugadoresAgregados, setJugadoresAgregad
     const handleShow = () => setShow(true);
 
     const jugadores = useSelector((state) => state.jugadores);
-    console.log(jugadores, "JUGADORES")
 
     useEffect(() => {
         dispatch(getJugadores());
@@ -85,8 +84,8 @@ export default function ModalAddJugador({jugadoresAgregados, setJugadoresAgregad
                             {jugadores.data?.map((jugador) => {
                                 return (
                                     <>
-                                        <option key={jugador.nombre} value={jugador.nombre}>
-                                            {jugador.nombre}
+                                        <option key={jugador.email} value={jugador.email}>
+                                            {jugador.email}
                                         </option>
                                     </>
                                 );
@@ -122,7 +121,7 @@ export default function ModalAddJugador({jugadoresAgregados, setJugadoresAgregad
                             </button>
                         </div> */}
                         <Modal.Footer>
-                        <Button variant="primary"
+                            <Button variant="primary"
                                 className="btn btn-primary me-md-2"
                                 type="submit"
                                 disabled={handleValidateAgregar()}>

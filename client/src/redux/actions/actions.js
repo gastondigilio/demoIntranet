@@ -63,7 +63,6 @@ export function createEntrenador(input) {
       );
 
       if (input.equiposAgregados.length) {
-
         input.equiposAgregados.map(async equipo => {
           let dataRelacion = {
             nombre: equipo,
@@ -77,7 +76,6 @@ export function createEntrenador(input) {
             dataRelacion
           );
         })
-
       }
 
       return dispatch({
@@ -144,33 +142,6 @@ export function registerEntrenador(input) {
   };
 }
 
-// export function relacionEntrenadorEquipo(input) {
-//   return async function (dispatch) {
-//     try {
-//       let dataRelacion = {
-//         nombre: input.nombreEquipo,
-//         email: input.email,
-//       };
-
-//       const relacion = await axios.post(
-//         url + "/relacionar-entrenador-equipo",
-//         dataRelacion
-//       );
-
-//       return dispatch({
-//         type: "CREATE_ENTRENADOR",
-//         payload: relacion,
-//       });
-//     } catch (error) {
-//       console.log("ERROR EN RELACION ENTRENADOR EQUIPO");
-//       return dispatch({
-//         type: "HAS_ERROR",
-//         payload: error,
-//       });
-//     }
-//   };
-// }
-
 export function getEquipos() {
   return async function (dispatch) {
     try {
@@ -189,10 +160,43 @@ export function getEquipos() {
   };
 }
 
-export function createEquipo(data) {
+export function createEquipo(input) {
   return async function (dispatch) {
     try {
-      const response = await axios.post(url + "/crear-equipo", data);
+      const response = await axios.post(url + "/crear-equipo", input);
+
+      if (input.entrenadoresAgregados.length) {
+        input.entrenadoresAgregados.map(async entrenador => {
+          let dataRelacion = {
+            nombre: input.nombre,
+            email: entrenador,
+          };
+
+          console.log("DATA RELACION ENTRENADORES: ", dataRelacion)
+
+          const relacion = await axios.post(
+            url + "/relacionar-entrenador-equipo",
+            dataRelacion
+          );
+        })
+      }
+
+      if (input.jugadoresAgregados.length) {
+        input.jugadoresAgregados.map(async jugador => {
+          let dataRelacion = {
+            nombre: input.nombre,
+            email: jugador,
+          };
+
+          console.log("DATA RELACION JUGADORES: ", dataRelacion)
+
+          const relacion = await axios.post(
+            url + "/relacionar-jugador-equipo",
+            dataRelacion
+          );
+        })
+      }
+
       return dispatch({
         type: "CREATE_EQUIPO",
         payload: response,

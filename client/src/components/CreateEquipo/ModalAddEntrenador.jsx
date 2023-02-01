@@ -17,23 +17,15 @@ export default function ModalAddEntrenador({ entrenadoresAgregados, setEntrenado
     };
 
     const [input, setInput] = useState(initialInput);
-    // const [entrenadoresAgregados, setEntrenadoresAgregados] = useState([]);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     const entrenadores = useSelector((state) => state.entrenadores);
-    console.log(entrenadores, "ENTRENADORES")
 
     useEffect(() => {
         dispatch(getEntrenadores());
     }, []);
-
-    // const handleAgregar = (e) => {
-    //     e.preventDefault();
-    //     setEntrenadoresAgregados([...entrenadoresAgregados, input]);
-    //     setInput(initialInput);
-    // };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -42,19 +34,11 @@ export default function ModalAddEntrenador({ entrenadoresAgregados, setEntrenado
             setEntrenadoresAgregados([...entrenadoresAgregados, input.email]);
             setInput(initialInput);
         }
-        // entrenadoresAgregados.map((entrenador) => {
-        //     dispatch(createEntrenador(entrenador));
-        // });
-        // setEntrenadoresAgregados([]);
     };
 
     const handleSelectChange = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value });
     };
-
-    // const handleValidateAceptar = () => {
-    //     return entrenadoresAgregados.length < 1;
-    // };
 
     const handleValidateAgregar = () => {
         return input.email === ""
@@ -90,8 +74,8 @@ export default function ModalAddEntrenador({ entrenadoresAgregados, setEntrenado
                             {entrenadores.data?.map((entrenador) => {
                                 return (
                                     <>
-                                        <option key={entrenador.nombre} value={entrenador.nombre}>
-                                            {entrenador.nombre}
+                                        <option key={entrenador.email} value={entrenador.email}>
+                                            {entrenador.email}
                                         </option>
                                     </>
                                 );

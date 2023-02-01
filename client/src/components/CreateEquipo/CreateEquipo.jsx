@@ -44,13 +44,8 @@ const CreateEquipo = () => {
     e.preventDefault();
     dispatch(setLoading(true));
 
-    equiposAgregados.map((quipo) => {
-      try {
-        dispatch(createEquipo(quipo));
-      } catch (error) {
-        console.log("ERROR: ", error);
-      }
-      dispatch(getEquipos());
+    equiposAgregados.map((equipo) => {
+      dispatch(createEquipo(equipo));
     });
 
     dispatch(setLoading(false));
@@ -94,11 +89,12 @@ const CreateEquipo = () => {
   }, [equiposAgregados])
 
   useEffect(() => {
-    console.log("entrenadoresAgregados", entrenadoresAgregados)
-  }, [entrenadoresAgregados])
+    setInput({ ...input, entrenadoresAgregados, jugadoresAgregados })
+  }, [entrenadoresAgregados, jugadoresAgregados])
 
   useEffect(() => {
-  }, [jugadoresAgregados])
+    console.log("equiposAgregados", equiposAgregados)
+  }, [equiposAgregados])
 
   return (
     <div className="create-equipo">
@@ -211,15 +207,6 @@ const CreateEquipo = () => {
             Añadir entrenador
           </span>
           <ModalAddEntrenador entrenadoresAgregados={entrenadoresAgregados} setEntrenadoresAgregados={setEntrenadoresAgregados} />
-          {/* <select
-                name="entrenador"
-                // value={input.nombreEquipo}
-                // onChange={(e) => {
-                //   handleSelectChange(e);
-                // }}
-              >
-                <option value={""}>Seleccione un entrenador</option>
-              </select> */}
         </div>
 
         <div className="input-group flex-nowrap">
@@ -227,15 +214,6 @@ const CreateEquipo = () => {
             Añadir jugador
           </span>
           <ModalAddJugador jugadoresAgregados={jugadoresAgregados} setJugadoresAgregados={setJugadoresAgregados} />
-          {/* <select
-            name="jugador"
-          // value={input.nombreEquipo}
-          // onChange={(e) => {
-          //   handleSelectChange(e);
-          // }}
-          >
-            <option value={""}>Seleccione un jugador</option>
-          </select> */}
         </div>
 
         <div className="d-grid gap-2 d-md-flex justify-content-md-end">
