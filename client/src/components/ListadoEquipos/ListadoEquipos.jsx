@@ -23,11 +23,14 @@ const ListadoEquipos = () => {
       <table className="table table-bordered">
         <thead>
           <tr>
-            <th style={{ width: "50%", textAlign: "center" }} scope="col">
+            <th style={{ width: "40%", textAlign: "center" }} scope="col">
               Nombre
             </th>
-            <th style={{ width: "50%", textAlign: "center" }} scope="col">
+            <th style={{ width: "40%", textAlign: "center" }} scope="col">
               Ciudad
+            </th>
+            <th style={{ width: "20%", textAlign: "center" }} scope="col">
+              Relaciones
             </th>
           </tr>
         </thead>
@@ -37,40 +40,20 @@ const ListadoEquipos = () => {
             <tr>
               <td className="table-data example-text">FC Example</td>
               <td className="table-data example-text">Example City</td>
+              <td className="table-data"><img className="agregar-icon" src={agregarIcon} /></td>
             </tr>
           )}
           {hayEquipos
             ? equipos.data.map((equipo) => {
-                return (
-                  <tr key={equipo.nombre}>
-                    <td className="table-data">{equipo.nombre}</td>
-                    <td className="table-data">{equipo.ciudad}</td>
-                  </tr>
-                );
-              })
+              return (
+                <tr key={equipo.nombre}>
+                  <td className="table-data">{equipo.nombre}</td>
+                  <td className="table-data">{equipo.ciudad}</td>
+                  <td className="table-data"><img className="agregar-icon" src={agregarIcon} /></td>
+                </tr>
+              );
+            })
             : null}
-          <tr>
-            <td
-              className="example-text"
-              style={{
-                textAlign: "center",
-                fontSize: "12px",
-                borderRight: "0",
-              }}
-            ></td>
-            <td
-              className="example-text"
-              style={{ textAlign: "center", fontSize: "12px", borderLeft: "0" }}
-            >
-              <a
-                className="button-agregar"
-                href="/crear-equipo"
-                target={"_blank"}
-              >
-                <img className="agregar-icon" src={agregarIcon} />
-              </a>
-            </td>
-          </tr>
         </tbody>
       </table>
     </div>

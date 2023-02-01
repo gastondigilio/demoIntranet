@@ -250,20 +250,10 @@ export function getJugadores() {
 export function createJugador(input) {
   return async function (dispatch) {
     try {
-      // let user = await createUserWithEmailAndPassword(
-      //   auth,
-      //   input.email,
-      //   input.password
-      // );
-
-      console.log("input", input);
-
       let dataCreacion = {
         nombre: input.nombre,
         email: input.email,
       };
-
-      console.log("dataCreacion", dataCreacion);
 
       let dataRelacion = {
         nombre: input.nombreEquipo,
