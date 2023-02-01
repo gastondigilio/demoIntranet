@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Spinner from "../Spinner/Spinner";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -6,10 +6,12 @@ import {
   createEquipo,
   getEquipos,
   setLoading,
+  getEntrenadores,
+  getJugadores
 } from "../../redux/actions/actions";
 
 import ModalAddEntrenador from "./ModalAddEntrenador";
-import ModalAddJugador from "./ModalAddJugador"; 
+import ModalAddJugador from "./ModalAddJugador";
 
 import "./CreateEquipo.css";
 
@@ -19,9 +21,13 @@ const CreateEquipo = () => {
   const initialInput = {
     nombre: "",
     ciudad: "",
+    entrenadoresAgregados: [],
+    jugadoresAgregados: [],
   };
   const [input, setInput] = useState(initialInput);
   const [equiposAgregados, setEquiposAgregados] = useState([]);
+  const [entrenadoresAgregados, setEntrenadoresAgregados] = useState([]);
+  const [jugadoresAgregados, setJugadoresAgregados] = useState([]);
   const isLoading = useSelector((state) => state.isLoading);
 
   const handleInputChange = (e) => {
@@ -59,10 +65,6 @@ const CreateEquipo = () => {
     }
   };
 
-  const handleClick = () => {
-    console.log("me clickeaste")
-  }
-
   const handleValidateAceptar = () => {
     return equiposAgregados.length < 1;
   };
@@ -75,6 +77,28 @@ const CreateEquipo = () => {
     }
     return false;
   };
+
+  useEffect(() => {
+    dispatch(setLoading(true));
+    dispatch(getEntrenadores());
+    dispatch(getJugadores());
+    dispatch(getEquipos());
+    setTimeout(() => {
+      dispatch(setLoading(false));
+    }, 1500);
+  }, []);
+
+
+  useEffect(() => {
+    setInput({ ...input, equiposAgregados })
+  }, [equiposAgregados])
+
+  useEffect(() => {
+    console.log("entrenadoresAgregados", entrenadoresAgregados)
+  }, [entrenadoresAgregados])
+
+  useEffect(() => {
+  }, [jugadoresAgregados])
 
   return (
     <div className="create-equipo">
@@ -186,7 +210,7 @@ const CreateEquipo = () => {
           <span className="input-group-text" id="addon-wrapping">
             Añadir entrenador
           </span>
-          <ModalAddEntrenador/>
+          <ModalAddEntrenador entrenadoresAgregados={entrenadoresAgregados} setEntrenadoresAgregados={setEntrenadoresAgregados} />
           {/* <select
                 name="entrenador"
                 // value={input.nombreEquipo}
@@ -202,7 +226,7 @@ const CreateEquipo = () => {
           <span className="input-group-text" id="addon-wrapping">
             Añadir jugador
           </span>
-          <ModalAddJugador/>
+          <ModalAddJugador jugadoresAgregados={jugadoresAgregados} setJugadoresAgregados={setJugadoresAgregados} />
           {/* <select
             name="jugador"
           // value={input.nombreEquipo}
@@ -277,6 +301,22 @@ const CreateEquipo = () => {
             : null}
         </tbody>
       </table>
+      <div className='listado-agregados'>
+        <p>Entrenadores agregados: </p>
+        {
+          entrenadoresAgregados.map(entrenador => {
+            return <p key="entrenador" className="equipo-agregado">{entrenador}</p>
+          })
+        }
+      </div>
+      <div className='listado-agregados'>
+        <p>Jugadores agregados: </p>
+        {
+          jugadoresAgregados.map(jugador => {
+            return <p key="jugador" className="equipo-agregado">{jugador}</p>
+          })
+        }
+      </div>
     </div>
   );
 };

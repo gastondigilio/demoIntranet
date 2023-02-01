@@ -50,17 +50,20 @@ const Home = () => {
         <div className="home">
           {!uid ? (
             <>
-              <Grid container justifyContent="flex-end">
-                <Grid item padding={2}>
-                  <Link
-                    href="/login"
-                    variant="body2"
-                    style={{ textDecoration: "none" }}
-                  >
-                    Iniciar sesión
-                  </Link>
+              <div className="homeLanding">
+                <h1 className="titleLanding">Bienvenido a la Intranet</h1>
+                <Grid container justifyContent="center">
+                  <Grid item padding={10}>
+                    <Link
+                      href="/login"
+                      variant="body2"
+                      style={{ textDecoration: "none", color: "#FFFFFF", fontWeight: "bold", fontSize: 20}}
+                    >
+                      Iniciar sesión
+                    </Link>
+                  </Grid>
                 </Grid>
-              </Grid>
+              </div>
             </>
           ) : (
             <div>

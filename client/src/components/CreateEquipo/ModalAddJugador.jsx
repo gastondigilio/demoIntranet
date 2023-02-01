@@ -9,7 +9,7 @@ import {
 } from "../../redux/actions/actions";
 
 
-export default function ModalAddJugador() {
+export default function ModalAddJugador({jugadoresAgregados, setJugadoresAgregados}) {
     const dispatch = useDispatch();
     const [show, setShow] = useState(false);
     const initialInput = {
@@ -17,7 +17,7 @@ export default function ModalAddJugador() {
     };
 
     const [input, setInput] = useState(initialInput);
-    const [jugadoresAgregados, setJugadoresAgregados] = useState([]);
+    // const [jugadoresAgregados, setJugadoresAgregados] = useState([]);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -29,26 +29,30 @@ export default function ModalAddJugador() {
         dispatch(getJugadores());
     }, []);
 
-    const handleAgregar = (e) => {
-        e.preventDefault();
-        setJugadoresAgregados([...jugadoresAgregados, input]);
-        setInput(initialInput);
-    };
+    // const handleAgregar = (e) => {
+    //     e.preventDefault();
+    //     setJugadoresAgregados([...jugadoresAgregados, input]);
+    //     setInput(initialInput);
+    // };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        jugadoresAgregados.map((jugador) => {
-            dispatch(createJugador(jugador));
-        });
-        setJugadoresAgregados([]);
+        if (input.email !== "") {
+            setJugadoresAgregados([...jugadoresAgregados, input.email]);
+            setInput(initialInput);
+        }
+        // jugadoresAgregados.map((jugador) => {
+        //     dispatch(createJugador(jugador));
+        // });
+        // setJugadoresAgregados([]);
     };
 
     const handleSelectChange = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value });
     };
 
-    const handleValidateAceptar = () => {
-        return jugadoresAgregados.length < 1;
+    const handleValidateAgregar = () => {
+        return input.email === ""
     };
 
     return (
@@ -118,17 +122,15 @@ export default function ModalAddJugador() {
                             </button>
                         </div> */}
                         <Modal.Footer>
-                            <Button variant="primary"
+                        <Button variant="primary"
                                 className="btn btn-primary me-md-2"
-                                type="button"
-                                onClick={(e) => {
-                                    handleAgregar(e);
-                                }}>
+                                type="submit"
+                                disabled={handleValidateAgregar()}>
                                 Agregar
                             </Button>
-                            <Button variant="primary"
+                            {/* <Button variant="primary"
                             type="submit"
-                            disabled={handleValidateAceptar()}>Aceptar</Button>
+                            disabled={handleValidateAceptar()}>Aceptar</Button> */}
                         </Modal.Footer>
                     </form>
                     {/* <a

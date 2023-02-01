@@ -9,7 +9,7 @@ import {
 } from "../../redux/actions/actions";
 
 
-export default function ModalAddEntrenador() {
+export default function ModalAddEntrenador({ entrenadoresAgregados, setEntrenadoresAgregados }) {
     const dispatch = useDispatch();
     const [show, setShow] = useState(false);
     const initialInput = {
@@ -17,7 +17,7 @@ export default function ModalAddEntrenador() {
     };
 
     const [input, setInput] = useState(initialInput);
-    const [entrenadoresAgregados, setEntrenadoresAgregados] = useState([]);
+    // const [entrenadoresAgregados, setEntrenadoresAgregados] = useState([]);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -29,26 +29,35 @@ export default function ModalAddEntrenador() {
         dispatch(getEntrenadores());
     }, []);
 
-    const handleAgregar = (e) => {
-        e.preventDefault();
-        setEntrenadoresAgregados([...entrenadoresAgregados, input]);
-        setInput(initialInput);
-    };
+    // const handleAgregar = (e) => {
+    //     e.preventDefault();
+    //     setEntrenadoresAgregados([...entrenadoresAgregados, input]);
+    //     setInput(initialInput);
+    // };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        entrenadoresAgregados.map((entrenador) => {
-            dispatch(createEntrenador(entrenador));
-        });
-        setEntrenadoresAgregados([]);
+
+        if (input.email !== "") {
+            setEntrenadoresAgregados([...entrenadoresAgregados, input.email]);
+            setInput(initialInput);
+        }
+        // entrenadoresAgregados.map((entrenador) => {
+        //     dispatch(createEntrenador(entrenador));
+        // });
+        // setEntrenadoresAgregados([]);
     };
 
     const handleSelectChange = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value });
     };
 
-    const handleValidateAceptar = () => {
-        return entrenadoresAgregados.length < 1;
+    // const handleValidateAceptar = () => {
+    //     return entrenadoresAgregados.length < 1;
+    // };
+
+    const handleValidateAgregar = () => {
+        return input.email === ""
     };
 
     return (
@@ -120,15 +129,13 @@ export default function ModalAddEntrenador() {
                         <Modal.Footer>
                             <Button variant="primary"
                                 className="btn btn-primary me-md-2"
-                                type="button"
-                                onClick={(e) => {
-                                    handleAgregar(e);
-                                }}>
+                                type="submit"
+                                disabled={handleValidateAgregar()}>
                                 Agregar
                             </Button>
-                            <Button variant="primary"
+                            {/* <Button variant="primary"
                             type="submit"
-                            disabled={handleValidateAceptar()}>Aceptar</Button>
+                            disabled={handleValidateAceptar()}>Aceptar</Button> */}
                         </Modal.Footer>
                     </form>
                     {/* <a
