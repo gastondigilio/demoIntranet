@@ -17,6 +17,7 @@ import "./CreateEntrenador.css";
 import Spinner from "../Spinner/Spinner";
 import { ENTRENADORES, PRESIDENTE } from "../../config";
 import ErrorPermisos from "../ErrorPermisos/ErrorPermisos";
+import ModalAddEquipo from "./ModalAddEquipo";
 
 const CreateEntrenador = () => {
   const dispatch = useDispatch();
@@ -172,7 +173,8 @@ const CreateEntrenador = () => {
               <span className="input-group-text" id="addon-wrapping">
                 Equipo
               </span>
-              <select
+              <ModalAddEquipo/>
+              {/* <select
                 name="nombreEquipo"
                 value={input.nombreEquipo}
                 onChange={(e) => {
@@ -189,9 +191,9 @@ const CreateEntrenador = () => {
                     </>
                   );
                 })}
-              </select>
+              </select> */}
             </div>
-            {!equipos.data.length && (
+            {/* {!equipos.data.length && (
               <div className="error-sin-equipos">
                 <p>
                   Debe crear al menos un equipo para poder dar de alta
@@ -199,7 +201,7 @@ const CreateEntrenador = () => {
                 </p>
                 <a href="/crear-equipo">CREAR EQUIPOS</a>
               </div>
-            )}
+            )} */}
 
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
               <button
