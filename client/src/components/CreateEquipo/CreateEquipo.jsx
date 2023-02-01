@@ -9,6 +9,7 @@ import {
 } from "../../redux/actions/actions";
 
 import ModalAddEntrenador from "./ModalAddEntrenador";
+import ModalAddJugador from "./ModalAddJugador"; 
 
 import "./CreateEquipo.css";
 
@@ -201,7 +202,8 @@ const CreateEquipo = () => {
           <span className="input-group-text" id="addon-wrapping">
             Añadir jugador
           </span>
-          <select
+          <ModalAddJugador/>
+          {/* <select
             name="jugador"
           // value={input.nombreEquipo}
           // onChange={(e) => {
@@ -209,7 +211,7 @@ const CreateEquipo = () => {
           // }}
           >
             <option value={""}>Seleccione un jugador</option>
-          </select>
+          </select> */}
         </div>
 
         <div className="d-grid gap-2 d-md-flex justify-content-md-end">
