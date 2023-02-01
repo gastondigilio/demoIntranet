@@ -17,6 +17,7 @@ import HomePresidente from "../PanelPresidente/HomePresidente/HomePresidente";
 import Spinner from "../../components/Spinner/Spinner";
 
 import { JUGADORES, ENTRENADORES, PRESIDENTE } from "../../config";
+import HomeEntrenadores from "../PanelEntrenador/HomeEntrenadores/HomeEntrenadores";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -64,7 +65,7 @@ const Home = () => {
           ) : (
             <div>
               {userType === JUGADORES && <HomeJugadores />}
-              {userType === ENTRENADORES && <p>ES ENTRENADOR</p>}
+              {userType === ENTRENADORES && <HomeEntrenadores />}
               {userType === PRESIDENTE && <HomePresidente />}
             </div>
           )}

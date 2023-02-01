@@ -1,12 +1,12 @@
 @import url(../../../App.css);
 
-.create-jugador {
+.create-equipo {
   width: 100%;
   padding: 2rem;
   position: relative;
 }
 
-.create-jugador form {
+.create-equipo form {
   margin-bottom: 2rem;
 }
 

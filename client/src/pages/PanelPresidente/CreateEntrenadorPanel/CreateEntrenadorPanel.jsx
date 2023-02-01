@@ -4,14 +4,14 @@ import Link from "@mui/material/Link";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
-  createJugador,
-  getJugadores,
+  createEntrenador,
+  getEntrenadores,
   setLoading,
 } from "../../../redux/actions/actions";
 
-import "./CrearJugador.css";
+import "./CreateEntrenadorPanel.css";
 
-const CrearJugador = () => {
+const CreateEntrenadorPanel = () => {
   const dispatch = useDispatch();
 
   const initialInput = {
@@ -19,7 +19,7 @@ const CrearJugador = () => {
     email: "",
   };
   const [input, setInput] = useState(initialInput);
-  const [jugadoresAgregados, setJugadoresAgregados] = useState([]);
+  const [entrenadoresAgregados, setEntrenadoresAgregados] = useState([]);
   const isLoading = useSelector((state) => state.isLoading);
 
   const handleInputChange = (e) => {
@@ -28,7 +28,7 @@ const CrearJugador = () => {
 
   const handleAgregar = (e) => {
     e.preventDefault();
-    setJugadoresAgregados([...jugadoresAgregados, input]);
+    setEntrenadoresAgregados([...entrenadoresAgregados, input]);
     setInput(initialInput);
   };
 
@@ -36,17 +36,17 @@ const CrearJugador = () => {
     e.preventDefault();
     dispatch(setLoading(true));
 
-    jugadoresAgregados.map((jugador) => {
+    entrenadoresAgregados.map((entrenador) => {
       try {
-        dispatch(createJugador(jugador));
+        dispatch(createEntrenador(entrenador));
       } catch (error) {
         console.log("ERROR: ", error);
       }
-      dispatch(getJugadores());
+      dispatch(getEntrenadores());
     });
 
     dispatch(setLoading(false));
-    setJugadoresAgregados([]);
+    setEntrenadoresAgregados([]);
   };
 
   const handleValidateAgregar = () => {
@@ -65,12 +65,12 @@ const CrearJugador = () => {
   };
 
   const handleValidateAceptar = () => {
-    return jugadoresAgregados.length < 1;
+    return entrenadoresAgregados.length < 1;
   };
 
   const validateRepeat = () => {
-    for (let i = 0; i < jugadoresAgregados.length; i++) {
-      if (jugadoresAgregados[i].email === input.email) {
+    for (let i = 0; i < entrenadoresAgregados.length; i++) {
+      if (entrenadoresAgregados[i].email === input.email) {
         return true;
       }
     }
@@ -78,8 +78,8 @@ const CrearJugador = () => {
   };
 
   return (
-    <div className="create-jugador">
-      <h2 className="sub-title">Dar de alta jugadores</h2>
+    <div className="create-entrenador">
+      <h2 className="sub-title">Dar de alta entrenadores</h2>
 
       {isLoading && <Spinner />}
 
@@ -90,7 +90,7 @@ const CrearJugador = () => {
       >
         <div className="input-group flex-nowrap">
           <span className="input-group-text" id="addon-wrapping">
-            Nombre del jugador
+            Nombre del entrenador
           </span>
 
           <input
@@ -109,7 +109,7 @@ const CrearJugador = () => {
 
         <div className="input-group flex-nowrap">
           <span className="input-group-text" id="addon-wrapping">
-            Email del jugador
+            Email del entrenador
           </span>
 
           <input
@@ -161,7 +161,7 @@ const CrearJugador = () => {
         </thead>
 
         <tbody>
-          {!jugadoresAgregados.length && (
+          {!entrenadoresAgregados.length && (
             <tr>
               <td
                 className="example-text"
@@ -177,23 +177,23 @@ const CrearJugador = () => {
               </td>
             </tr>
           )}
-          {jugadoresAgregados.length
-            ? jugadoresAgregados.map((jugador) => {
+          {entrenadoresAgregados.length
+            ? entrenadoresAgregados.map((entrenador) => {
                 return (
-                  <tr key={jugador.email}>
-                    <td className="table-data">{jugador.nombre}</td>
-                    <td className="table-data">{jugador.email}</td>
+                  <tr key={entrenador.email}>
+                    <td className="table-data">{entrenador.nombre}</td>
+                    <td className="table-data">{entrenador.email}</td>
                   </tr>
                 );
               })
             : null}
         </tbody>
       </table>
-      <Link href="/home-entrenadores">
+      <Link href="/home-presidente">
         <button className="botonVolverLogin">Volver</button>
       </Link>
     </div>
   );
 };
 
-export default CrearJugador;
+export default CreateEntrenadorPanel;
