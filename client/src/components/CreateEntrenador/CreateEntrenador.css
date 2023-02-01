@@ -49,11 +49,19 @@
   margin-left: 0.5rem;
 }
 
+.equipo-agregado {
+  font-size: 14px
+}
+
+.equipo-agregado span {
+  font-size: 10px;
+}
+
 @media (min-width: 768px) {
   .error-sin-equipos p {
     font-size: 16px;
   }
-  
+
   .error-sin-equipos a {
     font-size: 12px;
   }

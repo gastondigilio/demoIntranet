@@ -24,18 +24,18 @@ const CreateEntrenador = () => {
   const initialInput = {
     nombre: "",
     email: "",
-    nombreEquipo: "",
+    equiposAgregados: []
   };
 
   const [input, setInput] = useState(initialInput);
   const [entrenadoresAgregados, setEntrenadoresAgregados] = useState([]);
+  const [equiposAgregados, setEquiposAgregados] = useState([]);
   const isLoading = useSelector((state) => state.isLoading);
   const error = useSelector((state) => state.error);
   const entrenadores = useSelector((state) => state.entrenadores);
   const userType = useSelector((state) => state.userType);
   const uid = useSelector((state) => state.uid);
   const equipos = useSelector((state) => state.equipos);
-  console.log(equipos, "EQUIPOS");
 
   const handleInputChange = (e) => {
     e.preventDefault();
@@ -114,9 +114,13 @@ const CreateEntrenador = () => {
     if (uid) dispatch(setUserType(uid, entrenadores.data, []));
   }, [entrenadores, uid]);
 
-  const handleSelectChange = (e) => {
-    setInput({ ...input, [e.target.name]: e.target.value });
-  };
+  useEffect(() => {
+    setInput({ ...input, equiposAgregados })
+  }, [equiposAgregados])
+
+  useEffect(() => {
+    console.log("entrenadoresAgregados", entrenadoresAgregados)
+  }, [entrenadoresAgregados])
 
   return (
     <>
@@ -173,35 +177,8 @@ const CreateEntrenador = () => {
               <span className="input-group-text" id="addon-wrapping">
                 Equipo
               </span>
-              <ModalAddEquipo/>
-              {/* <select
-                name="nombreEquipo"
-                value={input.nombreEquipo}
-                onChange={(e) => {
-                  handleSelectChange(e);
-                }}
-              >
-                <option value={""}>Seleccione un equipo</option>
-                {equipos.data?.map((equipo) => {
-                  return (
-                    <>
-                      <option key={equipo.nombre} value={equipo.nombre}>
-                        {equipo.nombre}
-                      </option>
-                    </>
-                  );
-                })}
-              </select> */}
+              <ModalAddEquipo equiposAgregados={equiposAgregados} setEquiposAgregados={setEquiposAgregados} />
             </div>
-            {/* {!equipos.data.length && (
-              <div className="error-sin-equipos">
-                <p>
-                  Debe crear al menos un equipo para poder dar de alta
-                  entrenadores
-                </p>
-                <a href="/crear-equipo">CREAR EQUIPOS</a>
-              </div>
-            )} */}
 
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
               <button
@@ -256,16 +233,25 @@ const CreateEntrenador = () => {
               )}
               {entrenadoresAgregados.length
                 ? entrenadoresAgregados.map((entrenador) => {
-                    return (
-                      <tr key={entrenador.email}>
-                        <td className="table-data">{entrenador.nombre}</td>
-                        <td className="table-data">{entrenador.email}</td>
-                      </tr>
-                    );
-                  })
+                  return (
+                    <tr key={entrenador.email}>
+                      <td className="table-data">{entrenador.nombre}</td>
+                      <td className="table-data">{entrenador.email}</td>
+                    </tr>
+                  );
+                })
                 : null}
             </tbody>
           </table>
+
+          <div className='listado-agregados'>
+            <p>Equipos agregados: </p>
+            {
+              equiposAgregados.map(equipo => {
+                return <p key="equipo" className="equipo-agregado">{equipo}</p>
+              })
+            }
+          </div>
         </div>
       ) : (
         <ErrorPermisos />

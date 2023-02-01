@@ -57,20 +57,28 @@ export function createEntrenador(input) {
         email: input.email,
       };
 
-      let dataRelacion = {
-        nombre: input.nombreEquipo,
-        email: input.email,
-      };
-
       const response = await axios.post(
         url + "/crear-entrenador",
         dataCreacion
       );
 
-      const relacion = await axios.post(
-        url + "/relacionar-entrenador-equipo",
-        dataRelacion
-      );
+      if (input.equiposAgregados.length) {
+
+        input.equiposAgregados.map(async equipo => {
+          let dataRelacion = {
+            nombre: equipo,
+            email: input.email,
+          };
+
+          console.log("DATA RELACION MAPEADA: ", dataRelacion)
+
+          const relacion = await axios.post(
+            url + "/relacionar-entrenador-equipo",
+            dataRelacion
+          );
+        })
+
+      }
 
       return dispatch({
         type: "CREATE_ENTRENADOR",
@@ -135,6 +143,33 @@ export function registerEntrenador(input) {
     }
   };
 }
+
+// export function relacionEntrenadorEquipo(input) {
+//   return async function (dispatch) {
+//     try {
+//       let dataRelacion = {
+//         nombre: input.nombreEquipo,
+//         email: input.email,
+//       };
+
+//       const relacion = await axios.post(
+//         url + "/relacionar-entrenador-equipo",
+//         dataRelacion
+//       );
+
+//       return dispatch({
+//         type: "CREATE_ENTRENADOR",
+//         payload: relacion,
+//       });
+//     } catch (error) {
+//       console.log("ERROR EN RELACION ENTRENADOR EQUIPO");
+//       return dispatch({
+//         type: "HAS_ERROR",
+//         payload: error,
+//       });
+//     }
+//   };
+// }
 
 export function getEquipos() {
   return async function (dispatch) {

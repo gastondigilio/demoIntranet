@@ -2,53 +2,47 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import agregarIcon from "../../images/agregar-icon.svg";
 import {
     getEquipos,
-    createEquipo,
 } from "../../redux/actions/actions";
 
+import "./CreateEntrenador.css"
 
-export default function ModalAddEquipo() {
+
+export default function ModalAddEquipo({ equiposAgregados, setEquiposAgregados }) {
     const dispatch = useDispatch();
-    const [show, setShow] = useState(false);
     const initialInput = {
-        nombre: "",
+        nombre: ""
     };
 
+    const [show, setShow] = useState(false);
     const [input, setInput] = useState(initialInput);
-    const [equiposAgregados, setEquiposAgregados] = useState([]);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     const equipos = useSelector((state) => state.equipos);
-    console.log(equipos, "EQUIPOS")
 
     useEffect(() => {
         dispatch(getEquipos());
     }, []);
 
-    const handleAgregar = (e) => {
-        e.preventDefault();
-        setEquiposAgregados([...equiposAgregados, input]);
-        setInput(initialInput);
-    };
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        equiposAgregados.map((equipo) => {
-            dispatch(createEquipo(equipo));
-        });
-        setEquiposAgregados([]);
+
+
+        if (input.nombre !== "") {
+            setEquiposAgregados([...equiposAgregados, input.nombre]);
+            setInput(initialInput);
+        }
     };
 
     const handleSelectChange = (e) => {
         setInput({ ...input, [e.target.name]: e.target.value });
     };
 
-    const handleValidateAceptar = () => {
-        return equiposAgregados.length < 1;
+    const handleValidateAgregar = () => {
+        return input.nombre === ""
     };
 
     return (
@@ -72,7 +66,7 @@ export default function ModalAddEquipo() {
                             handleSubmit(e);
                         }}
                     >
-                        <select class="form-select" aria-label="Default select example" name="nombre"
+                        <select className="form-select" aria-label="Default select example" name="nombre"
                             value={input.nombre}
                             onChange={(e) => {
                                 handleSelectChange(e);
@@ -97,47 +91,16 @@ export default function ModalAddEquipo() {
                                 <a href="/crear-equipo">CREAR EQUIPO</a>
                             </div>
                         )}
-                        {/* <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button
-                                className="btn btn-primary me-md-2"
-                                type="button"
-                                onClick={(e) => {
-                                    handleAgregar(e);
-                                }}
-                            // disabled={handleValidateAgregar()}
-                            >
-                                Agregar
-                            </button>
 
-                            <button
-                                className="btn btn-primary"
-                                type="submit"
-                                disabled={handleValidateAceptar()}
-                            >
-                                Aceptar
-                            </button>
-                        </div> */}
                         <Modal.Footer>
                             <Button variant="primary"
                                 className="btn btn-primary me-md-2"
-                                type="button"
-                                onClick={(e) => {
-                                    handleAgregar(e);
-                                }}>
+                                type="submit"
+                                disabled={handleValidateAgregar()}>
                                 Agregar
                             </Button>
-                            <Button variant="primary"
-                                type="submit"
-                                disabled={handleValidateAceptar()}>Aceptar</Button>
                         </Modal.Footer>
                     </form>
-                    {/* <a
-                        className="button-agregar"
-                        href="/crear-entrenador"
-                        target={"_blank"}
-                    >
-                        <img className="agregar-icon" src={agregarIcon} />
-                    </a> */}
                 </Modal.Body>
             </Modal>
         </>
