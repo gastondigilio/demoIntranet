@@ -57,7 +57,7 @@ const Home = () => {
                     <Link
                       href="/login"
                       variant="body2"
-                      style={{ textDecoration: "none", color: "#FFFFFF", fontWeight: "bold", fontSize: 20}}
+                      style={{ textDecoration: "none", color: "#FFFFFF", fontWeight: "bold", fontSize: 20 }}
                     >
                       Iniciar sesión
                     </Link>

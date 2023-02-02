@@ -331,6 +331,24 @@ export function registerJugador(input) {
   };
 }
 
+export function getEntrenadoresEquipos() {
+  return async function (dispatch) {
+    try {
+      let response = await axios.get(url + "/entrenadores-equipos");
+      return dispatch({
+        type: "GET_ENTRENADORES_EQUIPOS",
+        payload: response,
+      });
+    } catch (error) {
+      console.log("ERROR EN GET ENTRENADORES EQUIPOS");
+      return dispatch({
+        type: "HAS_ERROR",
+        payload: error,
+      });
+    }
+  };
+}
+
 export function getNoticias() {
   return async function (dispatch) {
     try {

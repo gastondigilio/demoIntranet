@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { setLoading, setUid } from "../../../redux/actions/actions";
+import { setUid } from "../../../redux/actions/actions";
 
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -25,6 +25,7 @@ import ListadoJugadores from "../../../components/ListadoJugadores/ListadoJugado
 import ListadoEquipos from "../../../components/ListadoEquipos/ListadoEquipos";
 import Spinner from "../../../components/Spinner/Spinner";
 import ErrorPermisos from "../../../components/ErrorPermisos/ErrorPermisos";
+import EntrenadoresEquipos from "../../../components/EntrenadoresEquipos/EntrenadoresEquipos";
 
 import { UID_PRESIDENTE } from "../../../config";
 
@@ -166,6 +167,9 @@ export default function HomePresidente() {
                 </Grid>
                 <Grid container spacing={3}>
                   <ListadoEquipos />
+                </Grid>
+                <Grid container spacing={3}>
+                  <EntrenadoresEquipos />
                 </Grid>
               </Container>
             </Box>

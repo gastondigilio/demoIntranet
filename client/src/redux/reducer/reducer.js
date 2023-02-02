@@ -3,6 +3,8 @@ const initialState = {
   equipos: [],
   entrenadores: [],
   jugadores: [],
+  entrenadoresEquipos: [],
+  jugadoresEquipos: [],
   scraping: [],
   isLoading: false,
   error: "",
@@ -80,6 +82,11 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         error: "",
       };
+    case "GET_ENTRENADORES_EQUIPOS":
+      return {
+        ...state,
+        entrenadoresEquipos: action.payload
+      }
     case "GET_NOTICIAS":
       return {
         ...state,
