@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { createJugador, setLoading } from "../../redux/actions/actions";
+import { createJugador, setLoading, getEquipos } from "../../redux/actions/actions";
 
 import emailjs from "@emailjs/browser";
 
@@ -9,19 +9,24 @@ import Spinner from "../Spinner/Spinner";
 
 import "./CreateJugador.css";
 
+import ModalAddEquipo from "../CreateEntrenador/ModalAddEquipo";
+
 const CreateJugador = () => {
   const dispatch = useDispatch();
 
   const initialInput = {
     nombre: "",
     email: "",
-    nombreEquipo: "Real Madrid",
+    equiposAgregados: []
+    // nombreEquipo: "Real Madrid",
   };
   const [input, setInput] = useState(initialInput);
   const [jugadoresAgregados, setJugadoresAgregados] = useState([]);
+  const [equiposAgregados, setEquiposAgregados] = useState([]);
   const isLoading = useSelector((state) => state.isLoading);
 
   const handleInputChange = (e) => {
+    e.preventDefault();
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
@@ -80,6 +85,22 @@ const CreateJugador = () => {
     return false;
   };
 
+  useEffect(() => {
+    dispatch(setLoading(true));
+    dispatch(getEquipos());
+    setTimeout(() => {
+      dispatch(setLoading(false));
+    }, 1500);
+  }, []);
+
+  useEffect(() => {
+    setInput({ ...input, equiposAgregados })
+  }, [equiposAgregados])
+
+  useEffect(() => {
+    console.log("jugadoresAgregados", jugadoresAgregados)
+  }, [jugadoresAgregados])
+
   return (
     <div className="create-jugador">
       <h2 className="sub-title">Dar de alta jugadores</h2>
@@ -127,6 +148,13 @@ const CreateJugador = () => {
             aria-label="Email"
             aria-describedby="addon-wrapping"
           />
+        </div>
+
+        <div className="input-group flex-nowrap">
+          <span className="input-group-text" id="addon-wrapping">
+            Equipo
+          </span>
+          <ModalAddEquipo equiposAgregados={equiposAgregados} setEquiposAgregados={setEquiposAgregados} />
         </div>
 
         <div className="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -182,16 +210,25 @@ const CreateJugador = () => {
           )}
           {jugadoresAgregados.length
             ? jugadoresAgregados.map((jugador) => {
-                return (
-                  <tr key={jugador.email}>
-                    <td className="table-data">{jugador.nombre}</td>
-                    <td className="table-data">{jugador.email}</td>
-                  </tr>
-                );
-              })
+              return (
+                <tr key={jugador.email}>
+                  <td className="table-data">{jugador.nombre}</td>
+                  <td className="table-data">{jugador.email}</td>
+                </tr>
+              );
+            })
             : null}
         </tbody>
       </table>
+
+      <div className='listado-agregados'>
+        <p>Equipos agregados: </p>
+        {
+          equiposAgregados.map(equipo => {
+            return <p key="equipo" className="equipo-agregado">{equipo}</p>
+          })
+        }
+      </div>
     </div>
   );
 };
