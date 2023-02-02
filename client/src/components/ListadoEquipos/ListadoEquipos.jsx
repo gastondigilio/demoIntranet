@@ -6,6 +6,7 @@ import { getEquipos } from "../../redux/actions/actions";
 import agregarIcon from "../../images/agregar-icon.svg";
 
 import "./ListadoEquipos.css";
+import ModalListadoEquipo from "./RelacionesEquipos/ModalListadoEquipo";
 
 const ListadoEquipos = () => {
   const dispatch = useDispatch();
@@ -49,7 +50,8 @@ const ListadoEquipos = () => {
                 <tr key={equipo.nombre}>
                   <td className="table-data">{equipo.nombre}</td>
                   <td className="table-data">{equipo.ciudad}</td>
-                  <td className="table-data"><img className="agregar-icon" src={agregarIcon} /></td>
+                  <ModalListadoEquipo/>
+                  {/* <td className="table-data"><img className="agregar-icon" src={agregarIcon} /></td> */}
                 </tr>
               );
             })
