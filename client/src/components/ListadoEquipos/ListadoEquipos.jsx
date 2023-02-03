@@ -41,20 +41,23 @@ const ListadoEquipos = () => {
             <tr>
               <td className="table-data example-text">FC Example</td>
               <td className="table-data example-text">Example City</td>
-              <td className="table-data"><img className="agregar-icon" src={agregarIcon} /></td>
+              <td className="table-data">
+                <img className="agregar-icon" src={agregarIcon} />
+              </td>
             </tr>
           )}
           {hayEquipos
             ? equipos.data.map((equipo) => {
-              return (
-                <tr key={equipo.nombre}>
-                  <td className="table-data">{equipo.nombre}</td>
-                  <td className="table-data">{equipo.ciudad}</td>
-                  <ModalListadoEquipo/>
-                  {/* <td className="table-data"><img className="agregar-icon" src={agregarIcon} /></td> */}
-                </tr>
-              );
-            })
+                return (
+                  <tr key={equipo.nombre}>
+                    <td className="table-data">{equipo.nombre}</td>
+                    <td className="table-data">{equipo.ciudad}</td>
+                    <td className="table-data">
+                      <ModalListadoEquipo nombreEquipo={equipo.nombre} />
+                    </td>
+                  </tr>
+                );
+              })
             : null}
         </tbody>
       </table>

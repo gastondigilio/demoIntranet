@@ -142,6 +142,28 @@ export function registerEntrenador(input) {
   };
 }
 
+export function relacionarEntrenadorEquipo(data) {
+  return async function (dispatch) {
+    try {
+      let relacion = await axios.post(
+        url + "/relacionar-entrenador-equipo",
+        data
+      );
+      let response = await axios.get(url + "/entrenadores-equipos");
+      return dispatch({
+        type: "GET_ENTRENADORES_EQUIPOS",
+        payload: response,
+      });
+    } catch (error) {
+      console.log("ERROR EN RELACIONAR ENTRENADOR EQUIPO");
+      return dispatch({
+        type: "HAS_ERROR",
+        payload: error,
+      });
+    }
+  };
+}
+
 export function getEquipos() {
   return async function (dispatch) {
     try {
@@ -335,6 +357,25 @@ export function registerJugador(input) {
   };
 }
 
+export function relacionarJugadorEquipo(data) {
+  return async function (dispatch) {
+    try {
+      let relacion = await axios.post(url + "/relacionar-jugador-equipo", data);
+      let response = await axios.get(url + "/jugadores-equipos");
+      return dispatch({
+        type: "GET_JUGADORES_EQUIPOS",
+        payload: response,
+      });
+    } catch (error) {
+      console.log("ERROR EN RELACIONAR JUGADOR EQUIPO");
+      return dispatch({
+        type: "HAS_ERROR",
+        payload: error,
+      });
+    }
+  };
+}
+
 export function getEntrenadoresEquipos() {
   return async function (dispatch) {
     try {
@@ -345,6 +386,24 @@ export function getEntrenadoresEquipos() {
       });
     } catch (error) {
       console.log("ERROR EN GET ENTRENADORES EQUIPOS");
+      return dispatch({
+        type: "HAS_ERROR",
+        payload: error,
+      });
+    }
+  };
+}
+
+export function getJugadoresEquipos() {
+  return async function (dispatch) {
+    try {
+      let response = await axios.get(url + "/jugadores-equipos");
+      return dispatch({
+        type: "GET_JUGADORES_EQUIPOS",
+        payload: response,
+      });
+    } catch (error) {
+      console.log("ERROR EN GET JUGADORES EQUIPOS");
       return dispatch({
         type: "HAS_ERROR",
         payload: error,

@@ -85,8 +85,13 @@ const rootReducer = (state = initialState, action) => {
     case "GET_ENTRENADORES_EQUIPOS":
       return {
         ...state,
-        entrenadoresEquipos: action.payload
-      }
+        entrenadoresEquipos: action.payload,
+      };
+    case "GET_JUGADORES_EQUIPOS":
+      return {
+        ...state,
+        jugadoresEquipos: action.payload,
+      };
     case "GET_NOTICIAS":
       return {
         ...state,

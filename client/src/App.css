@@ -52,6 +52,10 @@ li {
     background-color: #FFFFFF;
 }
 
+td.table-data {
+    margin: auto 0;
+}
+
 .example-text {
     color: var(--text-disabled);
 }
