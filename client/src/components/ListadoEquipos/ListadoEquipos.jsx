@@ -41,9 +41,7 @@ const ListadoEquipos = () => {
             <tr>
               <td className="table-data example-text">FC Example</td>
               <td className="table-data example-text">Example City</td>
-              <td className="table-data">
-                <img className="agregar-icon" src={agregarIcon} />
-              </td>
+              <td className="table-data"></td>
             </tr>
           )}
           {hayEquipos
