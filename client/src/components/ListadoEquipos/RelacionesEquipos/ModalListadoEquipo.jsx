@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import {
@@ -10,6 +11,8 @@ import {
   getEntrenadoresEquipos,
   getJugadoresEquipos,
 } from "../../../redux/actions/actions";
+
+import agregarIcon from "../../../images/agregar-icon.svg";
 
 import "./ModalListadoEquipo.css";
 
@@ -132,41 +135,27 @@ export default function ModalListadoEquipo({ nombreEquipo }) {
     getEntrenadoresRelacionados();
   }, [entrenadoresEquipos]);
 
-  useEffect(() => {
-    console.log(
-      "JUGADORES RELACIONADOS " + nombreEquipo + ": ",
-      jugadoresRelacionados
-    );
-  }, [jugadoresRelacionados]);
-
-  useEffect(() => {
-    console.log(
-      "ENTRENADORES RELACIONADOS " + nombreEquipo + ": ",
-      entrenadoresRelacionados
-    );
-  }, [entrenadoresRelacionados]);
-
   return (
     <>
-      <Button
-        variant="primary"
-        onClick={handleShow}
-        style={{ backgroundColor: "#1976D2" }}
-      >
-        Añadir
-      </Button>
+      <img className="agregar-icon" src={agregarIcon} onClick={handleShow} />
 
       <Modal
         show={show}
-        onHide={handleClose}
         backdrop="static"
         keyboard={false}
         style={{ marginTop: 40 }}
         size="lg"
       >
+        <button
+          onClick={() => {
+            setShow(false);
+          }}
+        >
+          X
+        </button>
         <div className="modalContainer">
           <div className="subModalContainer">
-            <Modal.Header closeButton>
+            <Modal.Header>
               <Modal.Title>Añadir jugador</Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -205,7 +194,7 @@ export default function ModalListadoEquipo({ nombreEquipo }) {
                     );
                   })}
                 </select>
-                {!jugadores.data?.length && (
+                {/* {!jugadores.data?.length && (
                   <div className="error-sin-equipos">
                     <p>
                       Debe crear al menos un jugador para poder dar de alta un
@@ -213,7 +202,7 @@ export default function ModalListadoEquipo({ nombreEquipo }) {
                     </p>
                     <a href="/crear-jugador">CREAR JUGADOR</a>
                   </div>
-                )}
+                )} */}
                 <Modal.Footer>
                   <Button
                     variant="primary"
@@ -252,7 +241,7 @@ export default function ModalListadoEquipo({ nombreEquipo }) {
             </Modal.Body>
           </div>
           <div className="subModalContainer1">
-            <Modal.Header closeButton>
+            <Modal.Header>
               <Modal.Title>Añadir entrenador</Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -294,7 +283,7 @@ export default function ModalListadoEquipo({ nombreEquipo }) {
                     );
                   })}
                 </select>
-                {!entrenadores.data?.length && (
+                {/* {!entrenadores.data?.length && (
                   <div className="error-sin-equipos">
                     <p>
                       Debe crear al menos un entreador para poder dar de alta un
@@ -302,7 +291,7 @@ export default function ModalListadoEquipo({ nombreEquipo }) {
                     </p>
                     <a href="/crear-jugador">CREAR ENTRENADOR</a>
                   </div>
-                )}
+                )} */}
                 <Modal.Footer>
                   <Button
                     variant="primary"
