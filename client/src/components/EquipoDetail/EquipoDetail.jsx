@@ -27,7 +27,6 @@ export default function EquipoDetail() {
       equipos.data.map((e) => {
         if (e.nombre === nombre) {
           setEquipo(e);
-          console.log("EQUIPO: ", e);
         }
       });
   }, [equipos]);

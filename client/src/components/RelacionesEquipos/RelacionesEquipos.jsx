@@ -155,172 +155,57 @@ export default function RelacionesEquipos({ nombreEquipo }) {
   }, [entrenadoresEquipos]);
 
   return (
-    <>
-      <Modal
-        show={show}
-        backdrop="static"
-        keyboard={false}
-        style={{ marginTop: 40 }}
-        size="lg"
-      >
-        <button
-          onClick={() => {
-            setShow(false);
-          }}
-        >
-          X
-        </button>
-        <div className="modalContainer">
-          <div className="subModalContainer">
-            <Modal.Header>
-              <Modal.Title>Añadir jugador</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <form onSubmit={(e) => handleSubmitJugador(e)}>
-                <select
-                  className="form-select"
-                  aria-label="Default select example"
-                  name="emailJugador"
-                  value={inputJugador.emailJugador}
-                  onChange={(e) => {
-                    handleSelectJugador(e);
-                  }}
-                >
-                  <option value={""} selected>
-                    Seleccione un jugador
-                  </option>
-                  {jugadores.data?.map((jugador) => {
-                    return (
-                      <>
-                        {!jugadoresRelacionados.some(
-                          (relacionado) => relacionado.id === jugador.id
-                        ) ? (
-                          <option key={jugador.email} value={jugador.email}>
-                            {jugador.email}
-                          </option>
-                        ) : (
-                          <option
-                            key={jugador.email}
-                            value={jugador.email}
-                            disabled
-                          >
-                            {jugador.email} (relacionado)
-                          </option>
-                        )}
-                      </>
-                    );
-                  })}
-                </select>
-                {/* {!jugadores.data?.length && (
-                  <div className="error-sin-equipos">
-                    <p>
-                      Debe crear al menos un jugador para poder dar de alta un
-                      equipo
-                    </p>
-                    <a href="/crear-jugador">CREAR JUGADOR</a>
-                  </div>
-                )} */}
-                <Modal.Footer>
-                  <Button
-                    variant="primary"
-                    className="btn btn-primary me-md-2"
-                    type="submit"
-                    disabled={handleValidateJugador()}
-                  >
-                    Agregar
-                  </Button>
-                </Modal.Footer>
-              </form>
-              <table className="table table-bordered tableContainer">
-                <thead>
-                  <tr>
-                    <th
-                      style={{ width: "40%", textAlign: "center" }}
-                      scope="col"
-                    >
-                      Relacionados
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {jugadoresRelacionados &&
-                    jugadoresRelacionados.map((relacionado) => {
-                      return (
-                        <tr>
-                          <td className="table-data example-text">
-                            {relacionado.email}
-                          </td>
-                        </tr>
-                      );
-                    })}
-                </tbody>
-              </table>
-            </Modal.Body>
-          </div>
-          <div className="subModalContainer1">
-            <Modal.Header>
-              <Modal.Title>Añadir entrenador</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <form onSubmit={(e) => handleSubmitEntrenador(e)}>
-                <select
-                  className="form-select"
-                  aria-label="Default select example"
-                  name="emailEntrenador"
-                  value={inputEntrenador.emailEntrenador}
-                  onChange={(e) => {
-                    handleSelectEntrenador(e);
-                  }}
-                >
-                  <option value={""} selected>
-                    Seleccione un entrenador
-                  </option>
-                  {entrenadores.data?.map((entrenador) => {
-                    return (
-                      <>
-                        {!entrenadoresRelacionados.some(
-                          (relacionado) => relacionado.id === entrenador.id
-                        ) ? (
-                          <option
-                            key={entrenador.email}
-                            value={entrenador.email}
-                          >
-                            {entrenador.email}
-                          </option>
-                        ) : (
-                          <option
-                            key={entrenador.email}
-                            value={entrenador.email}
-                            disabled
-                          >
-                            {entrenador.email} (relacionado)
-                          </option>
-                        )}
-                      </>
-                    );
-                  })}
-                </select>
-                {/* {!entrenadores.data?.length && (
-                  <div className="error-sin-equipos">
-                    <p>
-                      Debe crear al menos un entreador para poder dar de alta un
-                      equipo
-                    </p>
-                    <a href="/crear-jugador">CREAR ENTRENADOR</a>
-                  </div>
-                )} */}
-                <Modal.Footer>
-                  <Button
-                    variant="primary"
-                    className="btn btn-primary me-md-2"
-                    type="submit"
-                    disabled={handleValidateEntrenador()}
-                  >
-                    Agregar
-                  </Button>
-                </Modal.Footer>
-              </form>
-              <table className="table table-bordered tableContainer">
+    <div className="modalContainer">
+      <div className="subModalContainer">
+        <h2 className="sub-title">Añadir entrenador</h2>
+        <div className="modal-body">
+          <form onSubmit={(e) => handleSubmitEntrenador(e)}>
+            <select
+              className="form-select"
+              aria-label="Default select example"
+              name="emailEntrenador"
+              value={inputEntrenador.emailEntrenador}
+              onChange={(e) => {
+                handleSelectEntrenador(e);
+              }}
+            >
+              <option value={""} selected>
+                Seleccione un entrenador
+              </option>
+              {entrenadores.data?.map((entrenador) => {
+                return (
+                  <>
+                    {!entrenadoresRelacionados.some(
+                      (relacionado) => relacionado.id === entrenador.id
+                    ) ? (
+                      <option key={entrenador.email} value={entrenador.email}>
+                        {entrenador.email}
+                      </option>
+                    ) : (
+                      <option
+                        key={entrenador.email}
+                        value={entrenador.email}
+                        disabled
+                      >
+                        {entrenador.email} (relacionado)
+                      </option>
+                    )}
+                  </>
+                );
+              })}
+            </select>
+            <div className="modal-footer">
+              <Button
+                variant="primary"
+                className="btn btn-primary"
+                type="submit"
+                disabled={handleValidateEntrenador()}
+              >
+                Agregar
+              </Button>
+            </div>
+          </form>
+          {/* <table className="table table-bordered tableContainer">
                 <thead>
                   <tr>
                     <th
@@ -343,11 +228,84 @@ export default function RelacionesEquipos({ nombreEquipo }) {
                       );
                     })}
                 </tbody>
-              </table>
-            </Modal.Body>
-          </div>
+              </table> */}
         </div>
-      </Modal>
-    </>
+      </div>
+      <div className="subModalContainer">
+        <h2 className="sub-title">Añadir jugador</h2>
+        <div className="modal-body">
+          <form onSubmit={(e) => handleSubmitJugador(e)}>
+            <select
+              className="form-select"
+              aria-label="Default select example"
+              name="emailJugador"
+              value={inputJugador.emailJugador}
+              onChange={(e) => {
+                handleSelectJugador(e);
+              }}
+            >
+              <option value={""} selected>
+                Seleccione un jugador
+              </option>
+              {jugadores.data?.map((jugador) => {
+                return (
+                  <>
+                    {!jugadoresRelacionados.some(
+                      (relacionado) => relacionado.id === jugador.id
+                    ) ? (
+                      <option key={jugador.email} value={jugador.email}>
+                        {jugador.email}
+                      </option>
+                    ) : (
+                      <option
+                        key={jugador.email}
+                        value={jugador.email}
+                        disabled
+                      >
+                        {jugador.email} (relacionado)
+                      </option>
+                    )}
+                  </>
+                );
+              })}
+            </select>
+            <div className="modal-footer">
+              <Button
+                variant="primary"
+                className="btn btn-primary"
+                type="submit"
+                disabled={handleValidateJugador()}
+              >
+                Agregar
+              </Button>
+            </div>
+          </form>
+          {/* <table className="table table-bordered tableContainer">
+                <thead>
+                  <tr>
+                    <th
+                      style={{ width: "40%", textAlign: "center" }}
+                      scope="col"
+                    >
+                      Relacionados
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {jugadoresRelacionados &&
+                    jugadoresRelacionados.map((relacionado) => {
+                      return (
+                        <tr>
+                          <td className="table-data example-text">
+                            {relacionado.email}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                </tbody>
+              </table> */}
+        </div>
+      </div>
+    </div>
   );
 }
