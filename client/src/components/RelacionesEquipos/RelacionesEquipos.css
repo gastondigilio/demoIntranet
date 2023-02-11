@@ -1,10 +1,15 @@
 @import url(../../App.css);
 
+.sub-title {
+    font-size: 1.5rem !important;
+}
+
 .modalContainer{
     display: flex;
     flex-direction: column;
     padding: 2rem;
 }
+
 .subModalContainer{
     width: 100%;
 }
