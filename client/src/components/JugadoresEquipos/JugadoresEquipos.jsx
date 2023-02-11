@@ -1,55 +1,47 @@
 import React, { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getEntrenadores,
-  getEntrenadoresEquipos,
-  getEquipos,
-} from "../../redux/actions/actions";
+import { getJugadores, getJugadoresEquipos } from "../../redux/actions/actions";
 
-import "./EntrenadoresEquipos.css";
+import "./JugadoresEquipos.css";
 
-const EntrenadoresEquipos = ({ equipoId }) => {
+const JugadoresEquipos = ({ equipoId }) => {
   const dispatch = useDispatch();
 
   const [relacionados, setRelacionados] = useState([]);
-  const entrenadoresEquipos = useSelector((state) => state.entrenadoresEquipos);
-  const entrenadores = useSelector((state) => state.entrenadores);
-  const hayEntrenadoresEquipos =
-    entrenadoresEquipos &&
-    entrenadoresEquipos.data &&
-    entrenadoresEquipos.data.length;
-  const hayEntrenadores =
-    entrenadores && entrenadores.data && entrenadores.data.length;
+  const jugadoresEquipos = useSelector((state) => state.jugadoresEquipos);
+  const jugadores = useSelector((state) => state.jugadores);
+  const hayJugadoresEquipos =
+    jugadoresEquipos && jugadoresEquipos.data && jugadoresEquipos.data.length;
+  const hayJugadores = jugadores && jugadores.data && jugadores.data.length;
 
   useEffect(() => {
-    dispatch(getEntrenadoresEquipos());
-    dispatch(getEntrenadores());
+    dispatch(getJugadoresEquipos());
+    dispatch(getJugadores());
   }, []);
 
   useEffect(() => {
-    hayEntrenadoresEquipos &&
-      hayEntrenadores &&
-      entrenadoresEquipos.data.map((item) => {
-        const entrenador = entrenadores.data.find(
+    hayJugadoresEquipos &&
+      hayJugadores &&
+      jugadoresEquipos.data.map((item) => {
+        const jugador = jugadores.data.find(
           (element) => element.id === equipoId
         );
 
         const result = {
           id: item.ID,
-          emailEntrenador: entrenador.email,
+          emailJugador: jugador.email,
         };
 
         if (
           !relacionados.some(
-            (relacionado) =>
-              relacionado.emailEntrenador === result.emailEntrenador
+            (relacionado) => relacionado.emailJugador === result.emailJugador
           )
         ) {
           setRelacionados([...relacionados, result]);
         }
       });
-  }, [entrenadoresEquipos, entrenadores]);
+  }, [jugadoresEquipos, jugadores]);
 
   useEffect(() => {
     let relacionadosOrdenados = relacionados;
@@ -69,7 +61,7 @@ const EntrenadoresEquipos = ({ equipoId }) => {
 
   return (
     <div className="entrenadores-equipos">
-      <h2 className="sub-title">Entrenadores</h2>
+      <h2 className="sub-title">Jugadores</h2>
       <table className="table table-bordered">
         <thead>
           <tr>
@@ -84,7 +76,7 @@ const EntrenadoresEquipos = ({ equipoId }) => {
             relacionados.map((relacionado) => {
               return (
                 <tr>
-                  <td className="table-data">{relacionado.emailEntrenador}</td>
+                  <td className="table-data">{relacionado.emailJugador}</td>
                 </tr>
               );
             })}
@@ -94,4 +86,4 @@ const EntrenadoresEquipos = ({ equipoId }) => {
   );
 };
 
-export default EntrenadoresEquipos;
+export default JugadoresEquipos;

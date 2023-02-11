@@ -36,9 +36,14 @@ li {
     list-style: none;
 }
 
-.sub-title {
+.title {
     font-weight: bold;
-    margin-bottom: 2rem;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.sub-title {
+    margin-bottom: 1rem;
 }
 
 .app {
@@ -50,6 +55,11 @@ li {
 
 .table {
     background-color: #FFFFFF;
+}
+
+.table tbody .clickable:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
 }
 
 td.table-data {

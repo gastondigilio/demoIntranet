@@ -3,16 +3,18 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getEquipos } from "../../redux/actions/actions";
 
-import agregarIcon from "../../images/agregar-icon.svg";
-
 import "./ListadoEquipos.css";
-import ModalListadoEquipo from "./RelacionesEquipos/ModalListadoEquipo";
 
 const ListadoEquipos = () => {
   const dispatch = useDispatch();
 
   const equipos = useSelector((state) => state.equipos);
   const hayEquipos = equipos && equipos.data && equipos.data.length;
+
+  const handleRowClick = (e, equipo) => {
+    e.preventDefault();
+    window.location.href = "equipo/" + equipo.nombre;
+  };
 
   useEffect(() => {
     dispatch(getEquipos());
@@ -30,9 +32,6 @@ const ListadoEquipos = () => {
             <th style={{ width: "40%", textAlign: "center" }} scope="col">
               Ciudad
             </th>
-            <th style={{ width: "20%", textAlign: "center" }} scope="col">
-              Relaciones
-            </th>
           </tr>
         </thead>
 
@@ -40,12 +39,13 @@ const ListadoEquipos = () => {
           {hayEquipos ? (
             equipos.data.map((equipo) => {
               return (
-                <tr key={equipo.nombre}>
+                <tr
+                  className="clickable"
+                  key={equipo.nombre}
+                  onClick={(e) => handleRowClick(e, equipo)}
+                >
                   <td className="table-data">{equipo.nombre}</td>
                   <td className="table-data">{equipo.ciudad}</td>
-                  <td className="table-data">
-                    <ModalListadoEquipo nombreEquipo={equipo.nombre} />
-                  </td>
                 </tr>
               );
             })
@@ -53,7 +53,6 @@ const ListadoEquipos = () => {
             <tr>
               <td className="table-data example-text">FC Example</td>
               <td className="table-data example-text">Example City</td>
-              <td className="table-data"></td>
             </tr>
           )}
         </tbody>

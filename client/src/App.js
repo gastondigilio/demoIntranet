@@ -16,6 +16,7 @@ import CreateJugador from "./components/CreateJugador/CreateJugador";
 import CreateEquipo from "./components/CreateEquipo/CreateEquipo";
 
 import "./App.css";
+import EquipoDetail from "./components/EquipoDetail/EquipoDetail";
 
 const App = () => {
   return (
@@ -30,21 +31,15 @@ const App = () => {
           element={<RegisterEntrenador />}
         />
 
-        {/* RUTAS HOME, creeria que no las necesitamos, vamos a redirigir a home y ahi renderizar el componente dependiendo el uid */}
-        {/* <Route path="/home-jugadores" element={<HomeJugadores />} /> */}
-        {/* <Route path="/home-presidente" element={<HomePresidente />} /> */}
-        {/* <Route path="/home-entrenadores" element={<HomeEntrenadores />} /> */}
-
         {/* RUTAS DE CREACION */}
         <Route path="crear-entrenador" element={<CreateEntrenador />} />
         <Route path="crear-jugador" element={<CreateJugador />} />
         <Route path="crear-equipo" element={<CreateEquipo />} />
 
+        {/* RUTAS DE DETALLES */}
+        <Route path="equipo/:nombre" element={<EquipoDetail />} />
+
         {/* RUTAS ENTRENADORES */}
-        {/* <Route
-          path="/home-entrenadores/perfil"
-          element={<PerfilEntrenador />}
-        /> */}
       </Routes>
     </div>
   );

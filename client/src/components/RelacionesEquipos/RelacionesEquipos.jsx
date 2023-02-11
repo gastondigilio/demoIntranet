@@ -10,16 +10,13 @@ import {
   relacionarEntrenadorEquipo,
   getEntrenadoresEquipos,
   getJugadoresEquipos,
-} from "../../../redux/actions/actions";
+} from "../../redux/actions/actions";
 
-import agregarIcon from "../../../images/agregar-icon.svg";
+import "./RelacionesEquipos.css";
 
-import "./ModalListadoEquipo.css";
-
-export default function ModalListadoEquipo({ nombreEquipo }) {
+export default function RelacionesEquipos({ nombreEquipo }) {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const initialJugador = {
     emailJugador: "",
@@ -37,6 +34,14 @@ export default function ModalListadoEquipo({ nombreEquipo }) {
   const entrenadores = useSelector((state) => state.entrenadores);
   const jugadores = useSelector((state) => state.jugadores);
   const equipos = useSelector((state) => state.equipos);
+  const hayEquipos = equipos && equipos.data && equipos.data.length;
+  const hayJugadores = jugadores && jugadores.data && jugadores.data.length;
+  const hayEntrenadores =
+    entrenadores && entrenadores.data && entrenadores.data.length;
+  const hayEntrenadoresEquipos =
+    entrenadoresEquipos &&
+    entrenadoresEquipos.data &&
+    entrenadoresEquipos.data.length;
 
   useEffect(() => {
     dispatch(getJugadores());
@@ -85,46 +90,60 @@ export default function ModalListadoEquipo({ nombreEquipo }) {
   };
 
   const getJugadoresRelacionados = () => {
-    const equipo = equipos.data.find(
-      (element) => element.nombre === nombreEquipo
-    );
-    jugadoresEquipos.data?.map((jugadorRelacionado) => {
-      if (equipo.id === jugadorRelacionado.equipoId) {
-        const jugador = jugadores.data.find(
-          (element) => element.id === jugadorRelacionado.jugadorid
-        );
-        if (
-          !jugadoresRelacionados.some(
-            (relacionado) => relacionado.id === jugador.id
-          )
-        ) {
-          setJugadoresRelacionados([...jugadoresRelacionados, jugador]);
+    if (
+      hayEquipos &&
+      hayEntrenadoresEquipos &&
+      hayEntrenadores &&
+      hayJugadores
+    ) {
+      const equipo = equipos.data.find(
+        (element) => element.nombre === nombreEquipo
+      );
+      jugadoresEquipos.data.map((jugadorRelacionado) => {
+        if (equipo.id === jugadorRelacionado.equipoId) {
+          const jugador = jugadores.data.find(
+            (element) => element.id === jugadorRelacionado.jugadorid
+          );
+          if (
+            !jugadoresRelacionados.some(
+              (relacionado) => relacionado.id === jugador.id
+            )
+          ) {
+            setJugadoresRelacionados([...jugadoresRelacionados, jugador]);
+          }
         }
-      }
-    });
+      });
+    }
   };
 
   const getEntrenadoresRelacionados = () => {
-    const equipo = equipos.data.find(
-      (element) => element.nombre === nombreEquipo
-    );
-    entrenadoresEquipos.data?.map((entrenadorRelacionado) => {
-      if (equipo.id === entrenadorRelacionado.equipoId) {
-        const entrenador = entrenadores.data.find(
-          (element) => element.id === entrenadorRelacionado.entrenadorid
-        );
-        if (
-          !entrenadoresRelacionados.some(
-            (relacionado) => relacionado.id === entrenador.id
-          )
-        ) {
-          setEntrenadoresRelacionados([
-            ...entrenadoresRelacionados,
-            entrenador,
-          ]);
+    if (
+      hayEquipos &&
+      hayEntrenadores &&
+      hayEntrenadoresEquipos &&
+      hayEntrenadores
+    ) {
+      const equipo = equipos.data.find(
+        (element) => element.nombre === nombreEquipo
+      );
+      entrenadoresEquipos.data.map((entrenadorRelacionado) => {
+        if (equipo.id === entrenadorRelacionado.equipoId) {
+          const entrenador = entrenadores.data.find(
+            (element) => element.id === entrenadorRelacionado.entrenadorid
+          );
+          if (
+            !entrenadoresRelacionados.some(
+              (relacionado) => relacionado.id === entrenador.id
+            )
+          ) {
+            setEntrenadoresRelacionados([
+              ...entrenadoresRelacionados,
+              entrenador,
+            ]);
+          }
         }
-      }
-    });
+      });
+    }
   };
 
   useEffect(() => {
@@ -137,8 +156,6 @@ export default function ModalListadoEquipo({ nombreEquipo }) {
 
   return (
     <>
-      <img className="agregar-icon" src={agregarIcon} onClick={handleShow} />
-
       <Modal
         show={show}
         backdrop="static"

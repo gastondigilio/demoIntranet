@@ -1,0 +1,19 @@
+@import url(../../App.css);
+
+.equipo-detail {
+  padding-top: 2rem;
+}
+
+.relaciones-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.relacion-container {
+  width: 50%;
+}
+
+.relacion-container .sub-title{
+  font-size: 1.5rem;
+  text-align: center;
+}

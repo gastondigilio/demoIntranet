@@ -168,9 +168,6 @@ export default function HomePresidente() {
                 <Grid container spacing={3}>
                   <ListadoEquipos />
                 </Grid>
-                <Grid container spacing={3}>
-                  <EntrenadoresEquipos />
-                </Grid>
               </Container>
             </Box>
           </Box>
