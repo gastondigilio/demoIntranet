@@ -13,7 +13,7 @@ const ListadoEquipos = () => {
 
   const handleRowClick = (e, equipo) => {
     e.preventDefault();
-    window.location.href = "equipo/" + equipo.nombre;
+    window.location.pathname = "equipo/" + equipo.nombre;
   };
 
   useEffect(() => {

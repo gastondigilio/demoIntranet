@@ -5,8 +5,7 @@ import { useParams } from "react-router-dom";
 import { getEntrenadores } from "../../redux/actions/actions";
 
 import EntrenadoresEquipos from "../EntrenadoresEquipos/EntrenadoresEquipos";
-// import JugadoresEquipos from "../JugadoresEquipos/JugadoresEquipos";
-// import RelacionesEquipos from "../RelacionesEquipos/RelacionesEquipos";
+import RelacionesEntrenadores from "../RelacionesEntrenadores/RelacionesEntrenadores";
 
 import "./EntrenadorDetail.css";
 
@@ -34,14 +33,16 @@ export default function EntrenadorDetail() {
 
   return (
     <div className="entrenador-detail">
-      <h2 className="title">Detalles</h2>
+      <h2 className="title">{email}</h2>
       <div className="relaciones-container">
         <div className="relacion-container">
           {entrenador && <EntrenadoresEquipos entrenadorId={entrenador.id} />}
         </div>
-        {/* <div className="relacion-container">
-          {equipo && <JugadoresEquipos entrenadorId={entrenador.id} />}
-        </div> */}
+        <div className="relacion-container">
+          {entrenador && (
+            <RelacionesEntrenadores emailEntrenador={entrenador.email} />
+          )}
+        </div>
       </div>
     </div>
   );

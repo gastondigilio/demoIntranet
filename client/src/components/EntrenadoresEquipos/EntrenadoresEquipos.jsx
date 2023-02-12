@@ -25,6 +25,11 @@ const EntrenadoresEquipos = ({ equipoId, entrenadorId }) => {
     entrenadores && entrenadores.data && entrenadores.data.length;
   const hayEquipos = equipos && equipos.data && equipos.data.length;
 
+  const handleRowClick = (e, nombreEquipo) => {
+    e.preventDefault();
+    window.location.pathname = "equipo/" + nombreEquipo;
+  };
+
   useEffect(() => {
     dispatch(getEntrenadoresEquipos());
     dispatch(getEntrenadores());
@@ -87,7 +92,6 @@ const EntrenadoresEquipos = ({ equipoId, entrenadorId }) => {
       }
       return 0;
     });
-    console.log(relacionadosOrdenados);
 
     setRelacionados(relacionadosOrdenados);
   }, [relacionados]);
@@ -108,11 +112,15 @@ const EntrenadoresEquipos = ({ equipoId, entrenadorId }) => {
           {relacionados &&
             relacionados.map((relacionado) => {
               return equipoId ? (
-                <tr>
+                <tr key={relacionado.ID}>
                   <td className="table-data">{relacionado.emailEntrenador}</td>
                 </tr>
               ) : (
-                <tr>
+                <tr
+                  className="clickable"
+                  key={relacionado.ID}
+                  onClick={(e) => handleRowClick(e, relacionado.nombreEquipo)}
+                >
                   <td className="table-data">{relacionado.nombreEquipo}</td>
                 </tr>
               );

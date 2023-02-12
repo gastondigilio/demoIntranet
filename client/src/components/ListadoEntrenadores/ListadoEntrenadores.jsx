@@ -16,7 +16,7 @@ const ListadoEntrenadores = () => {
 
   const handleRowClick = (e, entrenador) => {
     e.preventDefault();
-    window.location.href = "entrenador/" + entrenador.email;
+    window.location.pathname = "entrenador/" + entrenador.email;
   };
 
   useEffect(() => {
