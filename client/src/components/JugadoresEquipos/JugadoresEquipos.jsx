@@ -15,6 +15,11 @@ const JugadoresEquipos = ({ equipoId }) => {
     jugadoresEquipos && jugadoresEquipos.data && jugadoresEquipos.data.length;
   const hayJugadores = jugadores && jugadores.data && jugadores.data.length;
 
+  const handleRowClickJugador = (e, emailJugador) => {
+    e.preventDefault();
+    window.location.pathname = "jugador/" + emailJugador;
+  };
+
   useEffect(() => {
     dispatch(getJugadoresEquipos());
     dispatch(getJugadores());
@@ -75,7 +80,13 @@ const JugadoresEquipos = ({ equipoId }) => {
           {relacionados &&
             relacionados.map((relacionado) => {
               return (
-                <tr>
+                <tr
+                  className="clickable"
+                  key={relacionado.ID}
+                  onClick={(e) =>
+                    handleRowClickJugador(e, relacionado.emailJugador)
+                  }
+                >
                   <td className="table-data">{relacionado.emailJugador}</td>
                 </tr>
               );

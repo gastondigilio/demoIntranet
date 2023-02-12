@@ -40,6 +40,7 @@ const App = () => {
         {/* RUTAS DE DETALLES */}
         <Route path="equipo/:nombre" element={<EquipoDetail />} />
         <Route path="entrenador/:email" element={<EntrenadorDetail />} />
+        {/* <Route path="jugador/:email" element={<JugadorDetail />} /> */}
 
         {/* RUTAS ENTRENADORES */}
       </Routes>
