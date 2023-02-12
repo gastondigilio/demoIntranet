@@ -9,47 +9,71 @@ import {
 
 import "./EntrenadoresEquipos.css";
 
-const EntrenadoresEquipos = ({ equipoId }) => {
+const EntrenadoresEquipos = ({ equipoId, entrenadorId }) => {
+  console.log("IDS EQ/EN: ", equipoId, entrenadorId);
   const dispatch = useDispatch();
 
   const [relacionados, setRelacionados] = useState([]);
   const entrenadoresEquipos = useSelector((state) => state.entrenadoresEquipos);
   const entrenadores = useSelector((state) => state.entrenadores);
+  const equipos = useSelector((state) => state.equipos);
   const hayEntrenadoresEquipos =
     entrenadoresEquipos &&
     entrenadoresEquipos.data &&
     entrenadoresEquipos.data.length;
   const hayEntrenadores =
     entrenadores && entrenadores.data && entrenadores.data.length;
+  const hayEquipos = equipos && equipos.data && equipos.data.length;
 
   useEffect(() => {
     dispatch(getEntrenadoresEquipos());
     dispatch(getEntrenadores());
+    dispatch(getEquipos());
   }, []);
 
   useEffect(() => {
     hayEntrenadoresEquipos &&
-      hayEntrenadores &&
       entrenadoresEquipos.data.map((item) => {
-        const entrenador = entrenadores.data.find(
-          (element) => element.id === equipoId
-        );
+        if (equipoId && hayEntrenadores) {
+          const entrenador = entrenadores.data.find(
+            (element) => element.id === equipoId
+          );
 
-        const result = {
-          id: item.ID,
-          emailEntrenador: entrenador.email,
-        };
+          const result = {
+            id: item.ID,
+            emailEntrenador: entrenador.email,
+          };
 
-        if (
-          !relacionados.some(
-            (relacionado) =>
-              relacionado.emailEntrenador === result.emailEntrenador
-          )
-        ) {
-          setRelacionados([...relacionados, result]);
+          if (
+            !relacionados.some(
+              (relacionado) =>
+                relacionado.emailEntrenador === result.emailEntrenador
+            )
+          ) {
+            setRelacionados([...relacionados, result]);
+          }
+        }
+
+        if (entrenadorId && hayEquipos) {
+          const equipo = equipos.data.find(
+            (element) => element.id === entrenadorId
+          );
+
+          const result = {
+            id: item.ID,
+            nombreEquipo: equipo.nombre,
+          };
+
+          if (
+            !relacionados.some(
+              (relacionado) => relacionado.nombreEquipo === result.nombreEquipo
+            )
+          ) {
+            setRelacionados([...relacionados, result]);
+          }
         }
       });
-  }, [entrenadoresEquipos, entrenadores]);
+  }, [entrenadoresEquipos, entrenadores, equipos]);
 
   useEffect(() => {
     let relacionadosOrdenados = relacionados;
@@ -63,18 +87,19 @@ const EntrenadoresEquipos = ({ equipoId }) => {
       }
       return 0;
     });
+    console.log(relacionadosOrdenados);
 
     setRelacionados(relacionadosOrdenados);
   }, [relacionados]);
 
   return (
     <div className="entrenadores-equipos">
-      <h2 className="sub-title">Entrenadores</h2>
+      <h2 className="sub-title">{equipoId ? "Entrenadores" : "Equipos"}</h2>
       <table className="table table-bordered">
         <thead>
           <tr>
             <th style={{ width: "50%", textAlign: "center" }} scope="col">
-              Email del entrenador
+              {equipoId ? "Email del entrenador" : "Nombre del equipo"}
             </th>
           </tr>
         </thead>
@@ -82,9 +107,13 @@ const EntrenadoresEquipos = ({ equipoId }) => {
         <tbody>
           {relacionados &&
             relacionados.map((relacionado) => {
-              return (
+              return equipoId ? (
                 <tr>
                   <td className="table-data">{relacionado.emailEntrenador}</td>
+                </tr>
+              ) : (
+                <tr>
+                  <td className="table-data">{relacionado.nombreEquipo}</td>
                 </tr>
               );
             })}

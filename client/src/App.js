@@ -17,6 +17,7 @@ import CreateEquipo from "./components/CreateEquipo/CreateEquipo";
 
 import "./App.css";
 import EquipoDetail from "./components/EquipoDetail/EquipoDetail";
+import EntrenadorDetail from "./components/EntrenadorDetail/EntrenadorDetail";
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
 
         {/* RUTAS DE DETALLES */}
         <Route path="equipo/:nombre" element={<EquipoDetail />} />
+        <Route path="entrenador/:email" element={<EntrenadorDetail />} />
 
         {/* RUTAS ENTRENADORES */}
       </Routes>

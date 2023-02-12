@@ -14,6 +14,11 @@ const ListadoEntrenadores = () => {
   const hayEntrenadores =
     entrenadores && entrenadores.data && entrenadores.data.length > 0;
 
+  const handleRowClick = (e, entrenador) => {
+    e.preventDefault();
+    window.location.href = "entrenador/" + entrenador.email;
+  };
+
   useEffect(() => {
     dispatch(getEntrenadores());
   }, []);
@@ -43,7 +48,11 @@ const ListadoEntrenadores = () => {
           {hayEntrenadores
             ? entrenadores.data.map((entrenador) => {
                 return (
-                  <tr key={entrenador.email}>
+                  <tr
+                    key={entrenador.email}
+                    className="clickable"
+                    onClick={(e) => handleRowClick(e, entrenador)}
+                  >
                     <td className="table-data">{entrenador.nombre}</td>
                     <td className="table-data">{entrenador.email}</td>
                   </tr>
