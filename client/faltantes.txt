@@ -1,0 +1,5 @@
+Panel presidente: 
+	Cuando en algun create se agrega un jugador/entrenador/equipo hay que mostrar una tabla con los datos bien presentados, ahora estan con un <p>
+	Poner un boton arriba a la izquierda para volver a la pagina anterior.
+	Recorrer todo el nuevo flujo y corregir errores de estilo
+
