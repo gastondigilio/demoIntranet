@@ -7,9 +7,9 @@ import { getEntrenadores } from "../../redux/actions/actions";
 import EntrenadoresEquipos from "../EntrenadoresEquipos/EntrenadoresEquipos";
 import RelacionesEntrenadores from "../RelacionesEntrenadores/RelacionesEntrenadores";
 
-import "./EntrenadorDetail.css";
+import "./DetailEntrenador.css";
 
-export default function EntrenadorDetail() {
+export default function DetailEntrenador() {
   const dispatch = useDispatch();
   const { email } = useParams();
 

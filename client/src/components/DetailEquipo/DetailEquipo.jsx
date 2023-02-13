@@ -8,9 +8,9 @@ import EntrenadoresEquipos from "../EntrenadoresEquipos/EntrenadoresEquipos";
 import JugadoresEquipos from "../JugadoresEquipos/JugadoresEquipos";
 import RelacionesEquipos from "../RelacionesEquipos/RelacionesEquipos";
 
-import "./EquipoDetail.css";
+import "./DetailEquipo.css";
 
-export default function EquipoDetail() {
+export default function DetailEquipo() {
   const dispatch = useDispatch();
   const { nombre } = useParams();
 

@@ -3,6 +3,8 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getEquipos } from "../../redux/actions/actions";
 
+import agregarIcon from "../../images/agregar-icon.svg";
+
 import "./ListadoEquipos.css";
 
 const ListadoEquipos = () => {
@@ -55,6 +57,28 @@ const ListadoEquipos = () => {
               <td className="table-data example-text">Example City</td>
             </tr>
           )}
+          <tr>
+            <td
+              className="example-text"
+              style={{
+                textAlign: "center",
+                fontSize: "12px",
+                borderRight: "0",
+              }}
+            ></td>
+            <td
+              className="example-text"
+              style={{ textAlign: "center", fontSize: "12px", borderLeft: "0" }}
+            >
+              <a
+                className="button-agregar"
+                href="/crear-equipo"
+                target={"_blank"}
+              >
+                <img className="agregar-icon" src={agregarIcon} />
+              </a>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>

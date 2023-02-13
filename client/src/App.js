@@ -7,17 +7,13 @@ import Home from "./pages/Home/Home";
 import Login from "./components/Login/Login";
 import RegisterJugador from "./components/RegisterJugador/RegisterJugador";
 import RegisterEntrenador from "./components/RegisterEntrenador/RegisterEntrenador";
-import HomePresidente from "./pages/PanelPresidente/HomePresidente/HomePresidente";
-import HomeJugadores from "./pages/PanelJugadores/HomeJugadores/HomeJugadores";
-import HomeEntrenadores from "./pages/PanelEntrenador/HomeEntrenadores/HomeEntrenadores";
-import PerfilEntrenador from "./pages/PanelEntrenador/PerfilEntrenador/PerfilEntrenador";
 import CreateEntrenador from "./components/CreateEntrenador/CreateEntrenador";
 import CreateJugador from "./components/CreateJugador/CreateJugador";
 import CreateEquipo from "./components/CreateEquipo/CreateEquipo";
 
 import "./App.css";
-import EquipoDetail from "./components/EquipoDetail/EquipoDetail";
-import EntrenadorDetail from "./components/EntrenadorDetail/EntrenadorDetail";
+import DetailEquipo from "./components/DetailEquipo/DetailEquipo";
+import DetailEntrenador from "./components/DetailEntrenador/DetailEntrenador";
 
 const App = () => {
   return (
@@ -38,8 +34,8 @@ const App = () => {
         <Route path="crear-equipo" element={<CreateEquipo />} />
 
         {/* RUTAS DE DETALLES */}
-        <Route path="equipo/:nombre" element={<EquipoDetail />} />
-        <Route path="entrenador/:email" element={<EntrenadorDetail />} />
+        <Route path="equipo/:nombre" element={<DetailEquipo />} />
+        <Route path="entrenador/:email" element={<DetailEntrenador />} />
         {/* <Route path="jugador/:email" element={<JugadorDetail />} /> */}
 
         {/* RUTAS ENTRENADORES */}
