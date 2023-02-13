@@ -9,10 +9,28 @@
   text-align: center;
 }
 
+.botonVolverDetail{
+  border: none;
+  padding: 10px;
+  background-color: #FFFFFF;
+  color: #0D6EFD;
+}
+
 @media (min-width: 768px) {
+
+  .main-container{
+    display: flex;
+    flex-direction: row;
+  }
   .relaciones-container {
     display: flex;
     justify-content: space-between;
+    width: 50%;
+  }
+
+  .equipo-container{
+    display: flex;
+    width: 50%;
   }
   
   .relacion-container {

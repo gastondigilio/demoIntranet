@@ -18,6 +18,7 @@ import Spinner from "../Spinner/Spinner";
 import { ENTRENADORES, PRESIDENTE } from "../../config";
 import ErrorPermisos from "../ErrorPermisos/ErrorPermisos";
 import ModalAddEquipo from "./ModalAddEquipo";
+import Link from "@mui/material/Link";
 
 const CreateEntrenador = () => {
   const dispatch = useDispatch();
@@ -128,6 +129,9 @@ const CreateEntrenador = () => {
         <Spinner />
       ) : userType === PRESIDENTE || userType === ENTRENADORES ? (
         <div className="create-entrenador">
+          <Link href="/">
+            <button className="botonVolver">Volver</button>
+          </Link>
           <h2 className="sub-title">Dar de alta entrenadores</h2>
 
           <form

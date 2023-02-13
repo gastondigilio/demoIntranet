@@ -12,6 +12,8 @@ import {
 
 import ModalAddEntrenador from "./ModalAddEntrenador";
 import ModalAddJugador from "./ModalAddJugador";
+import Link from "@mui/material/Link";
+
 
 import "./CreateEquipo.css";
 
@@ -98,6 +100,9 @@ const CreateEquipo = () => {
 
   return (
     <div className="create-equipo">
+      <Link href="/">
+      <button className="botonVolver">Volver</button>
+      </Link>
       <h2 className="sub-title">Dar de alta equipos</h2>
 
       {isLoading && <Spinner />}

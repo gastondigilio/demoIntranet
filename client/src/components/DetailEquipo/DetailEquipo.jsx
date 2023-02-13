@@ -7,6 +7,7 @@ import { getEquipos } from "../../redux/actions/actions";
 import EntrenadoresEquipos from "../EntrenadoresEquipos/EntrenadoresEquipos";
 import JugadoresEquipos from "../JugadoresEquipos/JugadoresEquipos";
 import RelacionesEquipos from "../RelacionesEquipos/RelacionesEquipos";
+import Link from "@mui/material/Link";
 
 import "./DetailEquipo.css";
 
@@ -33,16 +34,23 @@ export default function DetailEquipo() {
 
   return (
     <div className="equipo-detail">
+      <Link href="/">
+        <button className="botonVolverDetail">Volver</button>
+      </Link>
       <h2 className="title">Equipo {nombre}</h2>
-      <div className="relaciones-container">
-        <div className="relacion-container">
-          {equipo && <EntrenadoresEquipos equipoId={equipo.id} />}
+      <div className="main-container">
+        <div className="relaciones-container">
+          <div className="relacion-container">
+            {equipo && <EntrenadoresEquipos equipoId={equipo.id} />}
+          </div>
+          <div className="relacion-container">
+            {equipo && <JugadoresEquipos equipoId={equipo.id} />}
+          </div>
         </div>
-        <div className="relacion-container">
-          {equipo && <JugadoresEquipos equipoId={equipo.id} />}
+        <div className="equipo-container">
+          {equipo && <RelacionesEquipos nombreEquipo={equipo.nombre} />}
         </div>
       </div>
-      {equipo && <RelacionesEquipos nombreEquipo={equipo.nombre} />}
     </div>
   );
 }
