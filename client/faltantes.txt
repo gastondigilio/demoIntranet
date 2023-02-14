@@ -1,6 +1,7 @@
 Panel presidente: 
-	Cuando en algun create se agrega un jugador/entrenador/equipo hay que mostrar una tabla con los datos bien presentados, ahora estan con un <p>
-	Poner un boton arriba a la izquierda para volver a la pagina anterior. LISTO
+	Popup para administrar los equipo agregados a jugadores/entrenadores/equipo
+	Poner un boton arriba a la izquierda para volver a la pagina anterior. (GO BACK)
 	Recorrer todo el nuevo flujo y corregir errores de estilo
-	Falta mostrar en el entrenadorDetail que cuando un equipo ya este relacionado, se muestre como tal y tambien se deshabilite
-	Corregir dimensiones en los detail. LISTO 
+
+Seba:
+	detail equipo ver el flujo de añadir relaciones

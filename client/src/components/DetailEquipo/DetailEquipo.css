@@ -4,12 +4,12 @@
   padding-top: 2rem;
 }
 
-.relacion-container .sub-title{
+.relacion-container .sub-title {
   font-size: 1.5rem;
   text-align: center;
 }
 
-.botonVolverDetail{
+.botonVolverDetail {
   border: none;
   padding: 10px;
   background-color: #FFFFFF;
@@ -18,21 +18,22 @@
 
 @media (min-width: 768px) {
 
-  .main-container{
+  .main-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
   }
+
   .relaciones-container {
     display: flex;
     justify-content: space-between;
-    width: 50%;
+    width: 100%;
   }
 
-  .equipo-container{
+  .equipo-container {
     display: flex;
-    width: 50%;
+    width: 100%;
   }
-  
+
   .relacion-container {
     width: 50%;
   }
