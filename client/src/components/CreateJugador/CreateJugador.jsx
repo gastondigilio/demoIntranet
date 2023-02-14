@@ -10,8 +10,7 @@ import Spinner from "../Spinner/Spinner";
 import "./CreateJugador.css";
 
 import ModalAddEquipo from "../CreateEntrenador/ModalAddEquipo";
-import Link from "@mui/material/Link";
-
+import ModalVerJugador from "./ModalVerJugador";
 
 const CreateJugador = () => {
   const dispatch = useDispatch();
@@ -87,6 +86,13 @@ const CreateJugador = () => {
     return false;
   };
 
+  const handleRowClick = (e) => {
+    e.preventDefault();
+    <ModalAddEquipo/>
+    console.log("meclickeaste")
+  }
+
+
   useEffect(() => {
     dispatch(setLoading(true));
     dispatch(getEquipos());
@@ -101,14 +107,10 @@ const CreateJugador = () => {
 
   useEffect(() => {
     console.log("jugadoresAgregados", jugadoresAgregados)
-    console.log("equipos agregados", equiposAgregados)
-  }, [jugadoresAgregados, equiposAgregados])
+  }, [jugadoresAgregados])
 
   return (
     <div className="create-jugador">
-      <Link href="/">
-        <button className="botonVolver">Volver</button>
-      </Link>
       <h2 className="sub-title">Dar de alta jugadores</h2>
 
       {isLoading && <Spinner />}
@@ -188,10 +190,10 @@ const CreateJugador = () => {
       <table className="table table-bordered">
         <thead>
           <tr>
-            <th style={{ width: "50%", textAlign: "center" }} scope="col">
+            <th style={{ width: "45%", textAlign: "center" }} scope="col">
               Nombre
             </th>
-            <th style={{ width: "50%", textAlign: "center" }} scope="col">
+            <th style={{ width: "45%", textAlign: "center" }} scope="col">
               Email
             </th>
           </tr>
@@ -217,70 +219,12 @@ const CreateJugador = () => {
           {jugadoresAgregados.length
             ? jugadoresAgregados.map((jugador) => {
               return (
-                <tr key={jugador.email}>
-                  <td className="table-data">{jugador.nombre}</td>
-                  <td className="table-data">{jugador.email}</td>
-                </tr>
-              );
-            })
-            : null}
-        </tbody>
-      </table>
-
-      <table className="table table-bordered">
-        <thead>
-          <tr>
-            <th style={{ width: "50%", textAlign: "center" }} scope="col">
-              Equipo
-            </th>
-            <th style={{ width: "50%", textAlign: "center" }} scope="col">
-              Email
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {/* {!equiposAgregados.length && (
-            <tr>
-              <td
-                className="example-text"
-                style={{ textAlign: "center", fontSize: "12px" }}
-              >
-                FC barcelona
-              </td>
-            </tr>
-          )}
-          {equiposAgregados.length
-            ? equiposAgregados.map((equipo) => {
-              return (
-                <tr key={equipo}>
-                  <td className="table-data">{equipo}</td>
-                </tr>
-              );
-            })
-            : null} */}
-            
-          {!jugadoresAgregados.length && (
-            <tr>
-               <td
-                className="example-text"
-                style={{ textAlign: "center", fontSize: "12px" }}
-              >
-                FC barcelona
-              </td>
-              <td
-                className="example-text"
-                style={{ textAlign: "center", fontSize: "12px" }}
-              >
-                juanperez@example.com
-              </td>
-            </tr>
-          )}
-          {jugadoresAgregados.length
-            ? jugadoresAgregados.map((jugador) => {
-              return (
-                <tr key={jugador.email}>
-                  <td className="table-data">{jugador.equiposAgregados[0]}</td>
-                  <td className="table-data">{jugador.email}</td>
+                <tr
+                  key={jugador.email}
+                >
+                  <td className="table-data" style={{ paddingTop:15 }}>{jugador.nombre}</td>
+                  <td className="table-data" style={{ paddingTop:15 }}>{jugador.email}</td>
+                  <td className="table-data" ><ModalVerJugador jugadoresAgregados={jugadoresAgregados} setJugadoresAgregados={setJugadoresAgregados}/></td>
                 </tr>
               );
             })

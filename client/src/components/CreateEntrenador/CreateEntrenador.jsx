@@ -19,6 +19,7 @@ import { ENTRENADORES, PRESIDENTE } from "../../config";
 import ErrorPermisos from "../ErrorPermisos/ErrorPermisos";
 import ModalAddEquipo from "./ModalAddEquipo";
 import Link from "@mui/material/Link";
+import ModalVerEntrenador from "./ModalVerEntrenador";
 
 const CreateEntrenador = () => {
   const dispatch = useDispatch();
@@ -209,10 +210,10 @@ const CreateEntrenador = () => {
           <table className="table table-bordered">
             <thead>
               <tr>
-                <th style={{ width: "50%", textAlign: "center" }} scope="col">
+                <th style={{ width: "45%", textAlign: "center" }} scope="col">
                   Nombre
                 </th>
-                <th style={{ width: "50%", textAlign: "center" }} scope="col">
+                <th style={{ width: "45%", textAlign: "center" }} scope="col">
                   Email
                 </th>
               </tr>
@@ -241,6 +242,7 @@ const CreateEntrenador = () => {
                     <tr key={entrenador.email}>
                       <td className="table-data">{entrenador.nombre}</td>
                       <td className="table-data">{entrenador.email}</td>
+                      <td className="table-data"><ModalVerEntrenador entrenadoresAgregados={entrenadoresAgregados}/></td>
                     </tr>
                   );
                 })
