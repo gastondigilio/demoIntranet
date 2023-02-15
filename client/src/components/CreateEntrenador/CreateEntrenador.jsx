@@ -237,6 +237,7 @@ const CreateEntrenador = () => {
                   >
                     juanperez@example.com
                   </td>
+                  <td></td>
                 </tr>
               )}
               {entrenadoresAgregados.length

@@ -148,63 +148,6 @@ const CreateEquipo = () => {
           />
         </div>
 
-        {/* <div className="input-group flex-nowrap">
-          <span className="input-group-text" id="addon-wrapping">
-            Categoría
-          </span>
-
-          <input
-            name="ciudad"
-            // value={input.ciudad}
-            placeholder="Juvenil A"
-            type="text"
-            // onChange={(e) => {
-            //   handleInputChange(e);
-            // }}
-            className="form-control"
-            aria-label="Categoría"
-            aria-describedby="addon-wrapping"
-          />
-        </div>
-
-        <div className="input-group flex-nowrap">
-          <span className="input-group-text" id="addon-wrapping">
-            Año
-          </span>
-
-          <input
-            name="año"
-            // value={input.ciudad}
-            placeholder="1995"
-            type="number"
-            // onChange={(e) => {
-            //   handleInputChange(e);
-            // }}
-            className="form-control"
-            aria-label="Año"
-            aria-describedby="addon-wrapping"
-          />
-        </div>
-
-        <div className="input-group flex-nowrap">
-          <span className="input-group-text" id="addon-wrapping">
-            Liga
-          </span>
-
-          <input
-            name="liga"
-            // value={input.ciudad}
-            placeholder="Liga profesional"
-            type="text"
-            // onChange={(e) => {
-            //   handleInputChange(e);
-            // }}
-            className="form-control"
-            aria-label="Liga"
-            aria-describedby="addon-wrapping"
-          />
-        </div> */}
-
         <div className="input-group flex-nowrap">
           <span className="input-group-text" id="addon-wrapping">
             Añadir entrenador
@@ -282,32 +225,17 @@ const CreateEquipo = () => {
                   <tr key={equipo.nombre}>
                     <td className="table-data">{equipo.nombre}</td>
                     <td className="table-data">{equipo.ciudad}</td>
+                    <td className="table-data">
+                      {/* <ModalVerEntrenador
+                        entrenadoresAgregados={entrenadoresAgregados}
+                      /> */}
+                    </td>
                   </tr>
                 );
               })
             : null}
         </tbody>
       </table>
-      <div className="listado-agregados">
-        <p>Entrenadores agregados: </p>
-        {entrenadoresAgregados.map((entrenador) => {
-          return (
-            <p key="entrenador" className="equipo-agregado">
-              {entrenador}
-            </p>
-          );
-        })}
-      </div>
-      <div className="listado-agregados">
-        <p>Jugadores agregados: </p>
-        {jugadoresAgregados.map((jugador) => {
-          return (
-            <p key="jugador" className="equipo-agregado">
-              {jugador}
-            </p>
-          );
-        })}
-      </div>
     </div>
   );
 };

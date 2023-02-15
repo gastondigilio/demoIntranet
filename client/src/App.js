@@ -15,6 +15,7 @@ import "./App.css";
 import DetailEquipo from "./components/DetailEquipo/DetailEquipo";
 import DetailEntrenador from "./components/DetailEntrenador/DetailEntrenador";
 import DetailJugador from "./components/DetailJugador/DetailJugador";
+import ComingSoon from "./components/ComingSoon/ComingSoon";
 
 const App = () => {
   return (
@@ -40,6 +41,8 @@ const App = () => {
         <Route path="jugador/:email" element={<DetailJugador />} />
 
         {/* RUTAS ENTRENADORES */}
+        <Route path="/perfil-entrenador" element={<ComingSoon />} />
+        <Route path="/crear-novedad-entrenador" element={<ComingSoon />} />
       </Routes>
     </div>
   );

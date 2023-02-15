@@ -7,27 +7,17 @@ import Logout from "../../components/Logout/Logout";
 export const mainListItems = (
   <div>
     <ListItem button>
-      <Link href="/crear-entrenador" target="_self">
-        <ListItemText primary="Nombre del club" />
-      </Link>
-    </ListItem>
-    <ListItem button>
-      <Link href="/crear-equipo" target="_self">
-        <ListItemText primary="Equipos" />
-      </Link>
-    </ListItem>
-    <ListItem button>
-      <Link href="/home-entrenadores/perfil" target="_self">
+      <Link href="/perfil-entrenador" target="_self">
         <ListItemText primary="Perfil" />
       </Link>
     </ListItem>
     <ListItem button>
-      <Link href="/crear-equipo" target="_self">
-        <ListItemText primary="Chat de grupo" />
+      <Link href="/crear-novedad-entrenador" target="_self">
+        <ListItemText primary="Novedades" />
       </Link>
     </ListItem>
     <ListItem button>
-      <Link href="/home-entrenadores/crear-jugador" target="_self">
+      <Link href="/crear-jugador" target="_self">
         <ListItemText primary="Crear jugador" />
       </Link>
     </ListItem>
@@ -37,7 +27,4 @@ export const mainListItems = (
   </div>
 );
 
-export const secondaryListItems = (
-  <div>
-  </div>
-);
+export const secondaryListItems = <div></div>;

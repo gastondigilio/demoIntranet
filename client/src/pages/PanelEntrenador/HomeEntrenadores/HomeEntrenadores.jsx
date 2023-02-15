@@ -101,12 +101,10 @@ export default function HomeEntrenadores() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Demo Intranet - Panel Jugador
+              Demo Intranet - Panel Entrenador
             </Typography>
             <IconButton color="inherit">
-              {/* <Badge badgeContent={4} color="secondary"> */}
               <AccountCircleIcon />
-              {/* </Badge> */}
             </IconButton>
           </Toolbar>
         </AppBar>
@@ -142,8 +140,7 @@ export default function HomeEntrenadores() {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
-            </Grid>
+            <Grid container spacing={3}></Grid>
           </Container>
         </Box>
       </Box>
