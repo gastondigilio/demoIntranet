@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { createJugador, setLoading, getEquipos } from "../../redux/actions/actions";
+import {
+  createJugador,
+  setLoading,
+  getEquipos,
+} from "../../redux/actions/actions";
 
 import emailjs from "@emailjs/browser";
 
@@ -18,7 +23,7 @@ const CreateJugador = () => {
   const initialInput = {
     nombre: "",
     email: "",
-    equiposAgregados: []
+    equiposAgregados: [],
     // nombreEquipo: "Real Madrid",
   };
   const [input, setInput] = useState(initialInput);
@@ -88,10 +93,9 @@ const CreateJugador = () => {
 
   const handleRowClick = (e) => {
     e.preventDefault();
-    <ModalAddEquipo/>
-    console.log("meclickeaste")
-  }
-
+    <ModalAddEquipo />;
+    console.log("meclickeaste");
+  };
 
   useEffect(() => {
     dispatch(setLoading(true));
@@ -102,12 +106,12 @@ const CreateJugador = () => {
   }, []);
 
   useEffect(() => {
-    setInput({ ...input, equiposAgregados })
-  }, [equiposAgregados])
+    setInput({ ...input, equiposAgregados });
+  }, [equiposAgregados]);
 
   useEffect(() => {
-    console.log("jugadoresAgregados", jugadoresAgregados)
-  }, [jugadoresAgregados])
+    console.log("jugadoresAgregados", jugadoresAgregados);
+  }, [jugadoresAgregados]);
 
   return (
     <div className="create-jugador">
@@ -162,7 +166,10 @@ const CreateJugador = () => {
           <span className="input-group-text" id="addon-wrapping">
             Equipo
           </span>
-          <ModalAddEquipo equiposAgregados={equiposAgregados} setEquiposAgregados={setEquiposAgregados} />
+          <ModalAddEquipo
+            equiposAgregados={equiposAgregados}
+            setEquiposAgregados={setEquiposAgregados}
+          />
         </div>
 
         <div className="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -218,28 +225,26 @@ const CreateJugador = () => {
           )}
           {jugadoresAgregados.length
             ? jugadoresAgregados.map((jugador) => {
-              return (
-                <tr
-                  key={jugador.email}
-                >
-                  <td className="table-data" style={{ paddingTop:15 }}>{jugador.nombre}</td>
-                  <td className="table-data" style={{ paddingTop:15 }}>{jugador.email}</td>
-                  <td className="table-data" ><ModalVerJugador jugadoresAgregados={jugadoresAgregados} setJugadoresAgregados={setJugadoresAgregados}/></td>
-                </tr>
-              );
-            })
+                return (
+                  <tr key={jugador.email}>
+                    <td className="table-data" style={{ paddingTop: 15 }}>
+                      {jugador.nombre}
+                    </td>
+                    <td className="table-data" style={{ paddingTop: 15 }}>
+                      {jugador.email}
+                    </td>
+                    <td className="table-data">
+                      <ModalVerJugador
+                        jugadoresAgregados={jugadoresAgregados}
+                        setJugadoresAgregados={setJugadoresAgregados}
+                      />
+                    </td>
+                  </tr>
+                );
+              })
             : null}
         </tbody>
       </table>
-
-      <div className='listado-agregados'>
-        <p>Equipos agregados: </p>
-        {
-          equiposAgregados.map(equipo => {
-            return <p key="equipo" className="equipo-agregado">{equipo}</p>
-          })
-        }
-      </div>
     </div>
   );
 };

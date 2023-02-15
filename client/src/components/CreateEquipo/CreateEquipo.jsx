@@ -7,13 +7,12 @@ import {
   getEquipos,
   setLoading,
   getEntrenadores,
-  getJugadores
+  getJugadores,
 } from "../../redux/actions/actions";
 
 import ModalAddEntrenador from "./ModalAddEntrenador";
 import ModalAddJugador from "./ModalAddJugador";
 import Link from "@mui/material/Link";
-
 
 import "./CreateEquipo.css";
 
@@ -85,23 +84,22 @@ const CreateEquipo = () => {
     }, 1500);
   }, []);
 
+  useEffect(() => {
+    setInput({ ...input, equiposAgregados });
+  }, [equiposAgregados]);
 
   useEffect(() => {
-    setInput({ ...input, equiposAgregados })
-  }, [equiposAgregados])
+    setInput({ ...input, entrenadoresAgregados, jugadoresAgregados });
+  }, [entrenadoresAgregados, jugadoresAgregados]);
 
   useEffect(() => {
-    setInput({ ...input, entrenadoresAgregados, jugadoresAgregados })
-  }, [entrenadoresAgregados, jugadoresAgregados])
-
-  useEffect(() => {
-    console.log("equiposAgregados", equiposAgregados)
-  }, [equiposAgregados])
+    console.log("equiposAgregados", equiposAgregados);
+  }, [equiposAgregados]);
 
   return (
     <div className="create-equipo">
       <Link href="/">
-      <button className="botonVolver">Volver</button>
+        <button className="botonVolver">Volver</button>
       </Link>
       <h2 className="sub-title">Dar de alta equipos</h2>
 
@@ -150,7 +148,7 @@ const CreateEquipo = () => {
           />
         </div>
 
-        <div className="input-group flex-nowrap">
+        {/* <div className="input-group flex-nowrap">
           <span className="input-group-text" id="addon-wrapping">
             Categoría
           </span>
@@ -205,20 +203,26 @@ const CreateEquipo = () => {
             aria-label="Liga"
             aria-describedby="addon-wrapping"
           />
-        </div>
+        </div> */}
 
         <div className="input-group flex-nowrap">
           <span className="input-group-text" id="addon-wrapping">
             Añadir entrenador
           </span>
-          <ModalAddEntrenador entrenadoresAgregados={entrenadoresAgregados} setEntrenadoresAgregados={setEntrenadoresAgregados} />
+          <ModalAddEntrenador
+            entrenadoresAgregados={entrenadoresAgregados}
+            setEntrenadoresAgregados={setEntrenadoresAgregados}
+          />
         </div>
 
         <div className="input-group flex-nowrap">
           <span className="input-group-text" id="addon-wrapping">
             Añadir jugador
           </span>
-          <ModalAddJugador jugadoresAgregados={jugadoresAgregados} setJugadoresAgregados={setJugadoresAgregados} />
+          <ModalAddJugador
+            jugadoresAgregados={jugadoresAgregados}
+            setJugadoresAgregados={setJugadoresAgregados}
+          />
         </div>
 
         <div className="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -274,31 +278,35 @@ const CreateEquipo = () => {
           )}
           {equiposAgregados.length
             ? equiposAgregados.map((equipo) => {
-              return (
-                <tr key={equipo.nombre}>
-                  <td className="table-data">{equipo.nombre}</td>
-                  <td className="table-data">{equipo.ciudad}</td>
-                </tr>
-              );
-            })
+                return (
+                  <tr key={equipo.nombre}>
+                    <td className="table-data">{equipo.nombre}</td>
+                    <td className="table-data">{equipo.ciudad}</td>
+                  </tr>
+                );
+              })
             : null}
         </tbody>
       </table>
-      <div className='listado-agregados'>
+      <div className="listado-agregados">
         <p>Entrenadores agregados: </p>
-        {
-          entrenadoresAgregados.map(entrenador => {
-            return <p key="entrenador" className="equipo-agregado">{entrenador}</p>
-          })
-        }
+        {entrenadoresAgregados.map((entrenador) => {
+          return (
+            <p key="entrenador" className="equipo-agregado">
+              {entrenador}
+            </p>
+          );
+        })}
       </div>
-      <div className='listado-agregados'>
+      <div className="listado-agregados">
         <p>Jugadores agregados: </p>
-        {
-          jugadoresAgregados.map(jugador => {
-            return <p key="jugador" className="equipo-agregado">{jugador}</p>
-          })
-        }
+        {jugadoresAgregados.map((jugador) => {
+          return (
+            <p key="jugador" className="equipo-agregado">
+              {jugador}
+            </p>
+          );
+        })}
       </div>
     </div>
   );

@@ -38,7 +38,12 @@ export default function DetailEntrenador() {
         <div className="relacion-container">
           {entrenador && <EntrenadoresEquipos entrenadorId={entrenador.id} />}
         </div>
-        <div className="relacion-container">
+        <div
+          className="relacion-container"
+          style={{
+            padding: "2rem",
+          }}
+        >
           {entrenador && (
             <RelacionesEntrenadores emailEntrenador={entrenador.email} />
           )}

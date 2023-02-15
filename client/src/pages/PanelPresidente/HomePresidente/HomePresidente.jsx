@@ -160,13 +160,13 @@ export default function HomePresidente() {
               <Toolbar />
               <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
                 <Grid container spacing={3}>
+                  <ListadoEquipos />
+                </Grid>
+                <Grid container spacing={3}>
                   <ListadoEntrenadores />
                 </Grid>
                 <Grid container spacing={3}>
                   <ListadoJugadores />
-                </Grid>
-                <Grid container spacing={3}>
-                  <ListadoEquipos />
                 </Grid>
               </Container>
             </Box>

@@ -26,7 +26,7 @@ const CreateEntrenador = () => {
   const initialInput = {
     nombre: "",
     email: "",
-    equiposAgregados: []
+    equiposAgregados: [],
   };
 
   const [input, setInput] = useState(initialInput);
@@ -117,12 +117,12 @@ const CreateEntrenador = () => {
   }, [entrenadores, uid]);
 
   useEffect(() => {
-    setInput({ ...input, equiposAgregados })
-  }, [equiposAgregados])
+    setInput({ ...input, equiposAgregados });
+  }, [equiposAgregados]);
 
   useEffect(() => {
-    console.log("entrenadoresAgregados", entrenadoresAgregados)
-  }, [entrenadoresAgregados])
+    console.log("entrenadoresAgregados", entrenadoresAgregados);
+  }, [entrenadoresAgregados]);
 
   return (
     <>
@@ -182,7 +182,10 @@ const CreateEntrenador = () => {
               <span className="input-group-text" id="addon-wrapping">
                 Equipo
               </span>
-              <ModalAddEquipo equiposAgregados={equiposAgregados} setEquiposAgregados={setEquiposAgregados} />
+              <ModalAddEquipo
+                equiposAgregados={equiposAgregados}
+                setEquiposAgregados={setEquiposAgregados}
+              />
             </div>
 
             <div className="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -238,26 +241,21 @@ const CreateEntrenador = () => {
               )}
               {entrenadoresAgregados.length
                 ? entrenadoresAgregados.map((entrenador) => {
-                  return (
-                    <tr key={entrenador.email}>
-                      <td className="table-data">{entrenador.nombre}</td>
-                      <td className="table-data">{entrenador.email}</td>
-                      <td className="table-data"><ModalVerEntrenador entrenadoresAgregados={entrenadoresAgregados}/></td>
-                    </tr>
-                  );
-                })
+                    return (
+                      <tr key={entrenador.email}>
+                        <td className="table-data">{entrenador.nombre}</td>
+                        <td className="table-data">{entrenador.email}</td>
+                        <td className="table-data">
+                          <ModalVerEntrenador
+                            entrenadoresAgregados={entrenadoresAgregados}
+                          />
+                        </td>
+                      </tr>
+                    );
+                  })
                 : null}
             </tbody>
           </table>
-
-          <div className='listado-agregados'>
-            <p>Equipos agregados: </p>
-            {
-              equiposAgregados.map(equipo => {
-                return <p key="equipo" className="equipo-agregado">{equipo}</p>
-              })
-            }
-          </div>
         </div>
       ) : (
         <ErrorPermisos />

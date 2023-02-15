@@ -14,6 +14,7 @@ import CreateEquipo from "./components/CreateEquipo/CreateEquipo";
 import "./App.css";
 import DetailEquipo from "./components/DetailEquipo/DetailEquipo";
 import DetailEntrenador from "./components/DetailEntrenador/DetailEntrenador";
+import DetailJugador from "./components/DetailJugador/DetailJugador";
 
 const App = () => {
   return (
@@ -36,7 +37,7 @@ const App = () => {
         {/* RUTAS DE DETALLES */}
         <Route path="equipo/:nombre" element={<DetailEquipo />} />
         <Route path="entrenador/:email" element={<DetailEntrenador />} />
-        {/* <Route path="jugador/:email" element={<JugadorDetail />} /> */}
+        <Route path="jugador/:email" element={<DetailJugador />} />
 
         {/* RUTAS ENTRENADORES */}
       </Routes>

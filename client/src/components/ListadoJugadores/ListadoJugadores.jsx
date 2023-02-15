@@ -13,6 +13,11 @@ const ListadoJugadores = () => {
   const jugadores = useSelector((state) => state.jugadores);
   const hayJugadores = jugadores && jugadores.data && jugadores.data.length;
 
+  const handleRowClick = (e, jugador) => {
+    e.preventDefault();
+    window.location.pathname = "jugador/" + jugador.email;
+  };
+
   useEffect(() => {
     dispatch(getJugadores());
   }, []);
@@ -42,7 +47,11 @@ const ListadoJugadores = () => {
           {hayJugadores
             ? jugadores.data.map((jugador) => {
                 return (
-                  <tr key={jugador.email}>
+                  <tr
+                    key={jugador.email}
+                    className="clickable"
+                    onClick={(e) => handleRowClick(e, jugador)}
+                  >
                     <td className="table-data">{jugador.nombre}</td>
                     <td className="table-data">{jugador.email}</td>
                   </tr>
