@@ -11,12 +11,12 @@ export const mainListItems = (
   <div>
     <ListItem button>
       <Link href="/novedades-jugador" target="_self">
-        <ListItemText primary="Clasificación" />
+        <ListItemText primary="Novedades" />
       </Link>
     </ListItem>
     <ListItem button>
       <Link href="/chat-equipo" target="_self">
-        <ListItemText primary="Clasificación" />
+        <ListItemText primary="Chat" />
       </Link>
     </ListItem>
     <ListItem button>
