@@ -43,6 +43,10 @@ const App = () => {
         {/* RUTAS ENTRENADORES */}
         <Route path="/perfil-entrenador" element={<ComingSoon />} />
         <Route path="/crear-novedad-entrenador" element={<ComingSoon />} />
+
+        {/* RUTAS JUGADORES */}
+        <Route path="/chat-equipo" element={<ComingSoon />} />
+        <Route path="/novedades-jugador" element={<ComingSoon />} />
       </Routes>
     </div>
   );

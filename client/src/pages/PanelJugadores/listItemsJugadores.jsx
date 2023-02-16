@@ -10,37 +10,16 @@ import Logout from "../../components/Logout/Logout";
 export const mainListItems = (
   <div>
     <ListItem button>
-      <ListItemIcon>{/* <DashboardIcon /> */}</ListItemIcon>
-      <Link href="/crear-entrenador" target="_self">
-        <ListItemText primary="Nombre del club" />
-      </Link>
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>{/* <ShoppingCartIcon /> */}</ListItemIcon>
-      <Link href="/crear-equipo" target="_self">
-        <ListItemText primary="Chat de equipo" />
-      </Link>
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>{/* <ShoppingCartIcon /> */}</ListItemIcon>
-      <Link href="/crear-equipo" target="_self">
-        <ListItemText primary="Perfil" />
-      </Link>
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>{/* <ShoppingCartIcon /> */}</ListItemIcon>
-      <Link href="/crear-equipo" target="_self">
-        <ListItemText primary="Próximos partidos" />
-      </Link>
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>{/* <ShoppingCartIcon /> */}</ListItemIcon>
-      <Link href="/crear-equipo" target="_self">
+      <Link href="/novedades-jugador" target="_self">
         <ListItemText primary="Clasificación" />
       </Link>
     </ListItem>
     <ListItem button>
-      <ListItemIcon>{/* <DashboardIcon /> */}</ListItemIcon>
+      <Link href="/chat-equipo" target="_self">
+        <ListItemText primary="Clasificación" />
+      </Link>
+    </ListItem>
+    <ListItem button>
       <Logout />
     </ListItem>
     {/* <ListItem button>
