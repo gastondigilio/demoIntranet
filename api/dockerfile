@@ -10,4 +10,5 @@ RUN npm i -g serve
 
 EXPOSE 3001
 
-CMD ["npm", "run", "serve"]
+# CMD ["npm", "run", "serve"]
+CMD ["serve", "-s", "build"]
