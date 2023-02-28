@@ -14,6 +14,10 @@ const {
 
 const router = Router();
 
+router.get("/api/test", async (req, res) => {
+  res.status(200).send("LISTO");
+});
+
 router.get("/api/equipos", async (req, res) => {
   try {
     const allEquipos = await Equipos.findAll();
