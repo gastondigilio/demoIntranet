@@ -5,6 +5,10 @@ services:
     build: ./api
     expose:
       - 3001
+    environment:
+      - DB_USER=postgres
+      - DB_PASSWORD=1324
+      - DB_HOST=localhost
     volumes:
       - ./api:/usr/src/app
   reactapp:

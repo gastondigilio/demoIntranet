@@ -6,9 +6,8 @@ COPY . /app
 
 RUN npm install
 
-RUN npm i -g serve
+RUN npm i serve
 
 EXPOSE 3001
 
-# CMD ["npm", "run", "serve"]
-CMD ["serve", "-s", "build"]
+CMD ["npm", "run", "serve"]
