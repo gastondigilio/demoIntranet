@@ -17,13 +17,11 @@ services:
   nginx:
     build: ./nginx
     ports:
-      - "8080:8080"
-    expose:
-      - 80
+      - 80:80
     links:
       - expressapp
       - reactapp
-      - nginx-proxy
+      - nginx_proxy
       - letsencrypt
     environment:
       - VIRTUAL_HOST=sportsevolution.es, www.sportsevolution.es
