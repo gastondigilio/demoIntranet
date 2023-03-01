@@ -3,8 +3,6 @@ services:
   expressapp:
     container_name: api-intranet
     build: ./api
-    ports:
-      - "3001:3001"
     expose:
       - 3001
     environment:
