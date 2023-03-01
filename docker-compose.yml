@@ -75,7 +75,7 @@ services:
 volumes:
   certs:
   html:
-  vhostd:
+  vhost:
 
 
 networks:
