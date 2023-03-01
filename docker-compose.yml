@@ -43,8 +43,8 @@ services:
       - nginx-proxy
       - letsencrypt
     environment:
-      - VIRTUAL_HOST=sportsevolution.es,www.sportsevolution.es
-      - LETSENCRYPT_HOST=sportsevolution.es,www.sportsevolution.es
+      - VIRTUAL_HOST=sportsevolution.es
+      - LETSENCRYPT_HOST=sportsevolution.es
     restart: always
     networks:
       - intranet-network
