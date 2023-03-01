@@ -57,7 +57,7 @@ services:
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - certs:/etc/nginx/certs:ro
-      - vhost:/etc/nginx/vhost.d:rw
+      - vhostd:/etc/nginx/vhost.d:rw
       - html:/usr/share/nginx/html
     labels:
       - com.github.jrcs.lestencrypt_nginx_proxy_companion.nginx_proxy
@@ -75,7 +75,7 @@ services:
 volumes:
   certs:
   html:
-  vhost:
+  vhostd:
 
 
 networks:
