@@ -37,9 +37,12 @@ services:
     build: ./nginx
     ports:
       - "80:80"
+      - "443:443"
     links:
       - expressapp
       - reactapp
+    volumes:
+      - ./certs:/etc/nginx/certs
     restart: always
     networks:
       - intranet-network
