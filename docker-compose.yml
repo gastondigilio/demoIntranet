@@ -21,7 +21,7 @@ services:
     links:
       - expressapp
       - reactapp
-      - nginx_proxy
+      - nginx-proxy
       - letsencrypt
     environment:
       - VIRTUAL_HOST=sportsevolution.es, www.sportsevolution.es
