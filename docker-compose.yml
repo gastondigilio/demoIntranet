@@ -61,7 +61,7 @@ services:
       - html:/usr/share/nginx/html
     labels:
       - com.github.jrcs.lestencrypt_nginx_proxy_companion.nginx_proxy
-  lestencrypt:
+  letsencrypt:
     image: jrcs/letsencrypt-nginx-proxy-companion
     restart: always
     environment:
