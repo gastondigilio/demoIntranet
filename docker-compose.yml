@@ -5,21 +5,25 @@ services:
     build: ./api
     expose:
       - 3001
-    volumes:
-      - ./api:/usr/src/app
     environment:
       - DB_USER=postgres
       - DB_PASSWORD=1324
       - DB_DATABASE=Demo-Intranet
       - DB_HOST=db
+    volumes:
+      - ./api:/usr/src/app
     depends_on:
       - db
+    networks:
+      - intranet-network
   db:
     image: postgres
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=1324
       - POSTGRES_DB=Demo-Intranet
+    networks:
+      - intranet-network
   reactapp:
     container_name: reactapp
     build: ./client
@@ -27,6 +31,8 @@ services:
       - 3000
     volumes:
       - ./client:/usr/src/app
+    networks:
+      - intranet-network
   nginx:
     build: ./nginx
     ports:
@@ -35,3 +41,9 @@ services:
       - expressapp
       - reactapp
     restart: always
+    networks:
+      - intranet-network
+
+networks:
+  intranet-network:
+    driver: bridge
