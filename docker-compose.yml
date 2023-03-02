@@ -7,6 +7,10 @@ services:
       - 3001
     volumes:
       - ./api:/usr/src/app
+    environment:
+      - DB_USER=postgres
+      - DB_PASSWORD=1324
+      - DB_HOST=db
   reactapp:
     container_name: reactapp
     build: ./client
