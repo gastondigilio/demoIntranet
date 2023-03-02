@@ -12,7 +12,13 @@ const server = express();
 server.name = "API";
 
 // Aplicar la configuración de CORS
-server.use(cors());
+const corsOptions = {
+  origin: '*',
+  credentials: true,
+  methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE'],
+  allowedHeaders: ['DNT', 'X-Mx-ReqToken', 'Keep-Alive', 'User-Agent', 'X-Requested-With', 'If-Modified-Since', 'Cache-Control', 'Content-Type', 'Authorization']
+}
+server.use(cors(corsOptions));
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
