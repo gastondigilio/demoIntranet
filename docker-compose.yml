@@ -10,7 +10,7 @@ services:
     environment:
       - DB_USER=postgres
       - DB_PASSWORD=1324
-      - DB_HOST=db
+      - DB_HOST=postgres
   reactapp:
     container_name: reactapp
     build: ./client
