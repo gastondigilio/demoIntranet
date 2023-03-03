@@ -37,8 +37,8 @@ services:
       - nginx-proxy
       - letsencrypt
     environment:
-      - VIRTUAL_HOST=sportsevolution.es,www.sportsevolution.es
-      - LETSENCRYPT_HOST=sportsevolution.es,www.sportsevolution.es
+      - VIRTUAL_HOST=futbolevolution.es,www.futbolevolution.es
+      - LETSENCRYPT_HOST=futbolevolution.es,www.futbolevolution.es
     restart: always
   nginx-proxy:
     image: jwilder/nginx-proxy
