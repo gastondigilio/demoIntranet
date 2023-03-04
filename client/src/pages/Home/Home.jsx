@@ -8,9 +8,9 @@ import {
   setLoading,
 } from "../../redux/actions/actions";
 
-import Grid from "@mui/material/Grid";
-import Link from "@mui/material/Link";
 import "./Home.css";
+import Icon from "../../images/IconoMadrid.png";
+import BackgroundSVG from "../../images/background.svg";
 
 import HomeJugadores from "../PanelJugadores/HomeJugadores/HomeJugadores";
 import HomePresidente from "../PanelPresidente/HomePresidente/HomePresidente";
@@ -49,22 +49,54 @@ const Home = () => {
       ) : (
         <div className="home">
           {!uid ? (
-            <>
-              <div className="homeLanding">
-                <h1 className="titleLanding">Bienvenido a la Intranet</h1>
-                <Grid container justifyContent="center">
-                  <Grid item padding={10}>
-                    <Link
-                      href="/login"
-                      variant="body2"
-                      style={{ textDecoration: "none", color: "#FFFFFF", fontWeight: "bold", fontSize: 20 }}
-                    >
-                      Iniciar sesión
-                    </Link>
-                  </Grid>
-                </Grid>
-              </div>
-            </>
+            <div className="homeLanding">
+              <nav>
+                <div>
+                  <img src={Icon} />
+                  <p>Real Madrid FC</p>
+                </div>
+                <a className="nav-button">Ingresar</a>
+              </nav>
+              <article>
+                <div className="informacion">
+                  <p>
+                    <span>
+                      Para ingresar con tu cuenta debes contactarte con el
+                      presidente del club o con tu entrenador para que pueda dar
+                      de alta tu usuario.
+                    </span>
+                    <br />
+                    <br />
+                    Si ya tienes usuario, ¡solo debes tocar el boton de
+                    Ingresar!
+                  </p>
+                  <a className="nav-button">Ingresar</a>
+                </div>
+                <div className="informacion">
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Architecto ut, blanditiis optio nihil aspernatur natus
+                    reiciendis facilis, est temporibus quasi, quos quas dolorem
+                    ullam enim eum?
+                    <br />
+                    <br />
+                    Sapiente assumenda quasi tempore voluptatum omnis
+                    necessitatibus, enim nihil ducimus temporibus explicabo
+                    nulla accusantium alias, eius blanditiis placeat harum
+                    doloremque maiores dicta aut consectetur ex ut asperiores!
+                    <br />
+                    <br />
+                    Deserunt cumque commodi quae ab quos omnis laudantium eos
+                    illo perferendis nemo repellendus explicabo eveniet sequi
+                    similique enim, itaque nihil inventore magnam incidunt
+                    minima quasi dolore tempore. Non quo fugit, quis dignissimos
+                    tempora iste sint. Doloremque, deleniti laudantium. Incidunt
+                    ab laborum similique doloremque fugit necessitatibus at
+                    assumenda?
+                  </p>
+                </div>
+              </article>
+            </div>
           ) : (
             <div>
               {userType === JUGADORES && <HomeJugadores />}

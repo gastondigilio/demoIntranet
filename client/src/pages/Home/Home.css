@@ -1,51 +1,91 @@
 @import url('../../App.css');
 
 .homeLanding {
-    background-image: url('../../images/landingPage/landingPage.jpg');
-    /* background-size: cover; */
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    /* width: auto; */
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-
 }
 
 .titleLanding {
     display: flex;
     justify-content: center;
-    padding-top: 23rem;
+    padding-top: 6rem;
     font-size: 60px;
     font-weight: bold;
     color: #FFFFFF;
-    filter: drop-shadow(2px 2px 2px black);
 }
 
 @media (min-width: 768px) {
     .homeLanding {
-        background-image: url('../../images/landingPage/landingPage.jpg');
-        background-size: cover;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: auto;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-
+        display: flex;
+        flex-direction: column;
     }
 
-    .titleLanding {
+    nav {
         display: flex;
-        justify-content: center;
-        padding-top: 23rem;
-        font-size: 60px;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 2px solid var(--second-color);
+        width: 100%;
+        padding: 0.5rem 1rem;
+    }
+
+    nav div {
+        display: flex;
+        align-items: center;
+    }
+
+    nav div img {
+        width: 50px;
+        margin-right: 1rem;
+    }
+
+    nav div p {
+        color: var(--second-color);
         font-weight: bold;
-        color: #FFFFFF;
-        filter: drop-shadow(2px 2px 2px black);
+        font-size: 1.5rem;
+    }
+
+    .nav-button {
+        border: 2px solid var(--second-color);
+        border-radius: 5px;
+        padding: 0.15rem 1rem;
+        color: var(--second-color) !important;
+        font-weight: bold;
+        transition: all ease 0.5s;
+    }
+    
+    .nav-button:hover {
+        color: var(--fourth-color) !important;
+        background-color: var(--first-color);
+        transition: all ease 0.5s;
+    }
+
+    .homeLanding article {
+        display: flex;
+        justify-content: space-evenly;
+        padding-top: 2rem;
+    }
+
+    article div {
+        width: 45%;
+    }
+
+    article .informacion {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1.5rem;
+        border: 2px solid var(--second-color);
+        border-radius: 5px;
+        height: fit-content;
+    }
+
+    article .informacion p {
+        color: var(--first-color);
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    article .informacion p span {
+        font-weight: bold;
     }
 }
