@@ -22,9 +22,9 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border-bottom: 2px solid var(--second-color);
         width: 100%;
-        padding: 0.5rem 1rem;
+        padding: 0 1rem;
+        height: 10vh;
     }
 
     nav div {
@@ -38,54 +38,34 @@
     }
 
     nav div p {
-        color: var(--second-color);
+        color: var(--rm-blue);
         font-weight: bold;
         font-size: 1.5rem;
-    }
-
-    .nav-button {
-        border: 2px solid var(--second-color);
-        border-radius: 5px;
-        padding: 0.15rem 1rem;
-        color: var(--second-color) !important;
-        font-weight: bold;
-        transition: all ease 0.5s;
-    }
-    
-    .nav-button:hover {
-        color: var(--fourth-color) !important;
-        background-color: var(--first-color);
-        transition: all ease 0.5s;
     }
 
     .homeLanding article {
         display: flex;
         justify-content: space-evenly;
         padding-top: 2rem;
+        background-image: url(../../images/background-10.jpg);
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 90vh;
     }
 
-    article div {
+    article .card {
         width: 45%;
-    }
-
-    article .informacion {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 1.5rem;
-        border: 2px solid var(--second-color);
-        border-radius: 5px;
+        background-color: var(--fourth-color);
         height: fit-content;
     }
 
-    article .informacion p {
-        color: var(--first-color);
-        font-size: 1rem;
-        margin-bottom: 1rem;
+    article .card .card-body {
+        display: flex;
+        flex-direction: column;
     }
 
-    article .informacion p span {
-        font-weight: bold;
+    article .card .card-body .nav-button {
+        align-self: flex-end;
     }
 }

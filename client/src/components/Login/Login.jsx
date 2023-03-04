@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/actions/actions";
 
 import Avatar from "@mui/material/Avatar";
 import CssBaseline from "@mui/material/CssBaseline";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
@@ -14,8 +13,10 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import pelota from "../../images/pelota.jpg";
+
 import "./Login.css";
+import pelota from "../../images/pelota.jpg";
+import BackButton from "../../images/back-button.svg";
 
 function Copyright(props) {
   return (
@@ -58,6 +59,10 @@ export default function Login() {
         window.location.pathname = "/";
       }
     }, 1500);
+  };
+
+  const handleClickVolver = () => {
+    window.history.back();
   };
 
   useEffect(() => {
@@ -107,7 +112,7 @@ export default function Login() {
                 <img src={pelota} alt="Imagen de avatar" />
               </Avatar>
               <Typography component="h1" variant="h5">
-                Demo Intranet
+                Real Madrid FC
               </Typography>
               <Box
                 component="form"
@@ -134,10 +139,6 @@ export default function Login() {
                   id="pass"
                   onChange={(e) => handleInputChange(e)}
                 />
-                <FormControlLabel
-                  control={<Checkbox value="remember" color="primary" />}
-                  label="Mantener sesión iniciada"
-                />
                 {error !== "" && (
                   <p className="input-error">Error al iniciar sesión</p>
                 )}
@@ -149,26 +150,19 @@ export default function Login() {
                 >
                   Iniciar sesion
                 </Button>
-                <Grid container>
-                  <Grid item>
-                    <Link
-                      href="/register"
-                      variant="body2"
-                      style={{ textDecoration: "none" }}
-                    >
-                      <div className="btnLogIn">{"Registrarse"}</div>
-                    </Link>
-                  </Grid>
-                </Grid>
                 <Copyright sx={{ mt: 5 }} />
               </Box>
             </Box>
           </Grid>
         </Grid>
       </ThemeProvider>
-      <Link href="/">
-        <button className="botonVolverLogin">Volver</button>
-      </Link>
+      <button
+        onClick={() => handleClickVolver()}
+        className="btn btn-primary btn-sm return-button"
+      >
+        <img src={BackButton} />
+        Volver
+      </button>
     </div>
   );
 }

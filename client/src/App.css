@@ -8,6 +8,8 @@ html, * {
     --second-color: #0c91ae;
     --third-color: #a7f3fa;
     --fourth-color: white;
+    --bootstrap-blue: #0D6EFD;
+    --rm-blue: #1C3F7B;
     --links-color: #3185FC;
     --error-color: rgb(255, 128, 128);
     --shadow: #01040434;
@@ -53,6 +55,25 @@ li {
 
     background-color: #FFFFFF;
     color: var(--first-color);
+}
+
+.btn {
+    width: fit-content;
+}
+
+.return-button {
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+}
+
+.return-button img {
+    width: 15px;
+    margin-right: 0.5rem;
+}
+
+.card-header {
+    font-weight: bold;
 }
 
 .table {
