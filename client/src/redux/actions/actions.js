@@ -11,7 +11,7 @@ import {
 import { UID_PRESIDENTE } from "../../config";
 import { JUGADORES, ENTRENADORES, PRESIDENTE } from "../../config";
 
-const url = "http://localhost";
+const url = "https://futbolevolution.es";
 const auth = getAuth();
 
 export function hasError(error) {
@@ -277,7 +277,10 @@ export function createJugador(input) {
         email: input.email,
       };
 
-      const response = await axios.post(url + "/api/crear-jugador", dataCreacion);
+      const response = await axios.post(
+        url + "/api/crear-jugador",
+        dataCreacion
+      );
 
       if (input.equiposAgregados.length) {
         input.equiposAgregados.map(async (equipo) => {
@@ -360,7 +363,10 @@ export function registerJugador(input) {
 export function relacionarJugadorEquipo(data) {
   return async function (dispatch) {
     try {
-      let relacion = await axios.post(url + "/api/relacionar-jugador-equipo", data);
+      let relacion = await axios.post(
+        url + "/api/relacionar-jugador-equipo",
+        data
+      );
       let response = await axios.get(url + "/api/jugadores-equipos");
       return dispatch({
         type: "GET_JUGADORES_EQUIPOS",
