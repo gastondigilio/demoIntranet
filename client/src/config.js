@@ -4,7 +4,7 @@ export const REGISTER_JUGADOR = "08cf22a05f0a036"
 export const REGISTER_ENTRENADOR = "0fb7b2e26ebbcdb"
 
 // UID DEL PRESIDENTE
-export const UID_PRESIDENTE = "SsForRCB55f5xfiyPu0AN51DMQI3";
+export const UID_PRESIDENTE = "HAdSaODGhIWE2NkCmpqXvTWydpI3";
 
 // USER TYPE HASHED 
 export const PRESIDENTE = "d0ba9ac0f604103f526352abdfd540a53e2f92fb";
